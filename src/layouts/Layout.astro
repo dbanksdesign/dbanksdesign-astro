@@ -1,0 +1,47 @@
+---
+import { ClientRouter } from 'astro:transitions';
+
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Social from '../components/Social.astro';
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.0/cdn/themes/dark.css" />
+
+		<BaseHead title={title || SITE_TITLE} description={description || SITE_DESCRIPTION} />
+    <ClientRouter />
+	</head>
+	<body>
+		<Header />
+    <slot />
+		<Footer />
+	</body>
+</html>
+<!-- 
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const colorMode = (() => {
+      const localStorageColorMode = localStorage?.getItem("colorMode") ?? '';
+
+      if (['dark', 'light'].includes(localStorageColorMode)) {
+        return localStorageColorMode;
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+        return 'light';
+    })();
+  
+
+    document.documentElement.dataset.colorMode = colorMode
+  
+    window.localStorage.setItem('colorMode', colorMode);
+  });
+</script> -->

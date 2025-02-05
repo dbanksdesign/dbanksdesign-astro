@@ -1,62 +1,189 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import { Image } from 'astro:assets';
+import TypeScript from '../icons/TypeScript.astro';
+import AWS from '../icons/AWS.astro';
+import GraphQL from '../icons/GraphQL.astro';
+import React from '../icons/React.astro';
+import Nextjs from '../icons/Nextjs.astro';
+import dangieImage from '../img/dangie.jpg';
+import profileImage from '../img/profile-pic.jpg';
+import bobsImage from '../img/bobs-burgers.jpg';
+import Layout from "../layouts/Layout.astro";
+import HTML from '../icons/HTML.astro';
+import CSS from '../icons/CSS.astro';
+import Figma from '../icons/Figma.astro';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage="/blog-placeholder-about.jpg"
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<Layout>
+	<div class="grid bg-diagonal">
+		<div class="grid-item" style="grid-area:map">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+				labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
+				viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
+				adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
+				et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
+				vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
+				sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+			</p>
+		</div>
+		<div class="grid-item" style="grid-area:name">
+			<p>
+			</p>
+		</div>
+		<div class="grid-item" style="grid-area:pronouns">
+			<div>
+				My pronouns are <strong>he/him</strong>
+			</div>
+		</div>
+		<div class="grid-item" style="grid-area:side">
+			<div class="skills">
+				<div class="skill html">
+					<HTML />
+					HTML
+				</div>
+				<div class="skill css">
+					<CSS />
+					CSS
+				</div>
+				<div class="skill typescript">
+					<TypeScript />
+					TypeScript
+				</div>
+				<div class="skill react">
+					<React />
+					React
+				</div>
+				<div class="skill react">
+					<React />
+					React Native
+				</div>
+				<div class="skill nextjs">
+					<Nextjs />
+					NextJS
+				</div>
+				<div class="skill aws">
+					<AWS />
+					AWS
+				</div>
+				<div class="skill graphql">
+					<GraphQL />
+					GraphQL
+				</div>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
-
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+				<div class="skill figma">
+					<Figma />
+					Figma
+				</div>
+			</div>
+		</div>
+		<div class="grid-item" style="grid-area:pkg">
+			<figure>
+				<Image src={dangieImage} alt="" />
+				<figcaption>Wedding day. 2017</figcaption>
+			</figure>
+		</div>
+		<div class="grid-item" style="grid-area:cat">
+			<p></p>
+		</div>
+		<div class="grid-item" style="grid-area:desk">
+			<p></p>
+		</div>
+		<div class="grid-item" style="grid-area:bobs">
+			<figure>
+				<Image src={bobsImage} alt="">
+				<figcaption>Testing</figcaption>
+			</figure>
+		</div>
+		<div class="grid-item" style="grid-area:img">
+			<figure>
+				<Image src={profileImage} alt="" />
+				<figcaption>Thats me circa 2017</figcaption>
+			</figure>
+		</div>
+	</div>
 </Layout>
+
+<style>
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+	.grid-item {
+		background-color: var(--color-background-primary);
+	}
+
+	.grid {
+		grid-template-columns: repeat(8, 1fr);
+		grid-template-areas:
+			"map map map map img img name name"
+			"map map map map pronouns pronouns side side"
+			"pkg pkg pkg desk desk desk side side"
+			"cat cat cat bobs bobs bobs bobs bobs";
+	}
+
+	.skills {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-small);
+	}
+
+	.skill {
+		padding: var(--space-small) var(--space-medium);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--space-small);
+	}
+
+	.skill > :global(svg) {
+		width: 1.5em;
+		height: 1.5em;
+	}
+
+	.typescript {
+		background-color: yellow;
+		color: black;
+	}
+
+	.react {
+		background-color: #58c4dc;
+		color: #404756;
+	}
+
+	.graphql {
+		color: #000;
+		background-color: #f6009c;
+	}
+
+	.nextjs {
+		background-color: #000;
+		color: #fff;
+	}
+
+	.aws {
+		background-color: #141f2e;
+		color: #f90;
+	}
+
+	.html {
+		background-color: #e44d27;
+		color: #fff;
+	}
+
+	.css {
+		background-color: #1572b6;
+		color: #fff;
+	}
+
+	.figma {
+		background-color: #000;
+		color: #fff;
+	}
+
+
+</style>

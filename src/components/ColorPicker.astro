@@ -1,0 +1,36 @@
+---
+const colors = [
+  'red',
+  'green',
+  'purple',
+];
+const defaultColor = 'purple'
+---
+
+<div class="color-picker">
+  {colors.map(color => (
+    <button style={`--color: var(--color-core-${color})`} class:list={["color-picker-button", { active: color === defaultColor }]}></button>
+  ))}
+</div>
+
+<style is:global>
+  .color-picker-button {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color);
+  }
+
+  .color-picker-button[data-active="true"] {
+    outline: 2px solid red;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('.color-picker-button');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      
+    });
+  });
+</script>

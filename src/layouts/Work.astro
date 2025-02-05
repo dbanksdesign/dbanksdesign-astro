@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+type Props = CollectionEntry<'work'>['data'] & { headings: MarkdownHeading[] };
+
+
+const { title, description, headings } = Astro.props;
+---
+
+<div class="blog-article">
+	<aside class="blog-toc">
+		<TableOfContents headings={headings} />
+	</aside>
+  <main class="blog-article-main">
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <slot />
+  </main>
+</div>

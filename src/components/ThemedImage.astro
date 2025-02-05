@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+// type Props = {
+//   light?: string;
+//   dark: string;
+//   alt: string;
+// }
+const { light, dark, alt } = Astro.props;
+---
+
+<picture class="themed-image">
+  <Image class="themed-image-img light" src={light} alt="" />
+  <Image class="themed-image-img dark" src={dark} alt={alt} />
+</picture>
+
+<style is:global>
+  .themed-image {
+    position: relative;
+  }
+  
+  .themed-image-img {
+    opacity: 0;
+  }
+
+  .themed-image-img.dark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  [data-color-mode='dark'] .themed-image-img.dark {
+    opacity: 1;
+  }
+
+  [data-color-mode='light'] .themed-image-img.light {
+    opacity: 1;
+  }
+</style>

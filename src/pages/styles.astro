@@ -1,0 +1,29 @@
+---
+import { Prism } from '@astrojs/prism';
+import Layout from '../layouts/Layout.astro';
+const colors = ['red','orange','yellow','green','teal','blue','purple','pink'];
+const shades = ['-darker','-dark','','-light'];
+const fontColors = ['primary','secondary','tertiary']
+const codeColors = ['1','2','3','4','5','6','7']
+---
+
+<Layout>
+{colors.map(color => (
+  <div>
+  <div>{color}</div>
+  {shades.map(shade => (
+    <div class="color-swatch" style={`--background: var(--color-core-${color}${shade});`}></div>
+  ))}
+  </div>
+))}
+
+<Prism lang="js" code={`const foo = 'bar';`} />
+</Layout>
+
+<style>
+  .color-swatch {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--background);
+  }
+</style>

@@ -1,0 +1,126 @@
+---
+import { Terminal, Palette, Trello, Box } from 'lucide-astro'
+---
+
+
+<div class="theme-picker-wrapper">
+  <button class="" id="theme-picker">
+    <Palette />
+  </button>
+  <ul>
+    <li>
+      <button class="theme-picker" data-theme="default">
+        <Box />
+        Default
+      </button>
+    </li>
+    <li>
+      <button class="theme-picker" data-theme="terminal">
+        <Terminal />
+        Terminal
+      </button>
+    </li>
+    <li>
+      <button class="theme-picker" data-theme="blueprint">
+        <Trello />
+        Blueprint
+      </button>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .theme-picker-wrapper {
+    align-items: stretch;
+    display: flex;
+    position: relative;
+  }
+
+  #theme-picker:focus + ul {
+    min-height: auto;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  button {
+    padding: 0 var(--space-medium);
+    background: transparent;
+    border: none;
+    color: inherit;
+  }
+  ul {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-height: 0;
+    opacity: 0;
+    transform: translateY(-1rem);
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    list-style-type: none;
+    background-color: var(--color-background-primary);
+    border: 1px solid var(--color-border-primary);
+    box-shadow: 5px 5px 0 0 var(--color-border-tertiary);
+    padding: var(--space-small);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 200px;
+  }
+
+  li {
+    display: block;
+    width: 100%;
+  }
+
+  .theme-picker {
+    padding: var(--space-xs) var(--space-small);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-small);
+
+  }
+
+  .theme-picker.active,
+  .theme-picker:hover {
+    background-color: var(--color-background-tertiary);
+  }
+
+  /* .theme-picker::before + .theme-picker {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    border-top: 1px solid var(--color-border-tertiary)
+  } */
+
+</style>
+
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-picker');
+  const localTheme = window.localStorage.getItem('theme') ?? 'default';
+  
+
+  document.documentElement.dataset.theme = localTheme;
+  buttons.forEach((button) => {
+    if (button.dataset.theme === localTheme) {
+      button.classList.add('active');
+    }
+  });
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const { theme } = button.dataset;
+      if (theme) {
+        document.documentElement.dataset.theme = theme;
+        window.localStorage.setItem("theme", theme);
+        document.querySelector('.theme-picker.active')?.classList.remove('active');
+        button.classList.add('active');
+      }
+    })
+  })
+</script>

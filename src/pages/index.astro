@@ -1,50 +1,105 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Layout from '../layouts/Layout.astro';
+import InstallScript from '../components/InstallScript.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+<Layout>
+	<div class="hero pattern">
+		<div class="hero-bubble"></div>
+		<div class="hero-bubble-2"></div>
+		<div class="hero-inner">
+			<h1>I'm Danny, a <br /><pre><code>[Design Technologist]</code></pre></h1>
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				I've been called many things in my career: Web Designer, Web Developer, UX designer, UI engineer, Product Manager, Mr. Banks, Full-Stack Developer, Front-End Engineer, Design Technologist,
+				Design Systems Architect, and most recently Principal Design Technologist. I like building things for builders.  
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+			<p>I work on design systems and open-source libraries. Occassionally I write and speak about that stuff too. I've built mobile and web apps, both designing and developing them.</p>
+			<div class="cta-buttons">
+				<a class="cta-button" href="/work">See my work</a>
+				<a class="cta-button" href="/blog">Read my writing</a>
+			</div>
+			<InstallScript />
+		</div>
+	</div>
+</Layout>
+
+<style>
+	h1 {
+		font-size: 5rem;
+		color: transparent;
+		-webkit-text-stroke-color: var(--color-brand-primary);
+		-webkit-text-stroke-width: 2px;
+		filter: drop-shadow(0 0 0.25rem var(--color-brand-primary));
+	}
+
+	.cta-button {
+		text-decoration: none;
+		padding: var(--space-small) var(--space-medium);
+		font-weight: bold;
+		background-color: var(--color-background-primary);
+		border: 1px solid var(--color-border-primary);
+		/* box-shadow: 2px 2px 0 6px var(--color-brand-primary); */
+	}
+
+	.hero {
+		padding: var(--size-padding-large);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 50%;
+		background: linear-gradient(var(--color-background-primary), transparent);
+	}
+
+	.hero-bubble-2 {
+		content: '';
+		position: absolute;
+		top: 25%;
+		left: 0;
+		width: 800px;
+		height: 800px;
+		opacity: 0.125;
+		filter: blur(100px);
+		background-color: var(--color-brand-secondary);
+	}
+
+	.hero-bubble {
+		position: absolute;
+		top: var(--top, 50%);
+		left: var(--left, 50%);
+		width: 600px;
+		height: 600px;
+		opacity: 0.125;
+		filter: blur(100px);
+		background-color: var(--color-brand-primary);
+	}
+
+	.hero-inner {
+		position: relative;
+		z-index: 2;
+	}
+</style>
+
+<script>
+	const title = document.querySelector('.title') as HTMLSpanElement;
+	const titles = [
+		'Design Technologist',
+		'Product Manager',
+		'Front-end Engineer'
+	];
+	// setInterval(() => {
+	// 	console.log(titles[Math.floor(Math.random() * titles.length)]);
+	// 	title.innerText = titles[Math.floor(Math.random() * titles.length)];
+	// }, 1000)
+	// const hero = document.querySelector('.hero') as HTMLDivElement;
+	// hero.addEventListener('mousemove', (e) => {
+	// 	hero.style.setProperty('--top', e.clientY + 'px')
+	// 	hero.style.setProperty('--left', e.clientX + 'px')
+	// })
+</script>

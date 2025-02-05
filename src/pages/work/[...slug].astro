@@ -1,0 +1,36 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
+import { render } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+import Layout from '../../layouts/Layout.astro';
+import Work from '../../layouts/Work.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('work');
+	const headings = await Promise.all(
+    posts.map(async (post) => {
+      const data = await render(post);
+      return data.headings;
+    })
+  );
+
+	return posts.map((post, index) => ({
+		params: { slug: post.id },
+		props: { post, headings: headings[index] },
+	}));
+}
+type Props = {
+  post: CollectionEntry<'work'>;
+  headings: MarkdownHeading[];
+};
+
+const { post, headings } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout>
+	<Work {...post.data} headings={headings}>
+		<Content />
+  </Work>
+</Layout>

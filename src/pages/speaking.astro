@@ -1,0 +1,70 @@
+---
+import { YouTube } from 'astro-embed';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import speakingImage from '../img/speaking.jpg';
+import Layout from '../layouts/Layout.astro';
+const speaking = await getCollection('speaking');
+---
+
+
+<Layout>
+  <div class="grid">
+    <div class="grid-item" style="grid-area:img">
+			<Image src={speakingImage} alt="A bird sitting on a nest of eggs." />
+		</div>
+    <div class="grid-item" style="grid-area:int">
+      <p>
+        I love speaking about design systems, cross-platform design and development,
+        front-end technology, and design stuff. If you'd like to have me speak at your
+        event you can shoot me an <a href="mailto:dbanks.design@gmail.com">email</a> or
+        DM on <a href="https://bsky.app/profile/dbanks.design">Bluesky</a>.
+      </p>
+		</div>
+    <div class="grid-item" style="grid-area:con">
+			<YouTube id="tOQ8llEwNHI" />
+		</div>
+    <div class="grid-item" style="grid-area:lis">
+      {speaking.map(event => (
+        <div>{event.data.title}</div>
+      ))}
+		</div>
+  </div>
+</Layout>
+
+<style>
+  .speaking-image {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 10rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .speaking-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-background-primary);
+    mix-blend-mode: color;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas:
+      "img img img int int int int int"
+      "img img img con con con con con"
+      "lis lis lis lis lis lis lis lis";
+  }
+
+</style>

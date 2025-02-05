@@ -1,0 +1,61 @@
+{
+  "Clarity 2020": {
+    "event": "Clarity 2020",
+    "eventLink": "https://clarityconf.com/2020",
+    "date": { "day": "04", "month": "SEP", "year": "2020" },
+    "title": "An Introduction to Multi-Platform Design Systems",
+    "description": "You already have amazing design systems with battle-tested components, thorough documentation, and a frictionless developer experience - there's just one small problem: it's web-only. Let's expand our design systems thinking to create a cohesive multi-platform experience that works for customers and creators. In this talk we will explore the environments, ergonomics, and economics of building design systems on multiple platforms.",
+    "slideLink": "https://noti.st/danielbanks/4cfWGA/an-introduction-to-multi-platform-design-systems",
+    "videoLink": "tOQ8llEwNHI"
+  },
+  "OSCON 2019": {
+    "event": "OSCON 2019",
+    "eventLink": "https://conferences.oreilly.com/oscon/oscon-or",
+    "date": { "day": "18", "month": "JUL", "year": "2019" },
+    "title": "Building Consistent Cross Platform Interfaces",
+    "slideLink": "http://bit.ly/oscon-2019-cross-platform",
+    "videoLink": "OCMt-aA8XBA"
+  },
+  "FrontConf 2019": {
+    "event": "FrontConf 2019",
+    "eventLink": "https://frontconf.com/",
+    "date": { "day": "27", "month": "APR", "year": "2019" },
+    "title": "Building Consistent Cross-Platform Interfaces",
+    "slideLink": "http://bit.ly/frontconf-2019-cross-platform"
+  },
+  "Codemotion Amsterdam 2019": {
+    "event": "Codemotion Amsterdam 2019",
+    "eventLink": "https://events.codemotion.com/conferences/amsterdam/2019/",
+    "date": { "day": "03", "month": "APR", "year": "2019" },
+    "title": "Building Consistent Cross-Platform Interfaces",
+    "slideLink": "http://bit.ly/codemotion-2019-cross-platform"
+  },
+  "Codemotion Rome 2019": {
+    "event": "Codemotion Rome 2019",
+    "eventLink": "https://events.codemotion.com/conferences/rome/2019/",
+    "date": { "day": "22", "month": "MAR", "year": "2019" },
+    "title": "Building Consistent Cross Platform Interfaces",
+    "slideLink": "http://bit.ly/codemotion-2019-cross-platform"
+  },
+  "All Things Open 2018": {
+    "event": "All Things Open 2018",
+    "eventLink": "https://allthingsopen.org/",
+    "date": { "day": "22", "month": "OCT", "year": "2018" },
+    "title": "Building Consistent Cross Platform Interfaces",
+    "slideLink": "http://bit.ly/ato2018-cross-platform"
+  },
+  "Big Design 2018": {
+    "event": "Big Design 2018",
+    "eventLink": "https://bigdesignevents.com/",
+    "date": { "day": "24", "month": "SEP", "year": "2018" },
+    "title": "Building Consistent Cross Platform Interfaces",
+    "slideLink": "http://bit.ly/bigdstyled"
+  },
+  "The Mixin SF": {
+    "event": "The Mixin SF",
+    "eventLink": "https://themixinsf.com/",
+    "date": { "day": "11", "month": "JUL", "year": "2018" },
+    "title": "Cross-Platform Styles with Style Dictionary",
+    "slideLink": "https://dbanksdesign.github.io/style-dictionary-presentation"
+  }
+}

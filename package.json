@@ -9,9 +9,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.7",
+    "@astrojs/mdx": "^4.0.8",
+    "@astrojs/preact": "^4.0.3",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.1.8"
+    "astro": "^5.1.8",
+    "astro-embed": "^0.9.0",
+    "astro-expressive-code": "^0.40.1",
+    "lucide-astro": "^0.473.0",
+    "motion": "^12.0.1",
+    "preact": "^10.25.4",
+    "typescript-event-target": "^1.1.1"
+  },
+  "devDependencies": {
+    "markdown-it": "^14.1.0",
+    "sanitize-html": "^2.14.0"
   }
 }

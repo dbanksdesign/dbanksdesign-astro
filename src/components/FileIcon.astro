@@ -1,0 +1,14 @@
+---
+import { FolderOpen, FileCode, FileImage, File } from 'lucide-astro';
+
+const { type } = Astro.props;
+const Icon = (
+  type === 'folder' ? FolderOpen :
+  type === 'json' ? FileCode :
+  type === 'image' ? FileImage :
+  type === 'code' ? FileCode :
+  File
+)
+---
+
+<Icon />
