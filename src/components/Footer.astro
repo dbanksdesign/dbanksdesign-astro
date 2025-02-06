@@ -38,14 +38,15 @@ const today = new Date();
 
 <style is:global>
 	footer {
-		padding: var(--space-xl);
+		padding: var(--space-large);
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		border-block-start: 1px solid var(--color-border-secondary);
 	}
 
 	.footer-copy {
-		padding: var(--space-large);
+		padding: var(--space-large) 0;
 	}
 
 	.social-links {
@@ -57,23 +58,23 @@ const today = new Date();
 		padding: var(--space-large);
 	}
 
-	.social-links::after {
+	/* footer .social-links::after {
 		content: '';
 		position: absolute;
 		top: 0;
-		left: -2rem;
+		left: -1rem;
 		border-top: 1px solid var(--color-border-tertiary);
-		width: 50%;
+		width: 2rem;
 	}
 
-	.social-links::before {
+	footer .social-links::before {
 		content: '';
 		position: absolute;
-		top: -2rem;
+		top: -1rem;
 		left: 0;
 		border-left: 1px solid var(--color-border-tertiary);
-		height: 4rem;
-	}
+		height: 2rem;
+	} */
 
 	.social-link {
 		text-decoration: none;

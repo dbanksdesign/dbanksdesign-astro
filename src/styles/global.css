@@ -539,7 +539,7 @@ p {
   margin-block-end: var(--size-padding-base);
 }
 
-blockquote {
+.blog-post blockquote {
   font-weight: 200;
   font-size: var(--size-font-large);
   padding: var(--size-padding-base);
@@ -548,31 +548,38 @@ blockquote {
   position: relative;
 }
 
-blockquote:before {
+.blog-post blockquote:before {
   content: "“";
   top: 0;
   left: -2rem;
 }
-blockquote:after,
-blockquote:before {
+.blog-post blockquote:after,
+.blog-post blockquote:before {
   position: absolute;
   font-size: 5rem;
   line-height: 1;
   color: var(--color-font-quaternary);
 }
-blockquote:after {
+.blog-post blockquote:after {
   content: "”";
   bottom: 0;
   right: -2rem;
 }
 
 figure {
+  padding: var(--space-medium);
+  border: 1px solid var(--color-border-primary);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 figcaption {
+  display: block;
   padding: var(--space-small);
   text-align: center;
-  background-color: var(--color-background-secondary);
+  /* background-color: var(--color-background-secondary); */
   color: var(--color-font-tertiary);
 }
 
@@ -586,6 +593,24 @@ hr {
 cite {
   color: var(--color-font-tertiary);
   font-size: var(--size-font-base);
+}
+
+dl {
+}
+
+dt {
+  color: var(--color-font-tertiary);
+  font-size: var(--size-font-small);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+dd {
+  font-weight: bold;
+}
+
+dd + dt {
+  margin-block-start: var(--space-medium);
 }
 
 .sr-only {
@@ -667,7 +692,7 @@ cite {
   position: absolute;
   top: -1px;
   left: -0.5rem;
-  width: 1rem;
+  width: 2rem;
   border-top: 1px solid var(--color-border-primary);
 }
 
@@ -676,8 +701,30 @@ cite {
   position: absolute;
   top: -0.5rem;
   left: -1px;
-  height: 1rem;
+  height: 2rem;
   border-left: 1px solid var(--color-border-primary);
+}
+
+.grid-item.bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -0.5rem;
+  left: auto;
+  top: auto;
+  border-bottom: 1px solid var(--color-border-primary);
+  border-top: none;
+}
+
+.grid-item.bottom::before {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  right: -1px;
+  left: auto;
+  top: auto;
+  border-right: 1px solid var(--color-border-primary);
+  border-left: none;
 }
 
 .grid {
@@ -842,7 +889,7 @@ cite {
   width: 15rem;
 }
 
-.blog-article-main {
+.blog-article-content {
   flex: 1;
   padding: var(--size-padding-xl);
 }
@@ -871,4 +918,17 @@ cite {
     transparent 50%
   );
   background-size: 10px 10px;
+}
+
+lite-youtube {
+  max-width: 100% !important;
+}
+
+.page-header {
+  padding: var(--space-medium) var(--space-large);
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.page-content {
+  padding: var(--space-medium) var(--space-large);
 }

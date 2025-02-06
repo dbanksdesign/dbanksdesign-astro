@@ -1,0 +1,79 @@
+---
+title: 'Amplify AI Kit'
+description: 'Amplify AI Kit gives frontend developers a unified solution for building AI-powered apps with TypeScript, no prior experience in cloud architecture or AI needed. Provision Amazon Bedrock, connect an LLM to your data, then use a frontend client and UI components to interact with your end users.'
+pubDate: '2024-11-19'
+slug: 'amplify-ai-kit'
+type: 'work'
+---
+
+import { YouTube } from 'astro-embed';
+
+## Links
+
+  <a href="https://aws.amazon.com/about-aws/whats-new/2024/11/aws-amplify-full-stack-ai-kit-amazon-bedrock/">
+    What's new post
+  </a>
+  <a href="https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/">
+    Launch blog post
+  </a>
+  <a href="https://aws.amazon.com/amplify/ai/">
+    Product page
+  </a>
+  <a href="https://docs.amplify.aws/react/ai/set-up-ai/">
+    Documentation
+  </a>
+
+## Overview
+
+Amplify AI Kit gives frontend developers a unified solution for building AI-powered apps with TypeScript, no prior experience in cloud architecture or AI needed. Provision Amazon Bedrock, connect an LLM to your data, then use a frontend client and UI components to interact with your end users.
+
+
+
+## Technical achievements
+
+Some notable things we did with this project:
+
+* **Security without dealing with credentials:**  Building full-stack functionality on AWS is not always easy. AWS doesn't have API keys you can just generate and use. You have to work with short-lived credentials and tokens. But with the Amplify AI kit, Amplify takes care of that for you. You never have to deal with a credentials object to authorize requests while being fully secured. 
+* **User-based data access:** Large-language models are inherently static so to make them do useful things you usually need to provide them access to information with "tools" or "functions". However you don't want to leak data that the end-user doesn't normally have access to. With the Amplify AI kit any data access via a tool is made on behalf of the user so the LLM only has access to what the user has access to. 
+* **Generative UI:** Chat bots can get kind of boring if it is just text-to-text. So we built a way for developers to define React components in their frontend code that the AI assistant can choose to respond with. For example, if you are building a conversational search experience for retail site, you could define product card components that the search assistant could respond with
+* **Streaming over websockets:**
+* **React Native support:**
+
+## Process
+
+This project started from a re:Invent chalk talk I gave in 2023 that showed attendees how to build generative AI functionality in their full-stack Amplify projects easily. It did require setting up a Lambda or an AppSync resolver to talk to Bedrock and it lacked a lot of key functionality like data retrieval and storing message history, but it was a good foundation to get started using Bedrock from a frontend/full-stack perspective. But we thought we could do more to make building generative AI functionality easier with Bedrock and Amplify.
+
+In early 2024 I got to work on building a proof-of-concept that showed what use-cases we could enable developers to build
+and how easy it would be for them to build. Our organization, Next-Gen Developer Experience or NGDE for short, adheres to the idea of "demos not memos". So I built a demo and came up with a rough developer experience to go along with the traditional PRFAQ document that gets projects funded. I presented this all to my Director and VP who said, "when can you get this done?" 
+
+I then worked with an SDM to pick a tech lead for the project and started writing requirements. For most of 2024 I operated as a PM and designer on the project, defining requirements for the developer experience and working closely with a small cross-functional development team of 4 people. A great deal of kudos definitely goes to the lead developer on the project and all the developers for stepping up and delivering a great developer experience under a compressed timeline. 
+
+To get early feedback we released a [Request for Comments (RFC)](https://github.com/aws-amplify/amplify-ui/issues/5773) and ahd early internal testers as well as testers from the AWS community. 
+
+The team successfully launched the Amplify AI kit right before re:Invent in 2024. We had a "launch week" that featured a different blog post each day of the week with associated social network posts. I authored one of the blog posts:
+
+* [Build fullstack AI apps in minutes with the new Amplify AI Kit](https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/)
+
+And reviewed the other 4
+
+* [Create a Customized AI-Based Chat Interface With Your Application Data](https://aws.amazon.com/blogs/mobile/create-a-customized-ai-based-chat-interface-with-your-application-data/)
+* [Add a Conversational Interface to any Data Source](https://aws.amazon.com/blogs/mobile/add-a-conversational-interface-to-any-data-source/)
+* [Build a Travel Planner with React Native, AWS Amplify, and Amazon Bedrock Knowledge Base](https://aws.amazon.com/blogs/mobile/building-a-personalized-travel-planner-with-amazon-bedrocks-knowledge-bases-and-rag/)
+* [Building RAG-based applications with AWS Amplify AI Kit and Neon Postgres](https://aws.amazon.com/blogs/mobile/building-rag-based-applications-with-aws-amplify-ai-kit-and-neon-postgres/)
+
+This launch was posted about some notable members of AWS leadership:
+* https://www.linkedin.com/posts/swaminathansivasubramanian_build-fullstack-ai-apps-in-minutes-with-the-activity-7264832499644547073-SjTa?utm_source=share&utm_medium=member_desktop&rcm=ACoAAANjAz4BAwg1hnz_MC3Z61PiVFYexkN_1yQ
+* https://www.linkedin.com/posts/jeffbarr_aws-activity-7272682107930353664-UTHp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAANjAz4BAwg1hnz_MC3Z61PiVFYexkN_1yQ
+
+At re:Invent there were several talks and workshops at re:Invent about the AI kit including this one:
+
+<YouTube id="IP2-saNpYsQ" />
+
+
+## Content
+
+To announce
+
+<YouTube id="yO3Np7t9Dik" />
+<YouTube id="Q7WMOhRILxo" />
+<YouTube id="f-UeIlQ1tAI" />

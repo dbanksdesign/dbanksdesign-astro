@@ -15,7 +15,7 @@ import Logo from '../icons/Logo.astro';
 		<HeaderLink class="header-link" href="/about">About</HeaderLink>
 		<HeaderLink class="header-link" href="/work">Work</HeaderLink>
 	</nav>
-	<div class="header-buttons">
+	<div class="header-buttons" transition:persist>
 		<ColorModeSwitcher />
 		<ThemePicker />
 	</div>
@@ -31,6 +31,7 @@ import Logo from '../icons/Logo.astro';
 		display: flex;
 		flex-direction: row;
 		height: var(--header-height);
+		background-image: linear-gradient(var(--color-background-primary), transparent);
 	}
 
 	header::after {
@@ -52,7 +53,7 @@ import Logo from '../icons/Logo.astro';
 		left: 0;
 		z-index: -1;
 		background-color: transparent;
-    background-image: radial-gradient(transparent 1px, var(--color-background-primary) 1px);
+    background-image: radial-gradient(var(--color-background-primary) 1px, transparent 1px);
     background-size: 4px 4px;
     backdrop-filter: blur(3px);
     mask: linear-gradient(rgb(0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);

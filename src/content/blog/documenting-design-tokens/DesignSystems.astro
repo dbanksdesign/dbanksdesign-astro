@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import data from './data'
+const base = '/src/content/blog/documenting-design-tokens/images/design-system/';
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/content/blog/documenting-design-tokens/images/design-system/*.{jpeg,jpg,png,gif}');
+---
+
+{data.map(({ds,title, image, token}) => (
+  <div class="design-system">
+    <h4>{title}</h4>
+    <Image class="design-system-image" src={images[`${base}${image}`]()} alt="" />
+    <dl class="design-system-info">
+      <dt>Design System Site:</dt>
+      <dd><a href={ds.site}>{ds.site}</a></dd>
+      <dt>Design System Source:</dt>
+      <dd><a href={ds.source}>{ds.source}</a></dd>
+      <dt>Token Site:</dt>
+      <dd><a href={token.site}>{token.site}</a></dd>
+      <dt>Token Source:</dt>
+      <dd><a href={token.source}>{token.source}</a></dd>
+    </dl>
+  </div>
+))}
+
+<style>
+  .design-system {
+  overflow: hidden;
+}
+
+dd {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.design-system-image {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .design-system-info,
+  .design-system-image {
+    width: 50%;
+    float: left;
+  }
+  
+  .design-system-info {
+    padding-left: var(--space-medium);
+  }
+}
+</style>

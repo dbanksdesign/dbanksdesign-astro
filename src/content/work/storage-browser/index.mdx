@@ -1,0 +1,93 @@
+---
+title: 'Storage Browser for S3'
+description: 'Storage Browser for Amazon S3 is an open source component you can add to your web applications to provide your end users with a simple interface for data stored in S3. With Storage Browser for S3, you can provide authorized end users access to easily browse, download, upload, copy, and delete data in S3 directly from your own applications.'
+pubDate: '2024-12-02'
+slug: 'storage-browser'
+---
+
+import { YouTube } from 'astro-embed';
+import Demo1 from './videos/sto-bro-pt-1.mp4'
+import Demo2 from './videos/sto-bro-pt-2.mp4'
+import Demo3 from './videos/sto-bro-pt-3.mp4'
+import Demo4 from './videos/sto-bro-pt-4.mp4'
+import Demo5 from './videos/sto-bro-pt-5.mp4'
+import Demo6 from './videos/sto-bro-pt-6.mp4'
+
+## Overview
+
+<YouTube id="UBpX8hCpLAY" />
+
+* [Amplify Documentation](https://ui.docs.amplify.aws/react/connected-components/storage/storage-browser)
+* [S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-browser.html)
+* [Product page](https://aws.amazon.com/s3/features/storage-browser/)
+* [Launch announcement](https://aws.amazon.com/blogs/aws/connect-users-to-data-through-your-apps-with-storage-browser-for-amazon-s3/)
+* [Launch announcement for managed app](https://aws.amazon.com/blogs/aws/announcing-aws-transfer-family-web-apps-for-fully-managed-amazon-s3-file-transfers/)
+
+## Process
+
+Early in 2024 the S3 team had a project idea a PM from the team came up with based on a theme of customer problems: S3 customers wanted an easy way to give authorized access to S3 resources. They didn't want to give people AWS logins just to access the S3 console to access certain buckets and prefixes within those buckets. 
+
+The S3 Product Manager heard about the Amplify team and how we build abstractions that make it easy to build solutions on top of AWS services. It was a perfect fit. I got involved in the project early on when it was still just a PRFAQ. I quickly built a proof-of-concept to show AWS leadership as well as potential customers how we could solve this problem. 
+
+The Amplify + S3 partnership eventually got buy-in from both organizations to build this open-source UI component. I worked with both organizations and my S3 PM counterpart to work out the funding and operating model.
+
+A team sometimes ranging from 2-3 and sometimes 6-7 developers from the Amplify JS and UI teams went to build the Storage Browser component, which included several improvements to the Amplify JS libraries to enable different authentication and authorization strategies. 
+
+Nearing the finish line I got more involved in the coding side of the Storage Browser, specifically on the stylistic aspects of the component and the customization APIs. I also built the demo of the component used in 2 re:Invent talks, while we were still finalizing the API and making code changes, which is not ideal, but we made it work. 
+
+## Technical Challenges
+
+There were several very challenging technical hurdles to overcome with this project. I cannot claim to be solely responsible for overcoming these challenges because we had fantastic people from both the S3 and Amplify side working on the project. 
+
+Working across several teams and organizations was challenging. Myself and the Amplify engineers on the project were learning about S3 best practices and reviewing technical design docs with the S3 org, while also getting buy-in from external customers about the component as we are building it. In Q3 we also started working with the AWS Transfer Family team on their product launch that would use the Storage Browser component. 
+
+Getting the customization APIs right was very difficult, and involved many iterations. Our vision was that we wanted to have a React component that could just be installed and used to get a full S3 browser experience, but also be highly customizable so that developers could bring their own component library or styles so that the component would fit into their application. Additionally, we wanted to give developers the ability to customize actions (like upload and download) and add their own custom actions. 
+
+
+
+## Outcome
+
+The team announced the Storage Browser component at re:Invent 2024 with several talks dedicated to showing off the component. We have since worked with many customers to use the component in their applications and have received a lot of great feedback that we are incorporating into the next versions of the component. 
+
+## Demos
+
+I created these demo videos for this re:Invent session:
+
+<YouTube id="YZVbSUHHZ5k" />
+
+And live coded them on the AWS Live stream:
+
+<figure>
+<YouTube id="o54A_jliO8s" />
+<figcaption>Live coding on the AWS Live stream</figcaption>
+</figure>
+
+<figure>
+  <video controls width="100%">
+    <source src={Demo1} type="video/mp4" />
+  </video>
+  <figcaption>Setting up the Storage Browser</figcaption>
+</figure>
+
+<video controls width="100%">
+  <source src={Demo2} type="video/mp4" />
+</video>
+
+<video controls width="100%">
+  <source src={Demo3} type="video/mp4" />
+</video>
+
+<video controls width="100%">
+  <source src={Demo4} type="video/mp4" />
+</video>
+
+<video controls width="100%">
+  <source src={Demo5} type="video/mp4" />
+</video>
+
+<figure>
+<video controls width="100%">
+  <source src={Demo6} type="video/mp4" />
+</video>
+<figcaption></figcaption>
+</figure>

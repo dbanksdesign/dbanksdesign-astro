@@ -34,6 +34,7 @@ const work = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     heroImage: z.string().optional(),
+    type: z.enum(["work", "project", "talk"]).optional(),
   }),
 });
 

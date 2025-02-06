@@ -14,7 +14,7 @@ const { title, description, pubDate, updatedDate, heroImage, headings } = Astro.
 	<aside class="blog-toc">
 		<TableOfContents headings={headings} />
 	</aside>
-<main class="blog-article-main">
+<main class="blog-article-content">
 	<div class="hero-image">
 		{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
 	</div>
@@ -42,7 +42,6 @@ const { title, description, pubDate, updatedDate, heroImage, headings } = Astro.
 
 <style is:global>
 	.blog-title {
-		text-align: center;
 	}
 
 	.blog-article {

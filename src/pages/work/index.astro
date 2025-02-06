@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
 
 const posts = (await getCollection('work')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -9,6 +8,9 @@ const posts = (await getCollection('work')).sort(
 ---
 
 <Layout>
+  <div class="page-header">
+		<h1>Work</h1>
+	</div>
   <div class="bg-diagonal">
   <ul class="work-cards">
     {
@@ -47,11 +49,12 @@ const posts = (await getCollection('work')).sort(
     padding: var(--space-medium);
     border: 1px solid var(--color-border-primary);
     color: var(--color-font-primary);
+    background-color: var(--color-background-primary);
     display: block;
     text-decoration: none;
     transform-style: preserve-3d;
     transform: perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
-    /* transition: none; */
+    box-shadow: 5px 5px 0 0 var(--color-border-tertiary);
   }
 
   .work-card:first-child {

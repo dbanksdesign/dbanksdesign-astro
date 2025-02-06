@@ -5,10 +5,10 @@ import { Image } from 'astro:assets';
 //   dark: string;
 //   alt: string;
 // }
-const { light, dark, alt } = Astro.props;
+const { light, dark, alt, ...rest } = Astro.props;
 ---
 
-<picture class="themed-image">
+<picture class="themed-image" {...rest}>
   <Image class="themed-image-img light" src={light} alt="" />
   <Image class="themed-image-img dark" src={dark} alt={alt} />
 </picture>
