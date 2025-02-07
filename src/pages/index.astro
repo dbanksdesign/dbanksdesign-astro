@@ -1,6 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import InstallScript from '../components/InstallScript.astro';
+import SpicyVariables from 'src/icons/SpicyVariables.astro';
+import DesignTokens from 'src/img/design-tokens.png';
+import DTCG from 'src/img/dtcg.png';
+import AmplifySticker from 'src/img/amplify-sticker.png';
+import Pascal from 'src/icons/Pascal.astro';
 ---
 
 <Layout>
@@ -8,43 +14,98 @@ import InstallScript from '../components/InstallScript.astro';
 		<div class="hero-bubble"></div>
 		<div class="hero-bubble-2"></div>
 		<div class="hero-inner">
-			<h1>I'm Danny, a <br /><pre><code>[Design Technologist]</code></pre></h1>
+			<h1>I'm Danny, a <br /><pre><code id="hero-title" /></pre></h1>
 			<p>
-				I've been called many things in my career: Web Designer, Web Developer, UX designer, UI engineer, Product Manager, Mr. Banks, Full-Stack Developer, Front-End Engineer, Design Technologist,
-				Design Systems Architect, and most recently Principal Design Technologist. I like building things for builders.  
+				I've been called many things in my career: Web Designer, Web Developer, UX designer, UI
+				engineer, Product Manager, Mr. Banks, Full-Stack Developer, Front-End Engineer, Design
+				Technologist, Design Systems Architect, and most recently Principal Design Technologist. I
+				like building things for builders.
 			</p>
-			<p>I work on design systems and open-source libraries. Occassionally I write and speak about that stuff too. I've built mobile and web apps, both designing and developing them.</p>
+			<p>
+				I work on design systems and open-source libraries. Occasionally I write and speak about
+				that stuff too. I've built mobile and web apps, both designing and developing them.
+			</p>
 			<div class="cta-buttons">
 				<a class="cta-button" href="/work">See my work</a>
 				<a class="cta-button" href="/blog">Read my writing</a>
+				<InstallScript />
 			</div>
-			<InstallScript />
+		</div>
+		<div class="sticker spicy-variables">
+			<SpicyVariables />
+		</div>
+		<div class="sticker design-tokens">
+			<Image src={DesignTokens} alt="" />
+		</div>
+		<div class="sticker pascal">
+			<Pascal />
 		</div>
 	</div>
 </Layout>
 
 <style>
-	h1 {
-		font-size: 5rem;
-		color: transparent;
-		-webkit-text-stroke-color: var(--color-brand-primary);
-		-webkit-text-stroke-width: 2px;
-		filter: drop-shadow(0 0 0.25rem var(--color-brand-primary));
+	.sticker {
+		position: absolute;
+		z-index: 2;
+		filter: drop-shadow(0 0 0.25rem var(--color-shadow));
+	}
+
+	.spicy-variables {
+		top: 50%;
+		left: -2rem;
+		width: 10rem;
+		transform: rotate(-80deg);
+	}
+
+	.design-tokens {
+		right: -4rem;
+		top: 5rem;
+		width: 18rem;
+		transform: rotate(35deg);
+	}
+
+	.dtcg {
+		right: 50%;
+		bottom: 5rem;
+		width: 10rem;
+		transform: rotate(15deg);
+	}
+
+	.pascal {
+		left: 50%;
+		top: 0;
+		width: 8rem;
+		transform: rotate(10deg);
+	}
+
+	.cta-buttons {
+		display: flex;
+		flex-direction: row;
+		gap: var(--space-medium);
 	}
 
 	.cta-button {
+		display: flex;
+		align-items: center;
 		text-decoration: none;
 		padding: var(--space-small) var(--space-medium);
 		font-weight: bold;
 		background-color: var(--color-background-primary);
 		border: 1px solid var(--color-border-primary);
-		/* box-shadow: 2px 2px 0 6px var(--color-brand-primary); */
+		box-shadow: 5px 5px 0 0 var(--color-border-tertiary);
+		transition: all 0.2s ease;
+	}
+
+	.cta-button:hover {
+		box-shadow: 10px 10px 0 0 var(--color-border-tertiary);
+		transform: translate(-5px, -5px);
 	}
 
 	.hero {
-		padding: var(--size-padding-large);
+		padding: var(--size-padding-xl);
 		position: relative;
 		overflow: hidden;
+		height: 100vh;
 	}
 
 	.hero::before {
@@ -83,23 +144,99 @@ import InstallScript from '../components/InstallScript.astro';
 	.hero-inner {
 		position: relative;
 		z-index: 2;
+		max-width: 60rem;
+		margin: 0 auto;
+	}
+
+	h1 :global(pre) {
+		display: inline-block;
+		position: relative;
+		padding: var(--space-medium) var(--space-large);
+		line-height: 1;
+	}
+
+	h1 :global(pre::after) {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 4rem;
+		border-top: 1px solid var(--color-border-primary);
+	}
+
+	h1 :global(pre::before) {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 4rem;
+		border-left: 1px solid var(--color-border-primary);
+	}
+
+	h1 :global(code::after) {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 4rem;
+		border-bottom: 1px solid var(--color-border-primary);
+	}
+
+	h1 :global(code::before) {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		height: 4rem;
+		border-right: 1px solid var(--color-border-primary);
+	}
+
+	h1 :global(code) {
+		color: var(--color-brand-primary);
+		-webkit-text-stroke-width: 0;
+		filter: none;
 	}
 </style>
 
 <script>
-	const title = document.querySelector('.title') as HTMLSpanElement;
-	const titles = [
-		'Design Technologist',
-		'Product Manager',
-		'Front-end Engineer'
-	];
-	// setInterval(() => {
-	// 	console.log(titles[Math.floor(Math.random() * titles.length)]);
-	// 	title.innerText = titles[Math.floor(Math.random() * titles.length)];
-	// }, 1000)
-	// const hero = document.querySelector('.hero') as HTMLDivElement;
-	// hero.addEventListener('mousemove', (e) => {
-	// 	hero.style.setProperty('--top', e.clientY + 'px')
-	// 	hero.style.setProperty('--left', e.clientX + 'px')
-	// })
+	document.addEventListener('astro:page-load', () => {
+		const titles = ['Design Technologist.', 'Product Manager.', 'Front-end Engineer.'];
+
+		const elem = document.getElementById('hero-title');
+		let titleIndex = 0;
+		let charIndex = 0;
+		let isDeleting = false;
+
+		let interval = setInterval(writer, 100);
+		elem?.addEventListener('mouseover', () => {
+			clearInterval(interval);
+		});
+		elem?.addEventListener('mouseleave', () => {
+			interval = setInterval(writer, 100);
+		});
+
+		function writer() {
+			if (elem) {
+				const title = titles[titleIndex];
+
+				if (isDeleting) {
+					if (charIndex >= 0) {
+						elem.innerText = elem.innerText.slice(0, charIndex);
+						charIndex--;
+					} else {
+						isDeleting = false;
+						titleIndex = titleIndex >= titles.length - 1 ? 0 : titleIndex + 1;
+						charIndex = 0;
+					}
+				} else {
+					if (charIndex < title.length) {
+						elem.innerText = elem?.innerText + title.charAt(charIndex);
+						charIndex++;
+					} else {
+						isDeleting = true;
+					}
+				}
+			}
+		}
+	});
 </script>

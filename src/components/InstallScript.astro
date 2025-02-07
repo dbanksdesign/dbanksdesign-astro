@@ -1,67 +1,86 @@
 ---
-import { Copy, Check } from 'lucide-astro'
+import { Copy, Check } from 'lucide-astro';
 ---
 
 <div class="install">
-<pre><code>npx dbanksdesign</code></pre>
-<button id="install-button">
-  <Copy class="copy-icon" />
-  <Check class="check-icon" />
-</button>
+	<pre><code>npx dbanksdesign</code></pre>
+	<button id="install-button">
+		<Copy class="copy-icon" />
+		<Check class="check-icon" />
+	</button>
 </div>
 
 <style>
-.install {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: var(--space-medium) var(--space-large);
-  border: 1px solid var(--color-border-primary);
-  background: var(--color-background-primary);
-}
-button {
-  border: none;
-  background: transparent;
-  color: inherit;
-  width: 1rem;
-  height: 1rem;
-  position: relative;
-}
+	.install {
+		flex: 1;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: var(--space-medium) var(--space-large);
+		border: 1px solid var(--color-border-secondary);
+	}
 
-.check-icon,
-.copy-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: opacity 0.5s ease-in;
-}
+	.install::after {
+		content: '';
+		position: absolute;
+		bottom: -1px;
+		right: -0.5rem;
+		width: 2rem;
+		border-bottom: 1px solid var(--color-border-primary);
+	}
 
-.check-icon {
-  opacity: 0;
-}
+	.install::before {
+		content: '';
+		position: absolute;
+		bottom: -0.5rem;
+		right: -1px;
+		height: 2rem;
+		border-right: 1px solid var(--color-border-primary);
+	}
 
-.copy-icon {
-  opacity: 1;
-}
+	button {
+		border: none;
+		background: transparent;
+		color: inherit;
+		width: 1rem;
+		height: 1rem;
+		position: relative;
+	}
 
-button[data-copied] .check-icon {
-  opacity: 1;
-}
-button[data-copied] .copy-icon {
-  opacity: 0;
-}
+	.check-icon,
+	.copy-icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: opacity 0.5s ease-in;
+	}
+
+	.check-icon {
+		opacity: 0;
+	}
+
+	.copy-icon {
+		opacity: 1;
+	}
+
+	button[data-copied] .check-icon {
+		opacity: 1;
+	}
+	button[data-copied] .copy-icon {
+		opacity: 0;
+	}
 </style>
 
 <script>
-const button = document.getElementById('install-button');
-button?.addEventListener('click', async () => {
-  button.dataset.copied = 'true';
-  await window.navigator.clipboard.writeText('npx dbanksdesign');
-  setTimeout(() => {
-    delete button.dataset.copied;
-  }, 3000)
-})
+	const button = document.getElementById('install-button');
+	button?.addEventListener('click', async () => {
+		button.dataset.copied = 'true';
+		await window.navigator.clipboard.writeText('npx dbanksdesign');
+		setTimeout(() => {
+			delete button.dataset.copied;
+		}, 3000);
+	});
 </script>

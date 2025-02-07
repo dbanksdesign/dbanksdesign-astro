@@ -6,11 +6,11 @@ import Logo from '../icons/Logo.astro';
 ---
 
 <header>
-	<a href="/">
+	<a href="/" class="header-logo">
 		<Logo />
 	</a>
 	<nav class="nav-links">
-		<div class="active-indicator" transition:persist />
+		<div class="active-indicator" transition:persist></div>
 		<HeaderLink class="header-link" href="/blog">Blog</HeaderLink>
 		<HeaderLink class="header-link" href="/about">About</HeaderLink>
 		<HeaderLink class="header-link" href="/work">Work</HeaderLink>
@@ -22,6 +22,15 @@ import Logo from '../icons/Logo.astro';
 </header>
 
 <style>
+	.header-logo {
+		display: flex;
+		align-items: center;
+	}
+
+	.header-logo :global(svg) {
+		height: 1rem;
+	}
+
 	header {
 		z-index: 99;
 		position: sticky;
@@ -41,7 +50,7 @@ import Logo from '../icons/Logo.astro';
 		left: 0;
 		width: 100%;
 		height: 5px;
-		background-color: hsl(from var(--color-brand-primary) h s l/ .5);
+		background-color: hsl(from var(--color-brand-primary) h s l/ 0.5);
 	}
 
 	header::before {
@@ -53,15 +62,14 @@ import Logo from '../icons/Logo.astro';
 		left: 0;
 		z-index: -1;
 		background-color: transparent;
-    background-image: radial-gradient(var(--color-background-primary) 1px, transparent 1px);
-    background-size: 4px 4px;
-    backdrop-filter: blur(3px);
-    mask: linear-gradient(rgb(0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
-    opacity: 1;
+		background-image: radial-gradient(var(--color-background-primary) 1px, transparent 1px);
+		background-size: 4px 4px;
+		backdrop-filter: blur(3px);
+		mask: linear-gradient(rgb(0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+		opacity: 1;
 	}
 
 	nav {
-
 	}
 	nav a {
 		padding: 0 var(--space-medium);
@@ -105,15 +113,14 @@ import Logo from '../icons/Logo.astro';
 		left: 50%;
 		/* box-shadow: 0 0 5px hsl(from var(--color-brand-primary) h s l/ .5); */
 	}
-
 </style>
 
 <script>
-document.addEventListener('astro:page-load', () => {
-	const activeLink = document.querySelector('.header-link.active') as HTMLLinkElement;
-	const activeIndicator = document.querySelector('.active-indicator') as HTMLDivElement;
+	document.addEventListener('astro:page-load', () => {
+		const activeLink = document.querySelector('.header-link.active') as HTMLLinkElement;
+		const activeIndicator = document.querySelector('.active-indicator') as HTMLDivElement;
 
-	activeIndicator.style.width = `${activeLink.offsetWidth}px`
-	activeIndicator.style.left = `${activeLink.offsetLeft}px`
-});
+		activeIndicator.style.width = `${activeLink.offsetWidth}px`;
+		activeIndicator.style.left = `${activeLink.offsetLeft}px`;
+	});
 </script>

@@ -1,16 +1,19 @@
 ---
-import { Terminal, Palette, Trello, Box } from 'lucide-astro'
+import Blueprint from 'src/icons/Blueprint.astro'
+import Color from 'src/icons/Color.astro'
+import Default from 'src/icons/Default.astro'
+import Terminal from 'src/icons/Terminal.astro'
 ---
 
 
 <div class="theme-picker-wrapper">
   <button class="" id="theme-picker">
-    <Palette />
+    <Color />
   </button>
   <ul>
     <li>
       <button class="theme-picker" data-theme="default">
-        <Box />
+        <Default />
         Default
       </button>
     </li>
@@ -22,7 +25,7 @@ import { Terminal, Palette, Trello, Box } from 'lucide-astro'
     </li>
     <li>
       <button class="theme-picker" data-theme="blueprint">
-        <Trello />
+        <Blueprint />
         Blueprint
       </button>
     </li>

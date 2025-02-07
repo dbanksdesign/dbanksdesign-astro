@@ -1,103 +1,177 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('work')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	(a, b) => a.data.order.valueOf() - b.data.order.valueOf()
 );
 ---
 
 <Layout>
-  <div class="page-header">
+	<div class="page-header">
 		<h1>Work</h1>
 	</div>
-  <div class="bg-diagonal">
-  <ul class="work-cards">
-    {
-      posts.map((post) => (
-        <li class="work-card">
-          <a class="work-card-link" href={`/work/${post.id}/`}>
-            {post.data.heroImage ? <img width={720} height={360} src={post.data.heroImage} alt="" /> : null}
-            <h4 class="title">{post.data.title}</h4>
-            <p class="date">
-              {post.data.description}
-            </p>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</div>
+	<div class="bg-diagonal">
+		<ul class="work-cards">
+			{
+				posts.map((post) => (
+					<li class="work-card">
+						<a class="work-card-link" href={`/work/${post.id}/`}>
+							<div class="work-card-img">
+								{post.data.heroImage ? <Image src={post.data.heroImage} alt="" /> : null}
+							</div>
+							<div class="work-card-content">
+								<h4 class="work-card-title">{post.data.title}</h4>
+								<p class="work-card-description">{post.data.description}</p>
+							</div>
+							<div class="work-card-year">{post.data.type}</div>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
 </Layout>
 
 <style>
-  .work-cards {
-    list-style: none;
-    display: grid;
-    gap: var(--space-medium);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: 100%;
-    margin: 0;
-    padding: var(--space-xl);
-  }
+	.work-cards {
+		position: relative;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-large);
+		margin: var(--space-xl);
+		padding: 0;
+	}
 
-  .work-card {
+	.work-cards::after {
+		content: '';
+		position: absolute;
+		top: calc(-1 * var(--space-xl));
+		bottom: calc(-1 * var(--space-xl));
+		left: 0;
+		border-left: 1px solid var(--color-border-tertiary);
+	}
 
-  }
+	.work-cards::before {
+		content: '';
+		position: absolute;
+		top: calc(-1 * var(--space-xl));
+		bottom: calc(-1 * var(--space-xl));
+		right: 0;
+		border-right: 1px solid var(--color-border-tertiary);
+	}
 
-  .work-card-link {
-    padding: var(--space-medium);
-    border: 1px solid var(--color-border-primary);
-    color: var(--color-font-primary);
-    background-color: var(--color-background-primary);
-    display: block;
-    text-decoration: none;
-    transform-style: preserve-3d;
-    transform: perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
-    box-shadow: 5px 5px 0 0 var(--color-border-tertiary);
-  }
+	.work-card {
+	}
 
-  .work-card:first-child {
-    grid-column: 1 / -1;
-  }
+	.work-card-link {
+		display: flex;
+		flex-direction: row;
+		gap: var(--space-large);
+		position: relative;
+		padding: var(--space-large);
+		padding-inline-start: 6rem;
+		border: 1px solid var(--color-border-secondary);
+		color: var(--color-font-primary);
+		background-color: var(--color-background-primary);
+		text-decoration: none;
+		box-shadow: 5px 5px 0 0 var(--color-border-tertiary);
+	}
 
-  .work-card:nth-child(2) {
-    grid-column: 1 / 3;
-  }
+	.work-card-year {
+		position: absolute;
+		top: 50%;
+		left: -2.5rem;
+		transform: rotate(-90deg);
+		display: flex;
+		width: 8rem;
+		height: 2rem;
+		margin-top: -1rem;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-family-mono);
+	}
 
-  .work-card:nth-child(3) {
-    grid-column: 3 / -1;
-  }
+	.work-card-img {
+		width: 25%;
+		position: relative;
+	}
+
+	.work-card-img::after {
+		content: '';
+		position: absolute;
+		top: calc(-1 * var(--space-large));
+		bottom: calc(-1 * var(--space-large));
+		left: -3rem;
+		border-left: 1px solid var(--color-border-secondary);
+	}
+
+	.work-card-img :global(img) {
+		object-fit: cover;
+		height: 100%;
+	}
+
+	.work-card-content {
+		flex: 1;
+	}
+
+	.work-card-title {
+		font-size: var(--size-font-large);
+	}
+
+	.work-card-link:hover {
+		border-color: var(--color-brand-primary);
+		outline: 1px solid var(--color-brand-primary);
+	}
+
+	.work-card-link::after {
+		content: '';
+		top: 0;
+		left: calc(-1 * var(--space-xl));
+		right: calc(-1 * var(--space-xl));
+		border-top: 1px solid var(--color-border-tertiary);
+		position: absolute;
+	}
+
+	.work-card-link::before {
+		content: '';
+		bottom: 0;
+		left: calc(-1 * var(--space-xl));
+		right: calc(-1 * var(--space-xl));
+		border-bottom: 1px solid var(--color-border-tertiary);
+		position: absolute;
+	}
 </style>
 
-
 <script>
-  const cards = document.querySelectorAll<HTMLAnchorElement>('.work-card-link');
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (event) => {
-      // get mouse position
-      const x = event.offsetX;
-      const y = event.offsetY;
-      // console.log(x, y)
-      
-      // find the middle
-      const middleX = card.offsetWidth / 2;
-      const middleY = card.offsetHeight / 2;
-      // console.log(middleX, middleY)
+	// const cards = document.querySelectorAll<HTMLAnchorElement>('.work-card-link');
+	// cards.forEach((card) => {
+	// 	card.addEventListener('mousemove', (event) => {
+	// 		// get mouse position
+	// 		const x = event.offsetX;
+	// 		const y = event.offsetY;
+	// 		// console.log(x, y)
 
-      // get offset from middle as a percentage
-      // and tone it down a little
-      const offsetX = ((x - middleX) / middleX) * 25;
-      const offsetY = ((y - middleY) / middleY) * 25;
-      // console.log(offsetX, offsetY);
+	// 		// find the middle
+	// 		const middleX = card.offsetWidth / 2;
+	// 		const middleY = card.offsetHeight / 2;
+	// 		// console.log(middleX, middleY)
 
-      // set rotation
-      card.style.setProperty("--rotateX", offsetX + "deg");
-      card.style.setProperty("--rotateY", -1 * offsetY + "deg");
-    })
-    card.addEventListener('mouseleave', () => {
-      card.style.setProperty("--rotateX", "0");
-      card.style.setProperty("--rotateY", "0");
-    })
-  })
+	// 		// get offset from middle as a percentage
+	// 		// and tone it down a little
+	// 		const offsetX = ((x - middleX) / middleX) * 25;
+	// 		const offsetY = ((y - middleY) / middleY) * 25;
+	// 		// console.log(offsetX, offsetY);
+
+	// 		// set rotation
+	// 		card.style.setProperty('--rotateX', offsetX + 'deg');
+	// 		card.style.setProperty('--rotateY', -1 * offsetY + 'deg');
+	// 	});
+	// 	card.addEventListener('mouseleave', () => {
+	// 		card.style.setProperty('--rotateX', '0');
+	// 		card.style.setProperty('--rotateY', '0');
+	// 	});
+	// });
 </script>
