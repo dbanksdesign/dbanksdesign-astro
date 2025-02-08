@@ -1,14 +1,19 @@
 ---
-import Github from '../icons/Github.astro'
+import Github from '../icons/Github.astro';
 import Bluesky from '../icons/Bluesky.astro';
 import Email from '../icons/Email.astro';
 import Linkedin from '../icons/Linkedin.astro';
 const today = new Date();
 ---
 
-<footer>
+<footer class="bg-dots">
 	<div class="footer-copy">
-		<p>&copy; {today.getFullYear()} Danny Banks, but this code is all <a href="https://github.com/dbanksdesign/dbanksdesign-astro" target="_blank">open-source</a>.</p>
+		<p>
+			&copy; {today.getFullYear()} Danny Banks, but this code is all <a
+				href="https://github.com/dbanksdesign/dbanksdesign-astro"
+				target="_blank">open-source</a
+			>.
+		</p>
 		<p>Made it all the way down here huh? Umm</p>
 		<p>Built with: Astro, Amplify</p>
 	</div>
@@ -42,6 +47,15 @@ const today = new Date();
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		position: relative;
+	}
+
+	footer::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
 		border-block-start: 1px solid var(--color-border-secondary);
 	}
 

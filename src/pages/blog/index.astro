@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
@@ -12,24 +12,22 @@ const posts = (await getCollection('blog')).sort(
 	<div class="page-header">
 		<h1>Blog</h1>
 	</div>
-	<main class="page-content">
-		<ul>
+	<main class="page-content bg-diagonal">
+		<section class="blog-posts">
 			{
 				posts.map((post) => (
-					<li class="blog-post-card">
-						<h4 class="title">
-							<a href={`/blog/${post.id}/`}>
-								{post.data.title}
-							</a>
-						</h4>
-						<p class="date">
+					<article class="blog-post-card">
+						<a class="blog-post-title" href={`/blog/${post.id}/`}>
+							{post.data.title}
+						</a>
+						<date class="blog-post-date">
 							<FormattedDate date={post.data.pubDate} />
-						</p>
-						<p>{post.data.description}</p>
-					</li>
+						</date>
+						<div class="blog-post-description">{post.data.description}</div>
+					</article>
 				))
 			}
-		</ul>
+		</section>
 	</main>
 </Layout>
 
@@ -39,7 +37,43 @@ const posts = (await getCollection('blog')).sort(
 		padding: 0;
 	}
 
+	.page-content {
+		padding-block: 0;
+	}
+
+	.blog-posts {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xl);
+		background: var(--color-background-primary);
+		border-inline-start: 1px solid var(--color-border-secondary);
+		border-inline-end: 1px solid var(--color-border-secondary);
+		padding: var(--space-xl);
+	}
+
 	.blog-post-card {
-		
+		/* background: var(--color-background-primary);
+		border: 1px solid var(--color-border-secondary);
+		padding: var(--space-medium) var(--space-large); */
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-small);
+		position: relative;
+		/* padding-inline-start: 4rem; */
+	}
+
+	.blog-post-title {
+		font-weight: 900;
+	}
+
+	.blog-post-date {
+		color: var(--color-font-tertiary);
+		/* position: absolute;
+		transform: rotate(-90deg);
+		top: 50%;
+		height: 1rem;
+		margin-top: -0.5rem;
+		left: -1rem;
+		font-family: var(--font-family-mono); */
 	}
 </style>

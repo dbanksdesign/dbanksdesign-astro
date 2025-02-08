@@ -343,6 +343,7 @@
 	--size-font-large: 1.25rem;
 	--size-font-xl: 1.75rem;
 	--size-font-xxl: 2.5rem;
+	--size-font-xxxl: 3.5rem;
 
 	--size-breakpoint-small: 400px;
 	--size-breakpoint-medium: 1000px;
@@ -530,7 +531,7 @@ h6 {
 }
 
 h1 {
-	font-size: 3rem;
+	font-size: var(--size-font-xxxl);
 	color: var(--color-brand-primary);
 }
 
@@ -543,7 +544,15 @@ h1 {
 }
 
 h2 {
+	font-size: var(--size-font-xxl);
+}
+
+h3 {
 	font-size: var(--size-font-xl);
+}
+
+h4 {
+	font-size: var(--size-font-large);
 }
 
 p {
@@ -746,9 +755,10 @@ dd + dt {
 	--dot-size: 1px;
 	--gap-size: 20px;
 	--offset: calc(var(--gap-size) / 2);
+	--dot-color: hsl(from var(--color-brand-secondary) h s l/ 0.25);
 	background-image: linear-gradient(var(--color-background-primary) 60%, transparent 100%),
-		radial-gradient(var(--color-brand-secondary) var(--dot-size), transparent var(--dot-size)),
-		radial-gradient(var(--color-brand-secondary) var(--dot-size), transparent var(--dot-size));
+		radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size)),
+		radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size));
 	background-position:
 		0 0,
 		0 0,

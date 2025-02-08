@@ -7,6 +7,7 @@ import Logo from '../icons/Logo.astro';
 
 <header>
 	<a href="/" class="header-logo">
+		<span class="sr-only">Home</span>
 		<Logo />
 	</a>
 	<nav class="nav-links">
@@ -40,7 +41,11 @@ import Logo from '../icons/Logo.astro';
 		display: flex;
 		flex-direction: row;
 		height: var(--header-height);
-		background-image: linear-gradient(var(--color-background-primary), transparent);
+		background-image: linear-gradient(
+			var(--color-background-primary),
+			var(--color-background-primary) 50%,
+			transparent
+		);
 	}
 
 	header::after {
@@ -58,7 +63,7 @@ import Logo from '../icons/Logo.astro';
 		position: absolute;
 		top: 0;
 		right: 0;
-		bottom: 0;
+		bottom: -1rem;
 		left: 0;
 		z-index: -1;
 		background-color: transparent;
