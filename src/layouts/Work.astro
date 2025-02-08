@@ -5,7 +5,6 @@ import TableOfContents from '../components/TableOfContents.astro';
 
 type Props = CollectionEntry<'work'>['data'] & { headings: MarkdownHeading[] };
 
-
 const { title, description, headings } = Astro.props;
 ---
 
@@ -13,9 +12,11 @@ const { title, description, headings } = Astro.props;
 	<aside class="blog-toc">
 		<TableOfContents headings={headings} />
 	</aside>
-  <main class="blog-article-content">
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <slot />
-  </main>
+	<main class="blog-article-main">
+		<h1>{title}</h1>
+		<p>{description}</p>
+		<article class="blog-article-content">
+			<slot />
+		</article>
+	</main>
 </div>

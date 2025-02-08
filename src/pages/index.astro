@@ -5,7 +5,7 @@ import InstallScript from '../components/InstallScript.astro';
 import SpicyVariables from 'src/icons/SpicyVariables.astro';
 import DesignTokens from 'src/img/design-tokens.png';
 import DTCG from 'src/img/dtcg.png';
-import AmplifySticker from 'src/img/amplify-sticker.png';
+import AmplifySticker from 'src/icons/AmplifySticker.astro';
 import Pascal from 'src/icons/Pascal.astro';
 ---
 
@@ -14,16 +14,18 @@ import Pascal from 'src/icons/Pascal.astro';
 		<div class="hero-bubble"></div>
 		<div class="hero-bubble-2"></div>
 		<div class="hero-inner">
-			<h1>I'm Danny, a <br /><pre><code id="hero-title" /></pre></h1>
+			<h1>
+				<span>I'm Danny, a </span><br />
+				<pre><code id="hero-title">{' '}</code></pre>
+				<code class="mobile-only">Design Technologist.</code>
+			</h1>
 			<p>
 				I've been called many things in my career: Web Designer, Web Developer, UX designer, UI
 				engineer, Product Manager, Mr. Banks, Full-Stack Developer, Front-End Engineer, Design
-				Technologist, Design Systems Architect, and most recently Principal Design Technologist. I
-				like building things for builders.
-			</p>
-			<p>
-				I work on design systems and open-source libraries. Occasionally I write and speak about
-				that stuff too. I've built mobile and web apps, both designing and developing them.
+				Technologist, Design Systems Architect, and most recently Principal Design Technologist. But
+				really, I just love building things for builders. I work on design systems and open-source
+				libraries. Occasionally I write and speak about that stuff too. I've built mobile and web
+				apps, both designing and developing them.
 			</p>
 			<div class="cta-buttons">
 				<a class="cta-button" href="/work">See my work</a>
@@ -37,6 +39,9 @@ import Pascal from 'src/icons/Pascal.astro';
 		<div class="sticker design-tokens">
 			<Image src={DesignTokens} alt="" />
 		</div>
+		<div class="sticker amplify">
+			<AmplifySticker />
+		</div>
 		<div class="sticker pascal">
 			<Pascal />
 		</div>
@@ -45,13 +50,20 @@ import Pascal from 'src/icons/Pascal.astro';
 
 <style>
 	.sticker {
+		display: none;
 		position: absolute;
 		z-index: 2;
 		filter: drop-shadow(0 0 0.25rem var(--color-shadow));
 	}
 
+	@media (min-width: 600px) {
+		.sticker {
+			display: block;
+		}
+	}
+
 	.spicy-variables {
-		top: 50%;
+		bottom: 10rem;
 		left: -2rem;
 		width: 10rem;
 		transform: rotate(-80deg);
@@ -64,11 +76,11 @@ import Pascal from 'src/icons/Pascal.astro';
 		transform: rotate(35deg);
 	}
 
-	.dtcg {
-		right: 50%;
+	.amplify {
+		right: -3rem;
 		bottom: 5rem;
 		width: 10rem;
-		transform: rotate(15deg);
+		transform: rotate(-15deg);
 	}
 
 	.pascal {
@@ -80,8 +92,16 @@ import Pascal from 'src/icons/Pascal.astro';
 
 	.cta-buttons {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		gap: var(--space-medium);
+	}
+
+	@media (min-width: 800px) {
+		.cta-buttons {
+			display: flex;
+			flex-direction: row;
+			gap: var(--space-medium);
+		}
 	}
 
 	.cta-button {
@@ -102,10 +122,13 @@ import Pascal from 'src/icons/Pascal.astro';
 	}
 
 	.hero {
-		padding: var(--size-padding-xl);
+		padding: 0 var(--size-padding-xl);
 		position: relative;
 		overflow: hidden;
 		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	.hero::before {
@@ -146,55 +169,74 @@ import Pascal from 'src/icons/Pascal.astro';
 		z-index: 2;
 		max-width: 60rem;
 		margin: 0 auto;
+		padding-block: var(--space-xl);
 	}
 
-	h1 :global(pre) {
-		display: inline-block;
-		position: relative;
-		padding: var(--space-medium) var(--space-large);
-		line-height: 1;
-	}
-
-	h1 :global(pre::after) {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 4rem;
-		border-top: 1px solid var(--color-border-primary);
-	}
-
-	h1 :global(pre::before) {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 4rem;
-		border-left: 1px solid var(--color-border-primary);
-	}
-
-	h1 :global(code::after) {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 4rem;
-		border-bottom: 1px solid var(--color-border-primary);
-	}
-
-	h1 :global(code::before) {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		height: 4rem;
-		border-right: 1px solid var(--color-border-primary);
+	h1 :global(pre),
+	h1 :global(code) {
+		display: none;
 	}
 
 	h1 :global(code) {
 		color: var(--color-brand-primary);
 		-webkit-text-stroke-width: 0;
 		filter: none;
+	}
+
+	h1 :global(.mobile-only) {
+		display: block;
+	}
+
+	@media (min-width: 800px) {
+		h1 :global(.mobile-only) {
+			display: none;
+		}
+
+		h1 :global(code) {
+			display: inline-block;
+		}
+		h1 :global(pre) {
+			display: inline-block;
+			position: relative;
+			padding: var(--space-medium) var(--space-large);
+			line-height: 1;
+		}
+
+		h1 :global(pre::after) {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 4rem;
+			border-top: 1px solid var(--color-border-primary);
+		}
+
+		h1 :global(pre::before) {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 4rem;
+			border-left: 1px solid var(--color-border-primary);
+		}
+
+		h1 :global(code::after) {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 4rem;
+			border-bottom: 1px solid var(--color-border-primary);
+		}
+
+		h1 :global(code::before) {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			height: 4rem;
+			border-right: 1px solid var(--color-border-primary);
+		}
 	}
 </style>
 
@@ -206,6 +248,9 @@ import Pascal from 'src/icons/Pascal.astro';
 		let titleIndex = 0;
 		let charIndex = 0;
 		let isDeleting = false;
+		let isPaused = false;
+		let pauseIndex = 0;
+		const pauseTicks = 10;
 
 		let interval = setInterval(writer, 100);
 		elem?.addEventListener('mouseover', () => {
@@ -219,21 +264,33 @@ import Pascal from 'src/icons/Pascal.astro';
 			if (elem) {
 				const title = titles[titleIndex];
 
-				if (isDeleting) {
-					if (charIndex >= 0) {
-						elem.innerText = elem.innerText.slice(0, charIndex);
-						charIndex--;
+				if (isPaused) {
+					if (pauseIndex >= pauseTicks) {
+						pauseIndex = 0;
+						isPaused = false;
+						isDeleting = true;
 					} else {
+						pauseIndex++;
+					}
+					return;
+				}
+
+				if (isDeleting) {
+					if (charIndex <= 0) {
 						isDeleting = false;
 						titleIndex = titleIndex >= titles.length - 1 ? 0 : titleIndex + 1;
 						charIndex = 0;
+						return;
 					}
+					elem.innerText = elem.innerText.slice(0, charIndex);
+					charIndex--;
+					return;
 				} else {
 					if (charIndex < title.length) {
 						elem.innerText = elem?.innerText + title.charAt(charIndex);
 						charIndex++;
 					} else {
-						isDeleting = true;
+						isPaused = true;
 					}
 				}
 			}

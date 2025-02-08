@@ -15,14 +15,16 @@ const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		// Transform string to Date object
-		pubDate: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			// Transform string to Date object
+			pubDate: z.coerce.date(),
+			updatedDate: z.coerce.date().optional(),
+			heroImage: z.string().optional(),
+			socialImage: image().optional(),
+		}),
 });
 
 const work = defineCollection({
@@ -35,7 +37,7 @@ const work = defineCollection({
 			description: z.string(),
 			pubDate: z.coerce.date(),
 			heroImage: image().optional(),
-			type: z.enum(['work', 'project', 'talk']).optional(),
+			type: z.string().optional(),
 			order: z.number(),
 		}),
 });

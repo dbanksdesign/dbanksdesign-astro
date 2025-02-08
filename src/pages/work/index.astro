@@ -18,6 +18,7 @@ const posts = (await getCollection('work')).sort(
 				posts.map((post) => (
 					<li class="work-card">
 						<a class="work-card-link" href={`/work/${post.id}/`}>
+							<div class="work-card-year">{post.data.type}</div>
 							<div class="work-card-img">
 								{post.data.heroImage ? <Image src={post.data.heroImage} alt="" /> : null}
 							</div>
@@ -25,7 +26,6 @@ const posts = (await getCollection('work')).sort(
 								<h4 class="work-card-title">{post.data.title}</h4>
 								<p class="work-card-description">{post.data.description}</p>
 							</div>
-							<div class="work-card-year">{post.data.type}</div>
 						</a>
 					</li>
 				))
@@ -68,11 +68,10 @@ const posts = (await getCollection('work')).sort(
 
 	.work-card-link {
 		display: flex;
-		flex-direction: row;
-		gap: var(--space-large);
+		flex-direction: column;
+		gap: var(--space-small);
 		position: relative;
 		padding: var(--space-large);
-		padding-inline-start: 6rem;
 		border: 1px solid var(--color-border-secondary);
 		color: var(--color-font-primary);
 		background-color: var(--color-background-primary);
@@ -80,37 +79,49 @@ const posts = (await getCollection('work')).sort(
 		box-shadow: 5px 5px 0 0 var(--color-border-tertiary);
 	}
 
-	.work-card-year {
-		position: absolute;
-		top: 50%;
-		left: -2.5rem;
-		transform: rotate(-90deg);
-		display: flex;
-		width: 8rem;
-		height: 2rem;
-		margin-top: -1rem;
-		align-items: center;
-		justify-content: center;
-		font-family: var(--font-family-mono);
-	}
-
 	.work-card-img {
-		width: 25%;
-		position: relative;
+		display: none;
 	}
 
-	.work-card-img::after {
-		content: '';
-		position: absolute;
-		top: calc(-1 * var(--space-large));
-		bottom: calc(-1 * var(--space-large));
-		left: -3rem;
-		border-left: 1px solid var(--color-border-secondary);
-	}
+	@media (min-width: 800px) {
+		.work-card-link {
+			flex-direction: row;
+			padding-inline-start: 6rem;
+			gap: var(--space-large);
+		}
+		.work-card-year {
+			position: absolute;
+			top: 50%;
+			left: -2.5rem;
+			transform: rotate(-90deg);
+			display: flex;
+			width: 8rem;
+			height: 2rem;
+			margin-top: -1rem;
+			align-items: center;
+			justify-content: center;
+			font-family: var(--font-family-mono);
+		}
 
-	.work-card-img :global(img) {
-		object-fit: cover;
-		height: 100%;
+		.work-card-img::after {
+			content: '';
+			position: absolute;
+			top: calc(-1 * var(--space-large));
+			bottom: calc(-1 * var(--space-large));
+			left: -3rem;
+			border-left: 1px solid var(--color-border-secondary);
+		}
+
+		.work-card-img {
+			width: 25%;
+			position: relative;
+			display: block;
+		}
+
+		.work-card-img :global(img) {
+			object-fit: cover;
+			height: 100%;
+		}
 	}
 
 	.work-card-content {

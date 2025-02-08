@@ -6,7 +6,6 @@ import TableOfContents from '../components/TableOfContents.astro';
 
 type Props = CollectionEntry<'blog'>['data'] & { headings: MarkdownHeading[] };
 
-
 const { title, description, pubDate, updatedDate, heroImage, headings } = Astro.props;
 ---
 
@@ -14,61 +13,28 @@ const { title, description, pubDate, updatedDate, heroImage, headings } = Astro.
 	<aside class="blog-toc">
 		<TableOfContents headings={headings} />
 	</aside>
-<main class="blog-article-content">
-	<div class="hero-image">
-		{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-	</div>
-	<div class="prose">
-		<div class="blog-title">
-			<h1>{title}</h1>
-			<div class="date">
-				<FormattedDate date={pubDate} />
-				{
-					updatedDate && (
-						<div class="last-updated-on">
-							Last updated on <FormattedDate date={updatedDate} />
-						</div>
-					)
-				}
+	<main class="blog-article-main">
+		<div class="hero-image">
+			{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+		</div>
+		<div class="prose">
+			<div class="blog-title">
+				<h1>{title}</h1>
+				<div class="date">
+					<FormattedDate date={pubDate} />
+					{
+						updatedDate && (
+							<div class="last-updated-on">
+								Last updated on <FormattedDate date={updatedDate} />
+							</div>
+						)
+					}
+				</div>
 			</div>
 		</div>
-	</div>
-	<hr />
-	<article class="blog-article-content">
-		<slot />
-	</article>
-</main>
+		<hr />
+		<article class="blog-article-content">
+			<slot />
+		</article>
+	</main>
 </div>
-
-<style is:global>
-	.blog-title {
-	}
-
-	.blog-article {
-		display: flex;
-		flex-direction: row-reverse;
-	}
-
-	.blog-toc {
-		width: 15rem;
-	}
-
-	.blog-article-main {
-		flex: 1;
-		padding: var(--size-padding-xl);
-		overflow: hidden;
-	}
-
-	.blog-article-content > p:first-of-type::first-line {
-		font-weight: bold;
-	}
-
-	.blog-article-content > p:first-of-type::first-letter {
-		initial-letter: 2;
-		margin-inline-end: 0.5rem;
-	}
-
-	.blog-article-content > * + * {
-		margin-bottom: 1rem;
-	}
-</style>

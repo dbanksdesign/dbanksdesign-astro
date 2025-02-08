@@ -530,9 +530,8 @@ h6 {
 }
 
 h1 {
-	font-size: 4rem;
+	font-size: 3rem;
 	color: var(--color-brand-primary);
-	/* text-align: center; */
 }
 
 @supports (-webkit-text-stroke-color: #fff) {
@@ -877,8 +876,43 @@ dd + dt {
 }
 
 .blog-article-content {
+	padding: var(--space-medium) 0;
+	overflow: hidden;
+}
+
+.blog-article-content > p:first-of-type::first-line {
+	font-weight: bold;
+}
+
+.blog-article-content > p:first-of-type::first-letter {
+	initial-letter: 2;
+	margin-inline-end: 0.5rem;
+}
+
+.blog-article-content > * + * {
+	margin-bottom: 1rem;
+}
+
+.blog-title {
+}
+
+.blog-article {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.blog-toc {
+	width: 15rem;
+}
+
+.blog-article-main {
 	flex: 1;
 	padding: var(--size-padding-xl);
+	overflow: hidden;
+}
+
+.blog-article-content {
+	overflow: hidden;
 }
 
 .blog-article-content > p:first-of-type::first-line {
