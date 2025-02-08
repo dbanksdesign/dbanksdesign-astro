@@ -742,18 +742,6 @@ dd + dt {
 	border-left: none;
 }
 
-.grid {
-	@media (hover) {
-		& > .grid-item {
-			transition: opacity 0.3s var(--ease-3);
-		}
-
-		&:hover > .grid-item:not(:hover) {
-			opacity: 0.5;
-		}
-	}
-}
-
 .bg-dots {
 	--dot-size: 1px;
 	--gap-size: 20px;

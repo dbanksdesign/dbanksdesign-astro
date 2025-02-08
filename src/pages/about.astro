@@ -27,7 +27,7 @@ import Linkedin from 'src/icons/Linkedin.astro';
 	</div>
 	<div style="position: relative">
 		<div class="grid bg-diagonal">
-			<div class="grid-item" style="grid-area:map">
+			<div class="grid-item" style="grid-area:intro">
 				<p>
 					Danny Banks has over fifteen years of experience as a UX Designer, Frontend Engineer,
 					Product Manger, and developer of design systems and cross-platform UI tools. Since 2021 he
@@ -40,7 +40,7 @@ import Linkedin from 'src/icons/Linkedin.astro';
 					style and design information to reduce the cost to make app-wide style changes.
 				</p>
 			</div>
-			<div class="grid-item bottom" style="grid-area:name">
+			<div class="grid-item bottom" style="grid-area:social">
 				<div class="social-links">
 					<a class="social-link" href="https://bsky.app/profile/dbanks.design" target="_blank">
 						<span class="sr-only">Follow Danny on Bluesky</span>
@@ -64,7 +64,7 @@ import Linkedin from 'src/icons/Linkedin.astro';
 					My pronouns are <strong>he/him</strong>
 				</div>
 			</div>
-			<div class="grid-item" style="grid-area:side">
+			<div class="grid-item" style="grid-area:skills">
 				<div class="skills">
 					<div class="skill html">
 						<HTML />
@@ -109,11 +109,11 @@ import Linkedin from 'src/icons/Linkedin.astro';
 					</div>
 				</div>
 			</div>
-			<div class="grid-item" style="grid-area:pkg">
+			<div class="grid-item" style="grid-area:wed">
 				<Image src={dangieImage} alt="" />
 				<figcaption>Wedding day. 2017</figcaption>
 			</div>
-			<div class="grid-item" style="grid-area:cat">
+			<div class="grid-item" style="grid-area:cite">
 				<div class="quotes">
 					<blockquote>
 						Danny Banks is one of those rare consummate frontend engineers with design
@@ -129,7 +129,7 @@ import Linkedin from 'src/icons/Linkedin.astro';
 					</blockquote>
 				</div>
 			</div>
-			<div class="grid-item" style="grid-area:desk">
+			<div class="grid-item" style="grid-area:exp">
 				<div class="experience">
 					<h2>Experience</h2>
 					<section>
@@ -222,12 +222,33 @@ import Linkedin from 'src/icons/Linkedin.astro';
 	}
 
 	.grid {
-		grid-template-columns: repeat(8, 1fr);
-		grid-template-areas:
-			'map map map map img img name name'
-			'map map map map pronouns pronouns side side'
-			'pkg pkg pkg desk desk desk side side'
-			'cat cat cat bobs bobs bobs bobs bobs';
+		display: flex;
+		flex-direction: column;
+	}
+
+	@media (min-width: 600px) {
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-areas:
+				'intro intro intro intro img img'
+				'intro intro intro intro img img'
+				'wed wed social social skills skills'
+				'wed wed cite cite skills skills'
+				'pronouns pronouns cite cite skills skills'
+				'exp exp bobs bobs bobs bobs';
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.grid {
+			grid-template-columns: repeat(8, 1fr);
+			grid-template-areas:
+				'intro intro intro intro img img social social'
+				'intro intro intro intro pronouns pronouns skills skills'
+				'wed wed wed exp exp exp skills skills'
+				'cite cite cite bobs bobs bobs bobs bobs';
+		}
 	}
 
 	.skills {
