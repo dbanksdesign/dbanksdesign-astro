@@ -1,0 +1,392 @@
+---
+title: "Spokeo"
+pubDate: "2014-05-23"
+type: "case_study"
+order: 11
+description: "The Spokeo team had grown so fast the design and development process did not scale. What started as a simple design update evolved into a process overhaul. A new team, a living style guide/template library, and improved front-end code were the outcomes of this year long project."
+---
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <p class="article_content_intro">I had been working at Spokeo for almost 4 years at the time of writing this. This is my most recent project at the company and the one I am most proud of because it is a change in process and way of thinking at the company. Rather than fix the symptoms of the problem, my goal for this was to fix the root cause of the problem, which was the lack of process.</p>
+  </div>
+</section>
+
+
+<hr class="large_separator" />
+
+
+<section class="article_content_section">
+  <h2>Roles &amp; Responsibilities</h2>
+  <div class="case_study_roles">
+    <div class="case_study_role">
+      <i class="case_study_role_icon icon design_icon"></i>
+      <i class="case_study_role_icon icon develop_icon"></i>
+      <h5 class="case_study_role_title">Lead UI Developer</h5>
+      <p class="case_study_role_text">This was a new role I created for myself to help fix the problems with our process as the Spokeo team grew. This role involved some design work, some development work, and some product management work as well.</p>
+    </div>
+  </div>
+</section>
+
+
+<hr class="large_separator" />
+
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <h2>The Problem</h2>
+
+    <h3>1. Fragmented Design</h3>
+    <p>With no cohesive style guide and no clear vision, the interface and elements began to grow unruly. The Spokeo site was turning into a Frankenstein by all the clashing styles. Without a complete face lift, this problem only got worse over time. You can see the result of this:</p>
+
+    <p class="text_centered">
+      <img src="{{'case_study/spokeo/button_audit.png' || asset_path}}" />
+    </p>
+  </div>
+
+  <div class="spokeo_css_problems">
+    <div class="spokeo_css_problem">
+      <h5>29 Font Sizes</h5>
+      <div id="spokeo_font_sizes"></div>
+    </div>
+    <div class="spokeo_css_problem">
+      <h5>106 Colors</h5>
+      <div id="spokeo_color_swatches" class="color_swatches"></div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="center_article_content">
+    <h3>2. Non-reusable Code</h3>
+    <p>Unfortunately no developers were focused on front-end code and Spokeo's view code and static assets were becoming a mess no one could tame. For every new project, new assets would be created rather than reusing standardized styles and elements.</p>
+
+    <hr />
+
+    <h3>3. Bloated &amp; Unoptimized Code</h3>
+    <p>Spokeo's average page load time was hovering just above 5 seconds, even though the average server response time was around 500ms. With every redesign and new feature, more code would get added on which made the experience of the site worse with each iteration.</p>
+  </div>
+
+  <div class="photo_gallery">
+    <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v7_code.png' || asset_path}}" />
+    <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v7_code_2.png' || asset_path}}" />
+  </div>
+</section>
+
+
+<hr class="large_separator" />
+
+
+<section class="article_content_section">
+
+  <h2>Process</h2>
+
+  <hr />
+
+  <h3>1. Site Audit</h3>
+  <div class="half_article_content">
+    <p>The first thing that needed to happen was to document all the different types of pages Spokeo had, which was quite a lot.</p>
+    <p>In addition to the pages, I also documented all the types of UI elements, patterns, and modules we use across Spokeo.</p>
+  </div>
+
+  <div class="half_article_content">
+    <img src="{{'case_study/spokeo/audit_1.png' || asset_path}}" />
+  </div>
+
+  <div class="clear"></div>
+
+  <hr />
+
+  <h3>2. Base Styles</h3>
+  <div class="half_article_content">
+    <p>Once I had properly mapped out all the nooks and crannies of Spokeo, next was to define the low-level brand styles of Spokeo. This is the point I started working in code as these styles all are SASS variables in the production code which the style guide uses. I mapped out the color palette, typography, and element styles like borders, shadows, icons, etc. These are the base visual ingredients to inform interface elements like buttons and modules.</p>
+
+    <div id="spokeo_v8_color_swatches"></div>
+  </div>
+
+  <div class="half_article_content">
+<pre data-language="css" class="code_example lang-scss">
+/* Base Colors */
+$darkest_grey       : #242b33;
+$darker_grey        : #40464d;
+$dark_grey          : #737980;
+$grey               : #a1aab3;
+$light_grey         : #c2c7cc;
+$lighter_grey       : #e1e3e5;
+$lightest_grey      : #f0f1f2;
+$off_white          : #f8f8f8;
+$white              : #fafafa;
+
+/* Font Sizes */
+$largest_font_size  : 38px;
+$larger_font_size   : 32px;
+$large_font_size    : 24px;
+</pre>
+  </div>
+
+  <div class="clear"></div>
+  <hr />
+
+  <div class="center_article_content">
+    <h3>3. Live Style Guide &amp; Template Library</h3>
+    <p>After settling on a foundational visual style, I started to build interface elements and modules building on that. </p>
+  </div>
+
+  <div class="photo_gallery">
+    <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/style_guide/icons.png' || asset_path}}" />
+    <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/style_guide/buttons.png' || asset_path}}" />
+    <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/style_guide/account.png' || asset_path}}" />
+    <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/style_guide/social_profile.png' || asset_path}}" />
+  </div>
+
+  <div class="panels">
+    <div class='half_panel'>
+      <h5 class='panel_title'>Variables</h5>
+      <p>These define the base visual style for all elements to build from. These are things like colors, typography, shadows, borders, etc. that define the base visual style of the interface.</p>
+    </div>
+
+    <div class='half_panel'>
+      <h5 class='panel_title'>Defaults</h5>
+      <p>These are the default styling of HTML elements like links, paragraphs
+      inputs, lists, etc. These styles should be basic and typographic based.
+      Borrowing chemistry terms, a default is like a subatomic particle.</p>
+    </div>
+
+    <div class='clear'></div>
+
+    <div class='half_panel'>
+      <h5 class='panel_title'>Patterns</h5>
+      <p>These are small UI elements that can exist on their own or within larger
+      modules. A pattern is something like a button, a photo, the spokeo logo,
+      etc. A pattern is an indivisible unit, like an atom, but made up of
+      subatomic particles (default HTML elements).</p>
+    </div>
+
+    <div class='half_panel'>
+      <h5 class='panel_title'>Modules</h5>
+      <p>These are larger UI elements that can contain patterns, defaults, and
+      their own module-specific styling. A module would be a profile section,
+      the table of contents, a search form, etc. A module is like a compound;
+      a collection of atoms.</p>
+    </div>
+
+    <div class='clear'></div>
+
+    <div class='half_panel'>
+      <h5 class='panel_title'>Layouts</h5>
+      <p>These are the page structure of the different page layouts we use
+      in the UI. Layouts would be like a crystalline structure, it would
+      dictate how modules (compounds) are structured in relation to each
+      other.</p>
+    </div>
+
+    <div class='half_panel'>
+      <h5 class='panel_title'>States</h5>
+      <p>States modify how any layouts, modules, or patterns appear. In this way they take the highest precedence over other styles. Following the scientific example, states would be (you guessed it) the physical state, e.g. solid, liquid, gas.</p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class='center_article_content'>
+    <h3>4. UI Team</h3>
+    <p>Completely rewriting and maintaining our front-end code and static assets is a lot of work. As the company grew in size, it needed to start adding more focused roles for it to scale well. </p>
+  </div>
+
+  <div class="panels">
+    <div class="third_panel"><h5 class='panel_title'>Front-End Performance</h5></div>
+    <div class="third_panel"><h5 class='panel_title'>Asset/Code Organization</h5></div>
+    <div class="third_panel"><h5 class='panel_title'>Style Guide Maintenance</h5></div>
+    <div class="third_panel"><h5 class='panel_title'>Provide Insights On Design</h5></div>
+    <div class="third_panel"><h5 class='panel_title'>Interface With Developers</h5></div>
+    <div class="third_panel"><h5 class='panel_title'>Work with Product Team</h5></div>
+  </div>
+
+
+  <hr />
+
+
+  <h3>5. Presenter Architecture</h3>
+
+  <div class="half_article_content">
+    <p>To accommodate the UI team into the Developer work flow we needed to remove any logic from the view code so that a developer could write logic and a UI developer would write the HTML. After a few weeks of experimenting, with the help of some other developers, I settled on a simple presenter pattern that passed simple hashes to the view to render.</p>
+
+    <p>By adding a presenter layer to the MVC architecture we can now easily swap out views or change data without having change too much code. We can also more easily test interface changes using the same data. So far the rest of the development team has had a very easy time adding this layer to their workflow.</p>
+  </div>
+
+  <div class="half_article_content">
+    <img class="spokeo_presenter_diagram" src="{{'case_study/spokeo/presenters.svg' || asset_path}}" />
+  </div>
+
+  <div class='clear'></div>
+
+  <div class="half_article_content">
+
+```ruby
+module ProfilePresenter
+  extend ActiveSupport::Concern
+
+  private
+
+  def render_index
+    render template: '', layout: '', locals: {}
+  end
+
+  included do
+    helper_method :summary_section
+  end
+
+  def summary_section
+    {
+      partial: summary_section_template,
+      locals: summary_section_options
+    }
+  end
+
+  def summary_section_template
+    if some_condition
+      'profile_summary'
+    else
+      'other/profile_summary'
+    end
+  end
+
+  def summary_section_options
+    {
+      title: some_other_condition ? 'title 1' : 'title 2',
+      subtitle: 'subtitle'
+    }
+  end
+end
+```
+
+  </div>
+
+  <div class="half_article_content">
+
+```ruby
+class ProfileController
+  include ProfilePresenter
+
+  def index
+    ...
+    render_index
+  end
+end
+```
+
+```haml
+- content_for :main_panel_contents do
+  = render summary_section
+  = render location_history_section
+  = render family_section
+```
+
+  </div>
+</section>
+
+
+<hr class="large_separator" />
+
+
+<section class="article_content_section">
+  <h2>Finished Product</h2>
+
+  <hr />
+
+  <div class="wide_article_content finished_visuals">
+    <div class="photo_gallery">
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v7/mapview.jpg' || asset_path}}" />
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v8/mapview.png' || asset_path}}" />
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v7/name_premium.jpg' || asset_path}}" />
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v8/name_premium.png' || asset_path}}" />
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v7/email_premium.jpg' || asset_path}}" />
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v8/email_premium.png' || asset_path}}" />
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v7/address_premium.jpg' || asset_path}}" />
+      <img class="photo_gallery_wide_img" src="{{'case_study/spokeo/v8/address_premium.png' || asset_path}}" />
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="center_article_content">
+    <h3>3. Performance</h3>
+    <p>One of my goals of this project was to improve the user experience on all platforms by optimizing the static assets and decreasing the user's load time. By starting from scratch and building the front-end code from the ground up I was able to organize and structure the code in a much better way.</p>
+
+    <table>
+      <thead>
+      </thead>
+      <tbody>
+        <tr class="table_header_row">
+          <td></td>
+          <td># Requests</td>
+          <td>File Size (kb)</td>
+        </tr>
+        <tr class="table_section_row">
+          <td>v8 Spokeo Responsive</td>
+          <td>7</td>
+          <td>276.2</td>
+        </tr>
+        <tr>
+          <td>v7 Spokeo Desktop</td>
+          <td>69</td>
+          <td>715.25</td>
+        </tr>
+        <tr class="table_total_improvement_row">
+          <td>Improvement</td>
+          <td>980%</td>
+          <td>260%</td>
+        </tr>
+        <tr>
+          <td>v7 Spokeo Mobile</td>
+          <td>48</td>
+          <td>833.9</td>
+        </tr>
+        <tr class="table_total_improvement_row">
+          <td>Improvement</td>
+          <td>685%</td>
+          <td>300%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr />
+
+  <div class='center_article_content'>
+    <h3>Effect On Conversions</h3>
+
+    <div class="panels">
+      <div class="half_panel success_panel text_centered">
+        <h6>Mobile</h6>
+        <h3>20-60%</h3>
+      </div>
+
+      <div class="half_panel text_centered">
+        <h6>Desktop</h6>
+        <h3>0%</h3>
+      </div>
+    </div>
+
+    <p>The original goal of the project was just to improve the mobile experience, which merits this as a success. It's pretty interesting that the update of the site and changing it to responsive didn't positively or negatively impact conversions on desktop.</p>
+  </div>
+</section>
+
+<hr class="large_separator" />
+
+<section class="article_content_section">
+  <h2>Lessons Learned</h2>
+
+  <h5>1. Change Is Hard &amp; Takes Time</h5>
+  <p>At the time of writing, this project has taken almost a year and is about a month to being finished.</p>
+
+  <h5>2. Responsive Design Is A Mindset</h5>
+  <p>The decision to go responsive is not easy with a large and complex application. Going responsive needs to change the Product Management, Design, and Development processes.</p>
+
+  <h5>3. Sass Variables &amp; Mixins Are Great For Consistency</h5>
+  <p>Being able to have developers use variables and mixins rather than grab color values or font sizes saves headaches. Now we don't have 100 unique colors in Spokeo, but just a handful. Same goes for things like padding, borders, box shadows, font sizes/colors/weights, etc.</p>
+
+  <h5>4. Good Code Architecture = Consistent Design</h5>
+  <p>If an interface is designed well, it lends itself to good code architecture. Similarly with good code architecture consistent design paradigms can be easily made.</p>
+</section>
+

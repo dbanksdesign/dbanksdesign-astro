@@ -40,7 +40,7 @@ import Terminal from 'src/icons/Terminal.astro';
 	}
 
 	#theme-picker:focus + ul {
-		min-height: auto;
+		max-height: 500px;
 		opacity: 1;
 		transform: translateY(0);
 	}
@@ -51,12 +51,14 @@ import Terminal from 'src/icons/Terminal.astro';
 		border: none;
 		color: inherit;
 	}
+
 	ul {
 		position: absolute;
 		top: 100%;
 		right: 0;
-		min-height: 0;
 		opacity: 0;
+		max-height: 0;
+		overflow: hidden;
 		transform: translateY(-1rem);
 		transition: all 0.3s ease;
 		transition-delay: 0.1s;

@@ -10,36 +10,16 @@ heroImage: 'assets/conversation.png'
 
 import { YouTube } from 'astro-embed';
 
-## Links
-
-  <a href="https://aws.amazon.com/about-aws/whats-new/2024/11/aws-amplify-full-stack-ai-kit-amazon-bedrock/">
-    What's new post
-  </a>
-  <a href="https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/">
-    Launch blog post
-  </a>
-  <a href="https://aws.amazon.com/amplify/ai/">
-    Product page
-  </a>
-  <a href="https://docs.amplify.aws/react/ai/set-up-ai/">
-    Documentation
-  </a>
-
 ## Overview
 
-Amplify AI Kit gives frontend developers a unified solution for building AI-powered apps with TypeScript, no prior experience in cloud architecture or AI needed. Provision Amazon Bedrock, connect an LLM to your data, then use a frontend client and UI components to interact with your end users.
+<YouTube id="f-UeIlQ1tAI" />
 
+* [What's new post](https://aws.amazon.com/about-aws/whats-new/2024/11/aws-amplify-full-stack-ai-kit-amazon-bedrock/)
+* [Launch blog post](https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/)
+* [Product page](https://aws.amazon.com/amplify/ai/)
+* [Documentation](https://docs.amplify.aws/react/ai/set-up-ai/)
 
-
-## Technical achievements
-
-Some notable things we did with this project:
-
-* **Security without dealing with credentials:**  Building full-stack functionality on AWS is not always easy. AWS doesn't have API keys you can just generate and use. You have to work with short-lived credentials and tokens. But with the Amplify AI kit, Amplify takes care of that for you. You never have to deal with a credentials object to authorize requests while being fully secured. 
-* **User-based data access:** Large-language models are inherently static so to make them do useful things you usually need to provide them access to information with "tools" or "functions". However you don't want to leak data that the end-user doesn't normally have access to. With the Amplify AI kit any data access via a tool is made on behalf of the user so the LLM only has access to what the user has access to. 
-* **Generative UI:** Chat bots can get kind of boring if it is just text-to-text. So we built a way for developers to define React components in their frontend code that the AI assistant can choose to respond with. For example, if you are building a conversational search experience for retail site, you could define product card components that the search assistant could respond with
-* **Streaming over websockets:**
-* **React Native support:**
+---
 
 ## Process
 
@@ -51,6 +31,24 @@ and how easy it would be for them to build. Our organization, Next-Gen Developer
 I then worked with an SDM to pick a tech lead for the project and started writing requirements. For most of 2024 I operated as a PM and designer on the project, defining requirements for the developer experience and working closely with a small cross-functional development team of 4 people. A great deal of kudos definitely goes to the lead developer on the project and all the developers for stepping up and delivering a great developer experience under a compressed timeline. 
 
 To get early feedback we released a [Request for Comments (RFC)](https://github.com/aws-amplify/amplify-ui/issues/5773) and ahd early internal testers as well as testers from the AWS community. 
+
+---
+
+## Technical achievements
+
+Some notable things we did with this project:
+
+* **Security without dealing with credentials:**  Building full-stack functionality on AWS is not always easy. AWS doesn't have API keys you can just generate and use. You have to work with short-lived credentials and tokens. But with the Amplify AI kit, Amplify takes care of that for you. You never have to deal with a credentials object to authorize requests while being fully secured. 
+* **User-based data access:** Large-language models are inherently static so to make them do useful things you usually need to provide them access to information with "tools" or "functions". However you don't want to leak data that the end-user doesn't normally have access to. With the Amplify AI kit any data access via a tool is made on behalf of the user so the LLM only has access to what the user has access to. 
+* **Generative UI:** Chat bots can get kind of boring if it is just text-to-text. So we built a way for developers to define React components in their frontend code that the AI assistant can choose to respond with. For example, if you are building a conversational search experience for retail site, you could define product card components that the search assistant could respond with
+* **Streaming over websockets:**
+* **React Native support:** While not an explicit goal of the project, I ensured we built the React library in such a way that React Native would just work via the hooks we expose. 
+
+
+---
+
+
+## Outcome
 
 The team successfully launched the Amplify AI kit right before re:Invent in 2024. We had a "launch week" that featured a different blog post each day of the week with associated social network posts. I authored one of the blog posts:
 
@@ -67,15 +65,13 @@ This launch was posted about some notable members of AWS leadership:
 * https://www.linkedin.com/posts/swaminathansivasubramanian_build-fullstack-ai-apps-in-minutes-with-the-activity-7264832499644547073-SjTa?utm_source=share&utm_medium=member_desktop&rcm=ACoAAANjAz4BAwg1hnz_MC3Z61PiVFYexkN_1yQ
 * https://www.linkedin.com/posts/jeffbarr_aws-activity-7272682107930353664-UTHp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAANjAz4BAwg1hnz_MC3Z61PiVFYexkN_1yQ
 
-At re:Invent there were several talks and workshops at re:Invent about the AI kit including this one:
+At re:Invent there were several talks and workshops about the AI kit including this one:
 
 <YouTube id="IP2-saNpYsQ" />
 
-
-## Content
-
-To announce
+We have seen steady growth of the project since launch and the team is working on some new feature requests from customers as we get more feedback. 
 
 <YouTube id="yO3Np7t9Dik" />
 <YouTube id="Q7WMOhRILxo" />
-<YouTube id="f-UeIlQ1tAI" />
+
+

@@ -1,0 +1,228 @@
+---
+title: "Blogmate"
+pubDate: "2014-05-23"
+type: "case_study"
+order: 10
+subtitle: "This project was started because I was unhappy with the tools available for archiving blog articles. I tried instapaper, readability, pocket, and simple link saving tools like delicious and pinboard. All these tools were lacking something. Myself and two others decided to build our own tool for what we desired."
+description: "This was my first experience building an application outside of my day job. Although nothing great came out of this project, my team built product that people still use. We all learned a great deal from building this."
+---
+
+import { Image } from 'astro:assets';
+import about from './assets/about_photo.jpg'
+import video  from './assets/video.mp4'
+import responsive from './assets/responsive_layout.png'
+import highlight from './assets/highlight.mp4'
+import annotate from './assets/annotate.mp4'
+import drag from './assets/drag_drop.mp4'
+import app1 from './assets/app_it_out/1.jpg'
+import app2 from './assets/app_it_out/2.jpg'
+import app3 from './assets/app_it_out/3.jpg'
+import app4 from './assets/app_it_out/4.jpg'
+
+<div class="modal_overlay hidden" id="blogmate_video_overlay">
+  <div class="modal" id="blogmate_video_modal">
+    <video id="blogmate_video" loop>
+      <source src={video} />
+    </video>
+  </div>
+</div>
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <p class="article_content_intro">What we wanted was an application that allowed us to save articles (like instapaper/readability), but with a social aspect of creating reading lists that people could see and follow, be able to highlight and annotate articles, have everything searchable. Highlighting and annotating are powerful educational tools but they aren't used as much in technology and could benefit by being able to search for keywords in the highlights and annotations.</p>
+
+    <p class="text_centered">
+      <a class="button large_button" id="show_video_overlay_button" href="#">
+        Watch the introduction
+      </a>
+      <br />
+      <a class="button large_button" href="http://blogmate.is" target="_blank">
+        Launch the application
+      </a>
+    </p>
+  </div>
+</section>
+
+
+<hr />
+
+
+<section class="article_content_section">
+  <h2>Roles &amp; Responsibilities</h2>
+  <div class="case_study_roles">
+    <div class="case_study_role">
+      <i class="case_study_role_icon icon product_icon"></i>
+      <h5 class="case_study_role_title">Product Lead</h5>
+      <p class="case_study_role_text">Blogmate was the product I really wanted so I assumed more of the product lead role.</p>
+    </div>
+
+    <div class="case_study_role">
+      <i class="case_study_role_icon icon design_icon"></i>
+      <h5 class="case_study_role_title">Lead Designer</h5>
+      <p class="case_study_role_text">I created all the designs</p>
+    </div>
+
+    <div class="case_study_role">
+      <i class="case_study_role_icon icon develop_icon"></i>
+      <h5 class="case_study_role_title">Front-End Developer</h5>
+      <p class="case_study_role_text">HTML/CSS/JS was my domain while our other developer, Austin, handled the Ruby on Rails.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="article_content_section">
+  <div class="bg_photo_article_content">
+    <Image src={about} alt="" />
+  </div>
+</section>
+
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <div class="case_study_mission_statement">
+      <h6>Our Mission</h6>
+      <p><span class="highlight">We want to enhance the online reading experience.</span> We know that reading actively, e.g. highlighting and/or annotating while reading, can help improve your understanding and retention of the text. During active reading, your brain is deliberately creating rather than passively consuming. The benefits of this kind of interaction can be further improved by storing the text, highlights, and annotations in an organized, accessible, and searchable format for reference whenever you need review. We will keep building on this core idea, because we believe <em>good enough isn't good enough.</em></p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <h2>Process</h2>
+    <Image src={responsive} alt="" />
+  </div>
+</section>
+
+<hr />
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <h2>Interaction</h2>
+    <p>The impetus behind a lot of design and interaction decisions was that I wanted to make the application feel as if you are directly interacting with the content. I didn't want forms or buttons (or as few as possible) to make using the application be an extension of how people normally interact with paper documents. Highlighting text, writing in margins, etc.</p>
+
+    <figure class="blogmate_animation_figure">
+      <div class="blogmate_animation_height"></div>
+      <video class="blogmate_animation_video" autoplay loop muted src={highlight}>
+      </video>
+    </figure>
+
+    <figure class="blogmate_animation_figure">
+      <div class="blogmate_animation_height"></div>
+      <video class="blogmate_animation_video" autoplay loop muted src={annotate}>
+      </video>
+    </figure>
+
+    <figure class="blogmate_animation_figure">
+      <div class="blogmate_animation_height"></div>
+      <video class="blogmate_animation_video" autoplay loop muted src={drag}>
+      </video>
+    </figure>
+  </div>
+</section>
+
+
+<hr />
+
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <h2>App It Out Contest</h2>
+    <p>Right after we finished the first version of Blogmate we were lucky enough to enter it in the Future Insights Conference's App It Out Contest. This was a great experience for us to show what we had worked so hard to build. Ultimately we came in second place, but it was still a great learning experience pitching a product and answering questions.</p>
+  </div>
+
+  <div class="wide_article_content">
+    <div class="photo_gallery">
+    <Image src={app1} alt="" />
+    <Image src={app2} alt="" />
+    <Image src={app3} alt="" />
+    <Image src={app4} alt="" />
+    </div>
+  </div>
+</section>
+
+
+<hr />
+
+
+<section class="article_content_section">
+  <div class="wide_article_content">
+    <h2>Technology</h2>
+
+    <div class="blogmate_technologies">
+      <div class="blogmate_technology_frontend">
+        <img src="assets/coffeescript.png" class="blogmate_technology_img" />
+        <h5>CoffeeScript</h5>
+        <p>First project I switched from Javascript and never looked back.</p>
+      </div>
+      <div class="blogmate_technology_frontend">
+        <img src="assets/backbone.png" class="blogmate_technology_img" />
+        <h5>Backbone</h5>
+        <p>The bulk of the app is the backbone client-side app. It is very self-contained </p>
+      </div>
+      <div class="blogmate_technology_frontend">
+        <img src="assets/mustache.png" class="blogmate_technology_img" />
+        <h5>Mustache</h5>
+        <p>Our templating language of choice, the SMT gem gave us the ability to have the templates automatically available in our Backbone app.</p>
+      </div>
+    </div>
+
+    <div class="blogmate_technology_separator">
+      <h6>client side application</h6>
+      <hr />
+      <h6>back end application</h6>
+    </div>
+
+    <div class="blogmate_technologies">
+      <div class="blogmate_technology_backend">
+        <img src="assets/rails.png" class="blogmate_technology_img" />
+        <h5>Ruby on Rails</h5>
+        <p>Our Rails layer is very thin, it just handles authentication, serves assets, and sends JSON packets back and forth to Backbone.</p>
+      </div>
+
+      <div class="blogmate_technology_backend">
+        <img src="assets/postgres.png" class="blogmate_technology_img" />
+        <h5>PostgreSQL</h5>
+        <p>While still being a traditional relational database, postgres gave us the ability to do full text search on articles/annotations.</p>
+      </div>
+
+      <div class="blogmate_technology_backend">
+        <img src="assets/unicorn.png" class="blogmate_technology_img" />
+        <h5>Unicorn</h5>
+        <p>Gave us multiple processes and allowed us for (kind of) seamless deploys.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<hr />
+
+
+<section class="article_content_section">
+    <h2>Current Status</h2>
+</section>
+
+
+<hr />
+
+
+<section class="article_content_section">
+  <div class="center_article_content">
+    <h2>Lessons Learned</h2>
+
+    <h5>1. Don't Prematurely Spend Money</h5>
+    <p>When we first started we were so gung-ho about starting a 'legitimate business'. So we formed an LLC in Delaware (apparently it's cheapest to do it there) and were looking into filing for trademarks for our logo/brand. This was basically wasted money.</p>
+
+    <h5>2. Throw Code Away</h5>
+    <p>Blogmate is a very javascript intensive application and when we first started developing it I was writing vanilla Javascript, which began to grow unruly. Thankfully Austin had the great idea to try building it in Backbone and Coffeescript. We then spent a few weeks and completely rewrote the front-end to be a complete single-page javascript application.</p>
+
+    <h5>3. Client App + Backend App Architecture</h5>
+    <p>After we rewrote the whole front-end code we had a moment of clarity that this is how future web technologies should be built. Javascript application that communicates with a server via JSON. By separating the client and the backend, you are now equipped to easily update the UI or build a native application. Also the experience of using a single page Javascript application is much better and more flexible.</p>
+
+    <h5>4. Learn Something &amp; Have Fun</h5>
+    <p>At the end of the day we all worked on Blogmate because we wanted to. We got to use it as an excuse to learn new technologies and gain valuable experience. Whether or not Blogmate was a "success", we all learned a lot from building it.</p>
+  </div>
+</section>

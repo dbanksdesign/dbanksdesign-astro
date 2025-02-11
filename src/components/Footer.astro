@@ -3,6 +3,8 @@ import Github from '../icons/Github.astro';
 import Bluesky from '../icons/Bluesky.astro';
 import Email from '../icons/Email.astro';
 import Linkedin from '../icons/Linkedin.astro';
+import AstroIcon from 'src/icons/Astro.astro';
+import Amplify from 'src/icons/Amplify.astro';
 const today = new Date();
 ---
 
@@ -14,8 +16,16 @@ const today = new Date();
 				target="_blank">open-source</a
 			>.
 		</p>
-		<p>Made it all the way down here huh? Umm</p>
-		<p>Built with: Astro, Amplify</p>
+		<p>Built with:</p>
+		<div class="technology">
+			<a class="technology-item" href="https://astro.build" target="_blank">
+				<AstroIcon />
+				Astro
+			</a>
+			<a class="technology-item" href="https://docs.amplify.aws" target="_blank">
+				<Amplify /> Amplify
+			</a>
+		</div>
 	</div>
 	<div class="social-links">
 		<a class="social-link" href="https://bsky.app/profile/dbanks.design" target="_blank">
@@ -43,7 +53,7 @@ const today = new Date();
 
 <style is:global>
 	footer {
-		padding: var(--space-large);
+		padding: var(--space-xl);
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -57,6 +67,23 @@ const today = new Date();
 		left: 0;
 		right: 0;
 		border-block-start: 1px solid var(--color-border-secondary);
+	}
+
+	.technology {
+		display: flex;
+		flex-direction: row;
+		gap: var(--space-medium);
+	}
+
+	.technology-item {
+		display: inline-flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--space-small);
+	}
+
+	.technology-item > svg {
+		height: 1em;
 	}
 
 	.footer-copy {

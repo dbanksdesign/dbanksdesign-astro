@@ -9,14 +9,19 @@ const { title, description, headings } = Astro.props;
 ---
 
 <div class="blog-article">
-	<aside class="blog-toc">
-		<TableOfContents headings={headings} />
-	</aside>
-	<main class="blog-article-main">
-		<h1>{title}</h1>
-		<p>{description}</p>
-		<article class="blog-article-content">
+	<div class="blog-title">
+		<div class="blog-title-inner">
+			<h1>{title}</h1>
+			<p>{description}</p>
+		</div>
+	</div>
+
+	<article class="blog-article-content">
+		<aside class="blog-toc">
+			<TableOfContents headings={headings} />
+		</aside>
+		<main class="blog-article-main">
 			<slot />
-		</article>
-	</main>
+		</main>
+	</article>
 </div>
