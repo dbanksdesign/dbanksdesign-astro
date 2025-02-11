@@ -63,10 +63,10 @@ import Pascal from 'src/icons/Pascal.astro';
 	}
 
 	.spicy-variables {
-		bottom: 10rem;
-		left: -2rem;
+		bottom: 1rem;
+		left: -1rem;
 		width: 10rem;
-		transform: rotate(-80deg);
+		transform: rotate(-10deg);
 	}
 
 	.design-tokens {
@@ -105,16 +105,26 @@ import Pascal from 'src/icons/Pascal.astro';
 	}
 
 	.cta-button {
+		position: relative;
 		display: flex;
 		align-items: center;
 		text-decoration: none;
-		padding: var(--space-small) var(--space-medium);
+		padding: var(--space-medium) var(--space-large);
 		font-weight: bold;
 		background-color: var(--color-background-primary);
 		border: 1px solid var(--color-border-primary);
 		box-shadow: 5px 5px 0 0 var(--color-border-tertiary);
 		transition: all 0.2s ease;
 	}
+
+	/* .cta-button::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -5rem;
+		right: -5rem;
+		border-top: 1px solid var(--color-border-secondary);
+	} */
 
 	.cta-button:hover {
 		box-shadow: 10px 10px 0 0 var(--color-border-tertiary);

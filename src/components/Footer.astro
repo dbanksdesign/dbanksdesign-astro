@@ -55,8 +55,7 @@ const today = new Date();
 	footer {
 		padding: var(--space-xl);
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+		flex-direction: column;
 		position: relative;
 	}
 
@@ -67,6 +66,13 @@ const today = new Date();
 		left: 0;
 		right: 0;
 		border-block-start: 1px solid var(--color-border-secondary);
+	}
+
+	@media (min-width: 800px) {
+		footer {
+			flex-direction: row;
+			justify-content: space-between;
+		}
 	}
 
 	.technology {
@@ -96,7 +102,7 @@ const today = new Date();
 		justify-content: center;
 		flex-direction: column;
 		gap: var(--space-medium);
-		padding: var(--space-large);
+		/* padding: var(--space-large); */
 	}
 
 	/* footer .social-links::after {

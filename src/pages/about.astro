@@ -40,6 +40,15 @@ import Linkedin from 'src/icons/Linkedin.astro';
 					style and design information to reduce the cost to make app-wide style changes.
 				</p>
 			</div>
+			<div class="grid-item wide" style="grid-area:img">
+				<Image src={profileImage} alt="" />
+				<figcaption>Thats me circa 2017</figcaption>
+			</div>
+			<div class="grid-item" style="grid-area:pronouns">
+				<div>
+					My pronouns are <strong>he/him</strong>
+				</div>
+			</div>
 			<div class="grid-item bottom" style="grid-area:social">
 				<div class="social-links">
 					<a class="social-link" href="https://bsky.app/profile/dbanks.design" target="_blank">
@@ -57,11 +66,6 @@ import Linkedin from 'src/icons/Linkedin.astro';
 						<Linkedin />
 						@dbanksdesign
 					</a>
-				</div>
-			</div>
-			<div class="grid-item" style="grid-area:pronouns">
-				<div>
-					My pronouns are <strong>he/him</strong>
 				</div>
 			</div>
 			<div class="grid-item" style="grid-area:skills">
@@ -109,7 +113,7 @@ import Linkedin from 'src/icons/Linkedin.astro';
 					</div>
 				</div>
 			</div>
-			<div class="grid-item" style="grid-area:wed">
+			<div class="grid-item wide" style="grid-area:wed">
 				<Image src={dangieImage} alt="" />
 				<figcaption>Wedding day. 2017</figcaption>
 			</div>
@@ -159,14 +163,10 @@ import Linkedin from 'src/icons/Linkedin.astro';
 					</section>
 				</div>
 			</div>
-			<div class="grid-item" style="grid-area:bobs">
+			<div class="grid-item wide" style="grid-area:bobs">
 				<Image src={bobsImage} alt="">
 					<figcaption>Testing</figcaption>
 				</Image>
-			</div>
-			<div class="grid-item" style="grid-area:img">
-				<Image src={profileImage} alt="" />
-				<figcaption>Thats me circa 2017</figcaption>
 			</div>
 		</div>
 	</div>
@@ -251,14 +251,27 @@ import Linkedin from 'src/icons/Linkedin.astro';
 	@media (min-width: 600px) {
 		.grid {
 			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-areas:
+				'intro intro'
+				'img wed'
+				'social pronouns'
+				'cite skills'
+				'exp exp'
+				'bobs bobs';
+		}
+	}
+
+	@media (min-width: 800px) {
+		.grid {
+			display: grid;
 			grid-template-columns: repeat(6, 1fr);
 			grid-template-areas:
 				'intro intro intro intro img img'
-				'intro intro intro intro img img'
-				'wed wed social social skills skills'
-				'wed wed cite cite skills skills'
-				'pronouns pronouns cite cite skills skills'
-				'exp exp bobs bobs bobs bobs';
+				'cite cite cite exp exp exp'
+				'wed wed wed wed skills skills'
+				'pronouns pronouns pronouns pronouns skills skills'
+				'social social bobs bobs bobs bobs';
 		}
 	}
 

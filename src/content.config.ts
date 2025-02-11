@@ -39,6 +39,7 @@ const work = defineCollection({
 			heroImage: image().optional(),
 			type: z.string().optional(),
 			order: z.number(),
+			enabled: z.boolean().optional(),
 		}),
 });
 

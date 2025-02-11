@@ -387,6 +387,15 @@
 	--color-shadow: rgba(0, 0, 0, 0.9);
 }
 
+@media (max-width: 600px) {
+	:root {
+		--space-base: 0.75rem;
+		--space-medium: 0.875rem;
+		--space-large: 1.25rem;
+		--space-xl: 2rem;
+	}
+}
+
 [data-color-mode='light'] {
 	--color-font-primary: rgba(0, 6, 38, 0.9);
 	--color-font-secondary: rgba(0, 6, 38, 0.8);
@@ -531,15 +540,21 @@ h6 {
 }
 
 h1 {
-	font-size: var(--size-font-xxxl);
+	font-size: var(--size-font-xxl);
 	color: var(--color-brand-primary);
 }
 
 @supports (-webkit-text-stroke-color: #fff) {
 	h1 {
-		color: transparent;
+		color: var(--color-background-primary);
 		-webkit-text-stroke-color: var(--color-brand-primary);
 		-webkit-text-stroke-width: 2px;
+	}
+}
+
+@media (min-width: 800px) {
+	h1 {
+		font-size: var(--size-font-xxxl);
 	}
 }
 
@@ -724,7 +739,7 @@ mark {
 	top: -1px;
 	left: -0.5rem;
 	width: 2rem;
-	border-top: 1px solid var(--color-border-primary);
+	border-top: 1px solid var(--color-border-secondary);
 }
 
 .grid-item::before {
@@ -733,7 +748,17 @@ mark {
 	top: -0.5rem;
 	left: -1px;
 	height: 2rem;
-	border-left: 1px solid var(--color-border-primary);
+	border-left: 1px solid var(--color-border-secondary);
+}
+
+.grid-item.wide::after {
+	content: '';
+	position: absolute;
+	top: -1px;
+	left: -100rem;
+	right: -100rem;
+	width: auto;
+	border-top: 1px solid var(--color-border-secondary);
 }
 
 .grid-item.bottom::after {
@@ -800,13 +825,13 @@ mark {
 		--size-font-large: 1.5rem;
 		--size-font-xl: 2.25rem;
 		--size-font-xxl: 3.25rem;
-		font-size: 125%;
+		font-size: 112.5%;
 	}
 }
 
 @media (min-width: 1400px) {
 	html {
-		font-size: 150%;
+		font-size: 125%;
 	}
 }
 
@@ -877,8 +902,15 @@ mark {
 }
 
 .blog-toc {
-	width: 15rem;
-	border-inline-start: 1px solid var(--color-border-secondary);
+	display: none;
+}
+
+@media (min-width: 1000px) {
+	.blog-toc {
+		display: block;
+		width: 15rem;
+		border-inline-start: 1px solid var(--color-border-secondary);
+	}
 }
 
 .blog-article-content {
@@ -886,14 +918,14 @@ mark {
 	margin: 0 auto;
 }
 
-.blog-article-main > p:first-of-type::first-line {
+/* .blog-article-main > p:first-of-type::first-line {
 	font-weight: bold;
 }
 
 .blog-article-main > p:first-of-type::first-letter {
 	initial-letter: 2;
 	margin-inline-end: 0.5rem;
-}
+} */
 
 .blog-article-main > * + * {
 	margin-bottom: 1rem;

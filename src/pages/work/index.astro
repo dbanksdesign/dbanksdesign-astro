@@ -3,9 +3,9 @@ import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('work')).sort(
-	(a, b) => a.data.order.valueOf() - b.data.order.valueOf()
-);
+const posts = (await getCollection('work'))
+	.filter((item) => item.data.enabled)
+	.sort((a, b) => a.data.order.valueOf() - b.data.order.valueOf());
 ---
 
 <Layout>
