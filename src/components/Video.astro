@@ -1,0 +1,12 @@
+---
+const { src, caption } = Astro.props;
+---
+
+<figure>
+	<video controls width="100%">
+		<source src={src} type="video/mp4" />
+	</video>
+	<figcaption>
+		{caption}
+	</figcaption>
+</figure>

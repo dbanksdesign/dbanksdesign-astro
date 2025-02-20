@@ -1,0 +1,48 @@
+---
+import { parseOpenGraph } from '../utils/parseOpenGraph';
+
+export interface Props {
+	/** URL to fetch Open Graph data. */
+	id: string;
+	/** Hide any image or video even if set in the OpenGraph data. */
+	hideMedia?: boolean;
+}
+
+const { id, hideMedia = false } = Astro.props;
+
+const meta = await parseOpenGraph(id);
+const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
+---
+
+{
+	meta && meta.title ? (
+		<article
+			class:list={[
+				'link-preview',
+				{
+					'link-preview--has-video': !hideMedia && meta.video && meta.videoType,
+					'link-preview--no-media': hideMedia || !((meta.video && meta.videoType) || meta.image),
+				},
+			]}
+		>
+			<div class="link-preview__content">
+				{domain && <div class="link-preview__domain">{domain}</div>}
+				<a class="link-preview__title" href={id}>
+					{meta.title}
+				</a>
+				<p class="link-preview__description">{meta.description}</p>
+			</div>
+			{hideMedia ? null : meta.video && meta.videoType ? (
+				<video controls preload="metadata" width="1200" height="630">
+					<source src={meta.video} type={meta.videoType} />
+				</video>
+			) : meta.image ? (
+				<img class="link-preview__img" src={meta.image} alt={meta.imageAlt || ''} />
+			) : null}
+		</article>
+	) : (
+		<div class="link-preview link-preview--no-metadata">
+			<a href={id}>{id}</a>
+		</div>
+	)
+}

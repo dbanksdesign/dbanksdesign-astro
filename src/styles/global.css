@@ -358,6 +358,7 @@
 	--font-family-primary: 'Atkinson Hyperlegible', 'Source Sans Pro', 'Open Sans', Arial, Helvetica,
 		sans-serif;
 
+	--shadow-medium: 5px 5px 0 0 var(--color-border-tertiary);
 	--spring-animation: 700ms
 		linear(
 			0,
@@ -607,7 +608,8 @@ code {
 
 figure {
 	padding: var(--space-medium);
-	border: 1px solid var(--color-border-primary);
+	border: 1px solid var(--color-border-secondary);
+	box-shadow: var(--shadow-medium);
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -1054,4 +1056,82 @@ lite-youtube {
 	right: -1px;
 	height: 2rem;
 	border-right: 1px solid var(--color-border-primary);
+}
+
+.link-preview {
+	padding: var(--space-small);
+	border: 1px solid var(--color-border-secondary);
+	box-shadow: var(--shadow-medium);
+	display: flex;
+	flex-direction: row-reverse;
+	width: auto;
+	gap: var(--space-medium);
+}
+
+.link-preview__img {
+	display: none;
+}
+
+@media (min-width: 800px) {
+	.link-preview__img {
+		display: block;
+		object-fit: contain;
+		max-width: 33%;
+	}
+}
+
+.link-preview__content {
+	display: flex;
+	flex-direction: column;
+}
+
+.link-preview__title {
+	display: block;
+}
+
+.link-preview__domain {
+	font-size: var(--size-font-small);
+	color: var(--color-font-tertiary);
+}
+
+.link-preview__description {
+}
+
+div.sp-wrapper {
+	--sp-border-radius: 0;
+	--sp-font-mono: var(--font-family-mono);
+	--sp-font-size: 100%;
+	--sp-font-lineHeight: 1.5;
+	--sp-colors-accent: var(--color-brand-primary);
+	--sp-colors-clickable: var(--color-font-secondary);
+	--sp-colors-hover: var(--color-font-primary);
+
+	--sp-colors-surface1: var(--color-background-secondary);
+	--sp-colors-surface2: var(--color-border-tertiary);
+	--sp-colors-surface3: var(--color-background-tertiary);
+
+	--sp-syntax-color-definition: var(--color-font-code-1);
+	--sp-syntax-color-property: var(--color-font-code-2);
+	--sp-syntax-color-string: var(--color-font-code-3);
+	--sp-syntax-color-punctuation: var(--color-font-tertiary);
+	--sp-syntax-color-plain: var(--color-font-primary);
+	--sp-syntax-color-static: var(--color-font-primary);
+	--sp-syntax-color-keyword: var(--color-font-code-4);
+
+	margin-bottom: var(--space-medium);
+}
+
+.sp-button:is(a, button) {
+	background-color: hsl(from var(--color-background-primary) h s l/ 0.5);
+	color: var(--color-font-primary);
+	border-radius: 0;
+	border-width: 0;
+	font-size: 16px;
+}
+
+div.sp-preview-actions {
+	/* bottom: 0;
+	right: 0;
+	gap: 0;
+	transform: rotate(90deg); */
 }

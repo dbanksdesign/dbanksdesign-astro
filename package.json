@@ -11,15 +11,21 @@
   "dependencies": {
     "@astrojs/mdx": "^4.0.8",
     "@astrojs/preact": "^4.0.3",
+    "@astrojs/react": "^4.2.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
+    "@codesandbox/sandpack-react": "^2.19.11",
     "@fontsource/dm-mono": "^5.1.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "astro": "^5.1.8",
     "astro-embed": "^0.9.0",
     "astro-expressive-code": "^0.40.1",
     "lucide-astro": "^0.473.0",
     "motion": "^12.0.1",
     "preact": "^10.25.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "typescript-event-target": "^1.1.1"
   },
   "devDependencies": {

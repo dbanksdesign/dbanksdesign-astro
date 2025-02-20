@@ -9,11 +9,10 @@ heroImage: 'assets/conversation.png'
 enabled: true
 ---
 
-import { YouTube } from 'astro-embed';
+import LinkPreview from '@components/LinkPreview.astro';
+import YouTubeFigure from '@components/YouTubeFigure.astro';
 
 ## Overview
-
-<YouTube id="f-UeIlQ1tAI" />
 
 * [What's new post](https://aws.amazon.com/about-aws/whats-new/2024/11/aws-amplify-full-stack-ai-kit-amazon-bedrock/)
 * [Launch blog post](https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/)
@@ -51,28 +50,36 @@ Some notable things we did with this project:
 
 ## Outcome
 
-The team successfully launched the Amplify AI kit right before re:Invent in 2024. We had a "launch week" that featured a different blog post each day of the week with associated social network posts. I authored one of the blog posts:
+The team successfully launched the Amplify AI kit right before re:Invent in 2024. We had a launch week that featured a different blog post each day of the week with associated social network posts. I authored the first blog post announcing the project:
 
-* [Build fullstack AI apps in minutes with the new Amplify AI Kit](https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/)
+<LinkPreview id="https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/" />
 
 And reviewed the other 4
 
-* [Create a Customized AI-Based Chat Interface With Your Application Data](https://aws.amazon.com/blogs/mobile/create-a-customized-ai-based-chat-interface-with-your-application-data/)
-* [Add a Conversational Interface to any Data Source](https://aws.amazon.com/blogs/mobile/add-a-conversational-interface-to-any-data-source/)
-* [Build a Travel Planner with React Native, AWS Amplify, and Amazon Bedrock Knowledge Base](https://aws.amazon.com/blogs/mobile/building-a-personalized-travel-planner-with-amazon-bedrocks-knowledge-bases-and-rag/)
-* [Building RAG-based applications with AWS Amplify AI Kit and Neon Postgres](https://aws.amazon.com/blogs/mobile/building-rag-based-applications-with-aws-amplify-ai-kit-and-neon-postgres/)
+<LinkPreview id="https://aws.amazon.com/blogs/mobile/create-a-customized-ai-based-chat-interface-with-your-application-data/" />
+
+<LinkPreview id="https://aws.amazon.com/blogs/mobile/add-a-conversational-interface-to-any-data-source/" />
+
+<LinkPreview id="https://aws.amazon.com/blogs/mobile/building-a-personalized-travel-planner-with-amazon-bedrocks-knowledge-bases-and-rag/" />
+
+<LinkPreview id="https://aws.amazon.com/blogs/mobile/building-rag-based-applications-with-aws-amplify-ai-kit-and-neon-postgres/" />
 
 This launch was posted about some notable members of AWS leadership:
-* https://www.linkedin.com/posts/swaminathansivasubramanian_build-fullstack-ai-apps-in-minutes-with-the-activity-7264832499644547073-SjTa?utm_source=share&utm_medium=member_desktop&rcm=ACoAAANjAz4BAwg1hnz_MC3Z61PiVFYexkN_1yQ
-* https://www.linkedin.com/posts/jeffbarr_aws-activity-7272682107930353664-UTHp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAANjAz4BAwg1hnz_MC3Z61PiVFYexkN_1yQ
+
+<LinkPreview id="https://www.linkedin.com/posts/swaminathansivasubramanian_build-fullstack-ai-apps-in-minutes-with-the-activity-7264832499644547073-SjTa" />
+
+<LinkPreview id="https://www.linkedin.com/posts/jeffbarr_aws-activity-7272682107930353664-UTHp" />
+
 
 At re:Invent there were several talks and workshops about the AI kit including this one:
 
-<YouTube id="IP2-saNpYsQ" />
+<YouTubeFigure id="IP2-saNpYsQ" title="Full-stack AI with the AWS Amplify AI Kit" />
 
 We have seen steady growth of the project since launch and the team is working on some new feature requests from customers as we get more feedback. 
 
-<YouTube id="yO3Np7t9Dik" />
-<YouTube id="Q7WMOhRILxo" />
 
+<YouTubeFigure id="yO3Np7t9Dik" title="AI Experiences with Amplify Gen 2" />
 
+<YouTubeFigure id="Q7WMOhRILxo" title="How to add GenAI to your frontend app" />
+
+<YouTubeFigure id="f-UeIlQ1tAI" title="Build Fullstack AI Apps in Minutes" />

@@ -1,0 +1,99 @@
+---
+title: '@property'
+description: ''
+pubDate: '2025-02-13'
+draft: true
+---
+
+import CodeEditor from '@components/CodeEditor.tsx'
+
+Usually, I like to think about CSS variables (custom properties) almost like dynamic macros. A macro is a pattern in compiled languages like C that basically is just a fancy find-and-replace when you compile the code. Macros are usually like strings or numbers that you want to just reference throughout your code, but they aren't really state variables.
+
+```objc
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define OUR_GREEN_COLOR [UIColor colorWithRed:4/255.0f green:180/255.0f blue:4/255.0f alpha:1.0];
+#define MAX_ARRAY_LENGTH 20;
+
+// later..
+
+self.tableFrame.size.width = SCREEN_WIDTH;
+self.view.backgroundColor = OUR_GREEN_COLOR;
+self.somethingElse = MAX_ARRAY_LENGTH;
+```
+
+I say CSS variables are like macros is that they are un-typed, they are just references to some CSS. For example, these are all valid CSS variables:
+
+```css
+--color: #bada55;
+--some-var: 1, 2, 3;
+--foo: bar;
+--bar: 'baz';
+```
+
+This flexibility is a double-edged sword. You can do really cool stuff like combining multiple CSS variables in one color for example:
+
+```css
+--h: 120;
+--s: 85%;
+--l: 70%;
+--color-brand: hsl(var(--h), var(--s), var(--l));
+```
+
+```css
+--hsl: 120, 85%, 70%;
+--color-brand: hsl(var(--hsl));
+--color-brand-alpha: hsla(var(--hsl), 0.5);
+```
+
+One downside to this is that we, the developer, and the browser don't know the type of the variable so neither can check if a potential value is invalid or not.
+
+Another downside is certain CSS properties, like percentages in gradients, can't be transitioned if they are using CSS variables because the CSS engine doesn't know how to interpolate 
+
+The downside is that the CSS parser does not know what the types of the CSS variables: are they colors, sizes, percentages? If the CSS parser can't know that a CSS variable is a color for instance, it cannot properly animate or transition that value to another.
+
+<CodeEditor client:load
+  showTabs={false}
+  files={{
+    'App.svelte': `<button>
+  click me
+</button>
+
+<style>
+  :root {
+    --hsl: 120, 85%, 70%;
+    --color-brand: hsl(var(--hsl));
+    --color-brand-alpha: hsla(var(--hsl), 0.5);
+    --padding: 10%;
+  }
+
+  button {
+    --rotate-x: 0deg;
+    --rotate-y: 0deg;
+
+    border: none;
+    background: var(--color-brand);
+    padding: var(--padding);
+    transition: all 1s;
+  }
+
+  button:hover {
+    --rotate-x: 20deg;
+    --rotate-y: 20deg;
+    --padding: 20%;
+  }
+</style>
+    `
+  }}
+  template='svelte'
+/>
+
+
+```css
+@property --pointer-x {
+  syntax: '<percentage>';
+  initial-value: 50%;
+  inherits: true;
+}
+```
+
+https://web.dev/articles/at-property

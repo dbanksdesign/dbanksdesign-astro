@@ -9,7 +9,8 @@ type: work
 enabled: true
 ---
 
-import { YouTube } from 'astro-embed';
+import Video from '@components/Video.astro';
+import YouTubeFigure from '@components/YouTubeFigure.astro';
 import Demo1 from './videos/sto-bro-pt-1.mp4'
 import Demo2 from './videos/sto-bro-pt-2.mp4'
 import Demo3 from './videos/sto-bro-pt-3.mp4'
@@ -19,13 +20,13 @@ import Demo6 from './videos/sto-bro-pt-6.mp4'
 
 ## Overview
 
-<YouTube id="UBpX8hCpLAY" />
-
 * [Amplify Documentation](https://ui.docs.amplify.aws/react/connected-components/storage/storage-browser)
 * [S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-browser.html)
 * [Product page](https://aws.amazon.com/s3/features/storage-browser/)
 * [Launch announcement](https://aws.amazon.com/blogs/aws/connect-users-to-data-through-your-apps-with-storage-browser-for-amazon-s3/)
 * [Launch announcement for managed app](https://aws.amazon.com/blogs/aws/announcing-aws-transfer-family-web-apps-for-fully-managed-amazon-s3-file-transfers/)
+
+---
 
 ## Process
 
@@ -39,6 +40,8 @@ A team sometimes ranging from 2-3 and sometimes 6-7 developers from the Amplify 
 
 Nearing the finish line I got more involved in the coding side of the Storage Browser, specifically on the stylistic aspects of the component and the customization APIs. I also built the demo of the component used in 2 re:Invent talks, while we were still finalizing the API and making code changes, which is not ideal, but we made it work. 
 
+---
+
 ## Technical Challenges
 
 There were several very challenging technical hurdles to overcome with this project. I cannot claim to be solely responsible for overcoming these challenges because we had fantastic people from both the S3 and Amplify side working on the project. 
@@ -47,51 +50,33 @@ Working across several teams and organizations was challenging. Myself and the A
 
 Getting the customization APIs right was very difficult, and involved many iterations. Our vision was that we wanted to have a React component that could just be installed and used to get a full S3 browser experience, but also be highly customizable so that developers could bring their own component library or styles so that the component would fit into their application. Additionally, we wanted to give developers the ability to customize actions (like upload and download) and add their own custom actions. 
 
-
+---
 
 ## Outcome
 
 The team announced the Storage Browser component at re:Invent 2024 with several talks dedicated to showing off the component. We have since worked with many customers to use the component in their applications and have received a lot of great feedback that we are incorporating into the next versions of the component. 
 
+<YouTubeFigure id="UBpX8hCpLAY" />
+
 ## Demos
 
 I created these demo videos for this re:Invent session:
 
-<YouTube id="YZVbSUHHZ5k" />
+<YouTubeFigure id="YZVbSUHHZ5k" title="Live coding on the AWS Live stream" />
 
 And live coded them on the AWS Live stream:
 
-<figure>
-<YouTube id="o54A_jliO8s" />
-<figcaption>Live coding on the AWS Live stream</figcaption>
-</figure>
+<YouTubeFigure id="o54A_jliO8s" title="Live coding on the AWS Live stream" />
 
-<figure>
-  <video controls width="100%">
-    <source src={Demo1} type="video/mp4" />
-  </video>
-  <figcaption>Setting up the Storage Browser</figcaption>
-</figure>
 
-<video controls width="100%">
-  <source src={Demo2} type="video/mp4" />
-</video>
+<Video src={Demo1} caption="Setting up the Storage Browser" />
 
-<video controls width="100%">
-  <source src={Demo3} type="video/mp4" />
-</video>
+<Video src={Demo2} caption="Styling the Storage Browser" />
 
-<video controls width="100%">
-  <source src={Demo4} type="video/mp4" />
-</video>
+<Video src={Demo3} caption="Using a custom layout" />
 
-<video controls width="100%">
-  <source src={Demo5} type="video/mp4" />
-</video>
+<Video src={Demo4} caption="Using a custom dialog component" />
 
-<figure>
-<video controls width="100%">
-  <source src={Demo6} type="video/mp4" />
-</video>
-<figcaption></figcaption>
-</figure>
+<Video src={Demo5} caption="Adding a custom share action" />
+
+<Video src={Demo6} caption="Adding a custom view for the share action" />

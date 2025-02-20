@@ -1,0 +1,19 @@
+---
+import { YouTube } from 'astro-embed';
+
+type Props = {
+	id: string;
+	title: string;
+};
+
+const { id, title } = Astro.props;
+---
+
+<figure>
+	<YouTube id={id} />
+	<figcaption>
+		<a href={`https://www.youtube.com/watch?v=${id}`} target="_blank">
+			{title}
+		</a>
+	</figcaption>
+</figure>

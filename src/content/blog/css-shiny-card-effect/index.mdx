@@ -1,0 +1,50 @@
+---
+title: 'Shiny Cards with CSS'
+description: ''
+pubDate: '2025-02-13'
+draft: true
+---
+
+import CodeEditor from '@components/CodeEditor.tsx'
+import Cards from '@components/Cards.astro'
+
+<Cards />
+
+Here is what we are going to build, _mostly_, with just CSS. JS is only required to update some CSS variables based on the mouse position when hovering over the card. 
+
+I am only using Svelte in these examples because I wanted to show the HTML, JS, and CSS easily in one file. But the focus of this post and technique are on the CSS. All the effects are pure CSS, no images involved.
+
+<CodeEditor client:load
+  showTabs={false}
+  files={{
+    'App.svelte': `
+<main>
+  <h1>Heller {name}</h1>
+</main>
+
+<style>
+  h1 {
+    font-size: 1.5rem;
+  }
+</style>
+
+<script>
+  let name = 'world';
+</script>
+    `
+  }}
+  template='svelte'
+/>
+
+## Transitions
+
+
+
+
+## @property
+
+
+
+https://github.com/simeydotme/pokemon-cards-css
+https://easingwizard.com/
+https://www.joshwcomeau.com/shadow-palette/

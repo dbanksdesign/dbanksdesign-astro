@@ -1,0 +1,515 @@
+---
+import Image from 'astro/components/Image.astro';
+import speakingImg from 'src/img/clarity.webp';
+import bobsImage from '../img/bobs-burgers.jpg';
+---
+
+<div class="cards">
+	<div class="shiny">
+		<Image src={bobsImage} alt="" />
+		<div class="shiny__shine"></div>
+		<div class="shiny__glare"></div>
+	</div>
+
+	<div class="card-wrapper">
+		<button class="card" data-rarity="rare ultra">
+			<div class="card-inner">
+				<div class="card-graphic">
+					<img
+						src="https://images.pokemontcg.io/swsh8/250_hires.png"
+						alt="Front design of the Mew V Pokemon Card, with the stats and info around the edge"
+						loading="lazy"
+						style="width: 100%; display:block;"
+						class="s-26GQofvqM1w4"
+					/>
+				</div>
+				<div class="card__shine"></div>
+				<div class="card__glare"></div>
+			</div>
+		</button>
+	</div>
+	<div class="card-wrapper">
+		<button class="card" data-rarity="rare ultra">
+			<div class="card-inner">
+				<div class="card-title">Bulbasaur</div>
+				<div class="card-graphic">
+					<Image src={speakingImg} alt="" style="width: 100%; height: auto;" />
+				</div>
+				<div class="">Clarity 2020</div>
+				<div class="">An Introduction to Multi-Platform Design Systems</div>
+
+				<div class="card__shine"></div>
+				<div class="card__glare"></div>
+			</div>
+		</button>
+	</div>
+</div>
+
+<script>
+	const clamp = (value: number, min = 0, max = 100) => {
+		return Math.min(Math.max(value, min), max);
+	};
+	const round = (value: number, precision = 3) => parseFloat(value.toFixed(precision));
+	const adjust = (
+		value: number,
+		fromMin: number,
+		fromMax: number,
+		toMin: number,
+		toMax: number
+	) => {
+		return round(toMin + ((toMax - toMin) * (value - fromMin)) / (fromMax - fromMin));
+	};
+	const cards = document.querySelectorAll<HTMLButtonElement>('.shiny');
+
+	cards.forEach((card) => {
+		card.addEventListener('pointermove', (e) => {
+			const rect = card?.getBoundingClientRect(); // get element's current size/position
+			const absolute = {
+				x: e.clientX - rect.left, // get mouse position from left
+				y: e.clientY - rect.top, // get mouse position from right
+			};
+
+			const percent = {
+				x: clamp(round((100 / rect.width) * absolute.x)),
+				y: clamp(round((100 / rect.height) * absolute.y)),
+			};
+			const center = {
+				x: percent.x - 50,
+				y: percent.y - 50,
+			};
+			card.style.setProperty('--shadow-x', `${round(-(center.x / 3.5))}px`);
+			card.style.setProperty('--shadow-y', `${round(-(center.y / 2))}px`);
+			card.style.setProperty('--pointer-x', `${percent.x}%`);
+			card.style.setProperty('--pointer-y', `${percent.y}%`);
+			card.style.setProperty('--rotate-x', `${round(-(center.x / 3.5))}deg`);
+			card.style.setProperty('--rotate-y', `${round(center.y / 2)}deg`);
+			card.style.setProperty('--card-opacity', '1');
+			card.style.setProperty('--background-x', `${adjust(percent.x, 0, 100, 37, 63)}%`);
+			card.style.setProperty('--background-y', `${adjust(percent.y, 0, 100, 33, 67)}%`);
+			card.style.setProperty(
+				'--pointer-from-center',
+				`${clamp(
+					Math.sqrt((percent.y - 50) * (percent.y - 50) + (percent.x - 50) * (percent.x - 50)) / 50,
+					0,
+					1
+				)}`
+			);
+		});
+		card.addEventListener('pointerleave', () => {
+			card.style.removeProperty('--pointer-x');
+			card.style.removeProperty('--pointer-y');
+			card.style.removeProperty('--rotate-x');
+			card.style.removeProperty('--rotate-y');
+			card.style.removeProperty('--card-opacity');
+			card.style.removeProperty('--background-x');
+			card.style.removeProperty('--background-y');
+		});
+	});
+</script>
+
+<style>
+	@property --pointer-x {
+		syntax: '<percentage>';
+		initial-value: 50%;
+		inherits: true;
+	}
+
+	@property --pointer-y {
+		syntax: '<percentage>';
+		initial-value: 50%;
+		inherits: true;
+	}
+
+	@property --rotate-x {
+		syntax: '<angle>';
+		initial-value: 0deg;
+		inherits: true;
+	}
+
+	@property --rotate-y {
+		syntax: '<angle>';
+		initial-value: 0deg;
+		inherits: true;
+	}
+
+	:global(html) {
+		--spring: ease-out;
+
+		/* @supports (animation: linear(1, 2 3%)) {
+			--spring: linear(
+				0,
+				-0.004 4.9%,
+				-0.02 9.4%,
+				-0.124 26.4%,
+				-0.126 30.5%,
+				-0.104 34.1%,
+				-0.027 38.8%,
+				0.108 43.1%,
+				0.299 47%,
+				0.817 55.2%,
+				0.97 59.1%,
+				1.071 63.4%,
+				1.118 67.7%,
+				1.127 72.6%,
+				1.108 77.2%,
+				1.019 90.7%,
+				1.004 95.2%,
+				1
+			);
+		} */
+	}
+
+	.card-wrapper {
+		--transition-time: 0.5s;
+		--bars: 3%;
+		--bar-color: hsla(0, 0%, 70%, 1);
+		--bar-bg: hsla(0, 0%, 0%, 1);
+
+		--card-aspect: 0.718;
+		--card-radius: 0;
+		--card-edge: hsl(47, 100%, 78%);
+		--card-back: hsl(205, 100%, 25%);
+		--card-glow: hsl(175, 100%, 90%);
+		--card-border: hsl(47, 100%, 78%);
+
+		--sunpillar-1: hsl(2, 100%, 73%);
+		--sunpillar-2: hsl(53, 100%, 69%);
+		--sunpillar-3: hsl(93, 100%, 69%);
+		--sunpillar-4: hsl(176, 100%, 76%);
+		--sunpillar-5: hsl(228, 100%, 74%);
+		--sunpillar-6: hsl(283, 100%, 73%);
+		--sunpillar-clr-1: var(--sunpillar-1);
+		--sunpillar-clr-2: var(--sunpillar-2);
+		--sunpillar-clr-3: var(--sunpillar-3);
+		--sunpillar-clr-4: var(--sunpillar-4);
+		--sunpillar-clr-5: var(--sunpillar-5);
+		--sunpillar-clr-6: var(--sunpillar-6);
+
+		transform: translate3d(0px, 0px, 0.01px);
+		transform-style: preserve-3d;
+		width: 400px;
+	}
+
+	.shiny {
+		--shadow-x: 0;
+		--shadow-y: 0;
+		--transition-time: 0.5s;
+		--sunpillar-1: hsl(2, 100%, 73%);
+		--sunpillar-2: hsl(53, 100%, 69%);
+		--sunpillar-3: hsl(93, 100%, 69%);
+		--sunpillar-4: hsl(176, 100%, 76%);
+		--sunpillar-5: hsl(228, 100%, 74%);
+		--sunpillar-6: hsl(283, 100%, 73%);
+		transform: translate3d(0px, 0px, 0.01px) rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+		transform-style: preserve-3d;
+		position: relative;
+		overflow: hidden;
+		box-shadow:
+			2px 2px 5px var(--color-border-secondary),
+			var(--shadow-x) var(--shadow-y) 20px var(--color-border-tertiary);
+		padding: var(--space-medium);
+		background-color: var(--color-background-primary);
+		transition:
+			--rotate-x var(--transition-time),
+			--rotate-y var(--transition-time);
+	}
+
+	.shiny:hover {
+		transition: none;
+	}
+
+	.shiny__glare,
+	.shiny__shine {
+		transition: opacity var(--transition-time);
+	}
+
+	.shiny__shine {
+		--space: 5%;
+		--angle: 133deg;
+
+		display: grid;
+		transform: translateZ(1px);
+		overflow: hidden;
+		z-index: 3;
+		background: transparent;
+		background-size: cover;
+		background-position: center;
+		filter: brightness(0.85) contrast(2.75) saturate(0.65);
+		mix-blend-mode: color-dodge;
+		opacity: 0.5;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+
+		background-image: repeating-linear-gradient(
+				0deg,
+				var(--sunpillar-1) calc(var(--space) * 1),
+				var(--sunpillar-2) calc(var(--space) * 2),
+				var(--sunpillar-3) calc(var(--space) * 3),
+				var(--sunpillar-4) calc(var(--space) * 4),
+				var(--sunpillar-5) calc(var(--space) * 5),
+				var(--sunpillar-6) calc(var(--space) * 6),
+				var(--sunpillar-1) calc(var(--space) * 7)
+			),
+			repeating-linear-gradient(
+				var(--angle),
+				#0e152e 0%,
+				hsl(180, 10%, 60%) 3.8%,
+				hsl(180, 29%, 66%) 4.5%,
+				hsl(180, 10%, 60%) 5.2%,
+				#0e152e 10%,
+				#0e152e 12%
+			),
+			radial-gradient(
+				farthest-corner circle at var(--pointer-x) var(--pointer-y),
+				hsla(0, 0%, 0%, 0.1) 12%,
+				hsla(0, 0%, 0%, 0.15) 20%,
+				hsla(0, 0%, 0%, 0.25) 120%
+			);
+		background-position:
+			0% var(--background-y),
+			calc(var(--background-x) + (var(--background-y) * 0.2)) var(--background-y),
+			var(--background-x) var(--background-y);
+		background-blend-mode: soft-light, hue, hard-light;
+		background-size:
+			200% 700%,
+			300% 100%,
+			200% 100%;
+		filter: brightness(calc((var(--pointer-from-center) * 0.4) + 0.4)) contrast(1.4) saturate(2.25);
+	}
+
+	.shiny__shine::before,
+	.shiny__shine::after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	.shiny__shine:before {
+		content: '';
+		mask-image: none;
+		background-image: radial-gradient(
+			farthest-corner circle at var(--pointer-x) var(--pointer-y),
+			hsl(0, 0%, 100%) 0%,
+			hsla(0, 0%, 0%, 0) 40%
+		);
+		background-position: center;
+		background-size: cover;
+		/* mix-blend-mode: overlay; */
+		opacity: 0.75;
+		z-index: 1;
+	}
+
+	.shiny__shine:after {
+		content: '';
+		background-position:
+			center center,
+			0% var(--background-y),
+			calc((var(--background-x) + (var(--background-y) * 0.2)) * -1) calc(var(--background-y) * -1),
+			var(--background-x) var(--background-y);
+		background-size:
+			cover,
+			200% 400%,
+			195% 100%,
+			200% 100%;
+		/* filter: brightness(calc((var(--pointer-from-center) * 0.4) + 0.8)) contrast(1.5) saturate(1.25); */
+		/* mix-blend-mode: exclusion; */
+	}
+
+	.shiny__glare {
+	}
+
+	.card {
+		border-radius: var(--card-radius);
+		padding: var(--space-medium);
+		width: 100%;
+		box-shadow:
+			0 0 3px -1px white,
+			0 0 3px 1px var(--card-edge),
+			0 0 12px 2px var(--card-glow),
+			0px 10px 20px -5px black,
+			0 0 40px -30px var(--card-glow),
+			0 0 50px -20px var(--card-glow);
+
+		background: var(--color-background-primary);
+
+		transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+		transform-style: preserve-3d;
+		position: relative;
+		overflow: hidden;
+		transition:
+			--rotate-x var(--transition-time),
+			--rotate-y var(--transition-time);
+	}
+
+	.card:hover {
+		transition: none;
+	}
+
+	.card-title {
+	}
+
+	.card__glare,
+	.card__shine {
+		transition: opacity var(--transition-time);
+	}
+
+	.card__shine {
+		display: grid;
+		transform: translateZ(1px);
+		overflow: hidden;
+		z-index: 3;
+		background: transparent;
+		background-size: cover;
+		background-position: center;
+		filter: brightness(0.85) contrast(2.75) saturate(0.65);
+		mix-blend-mode: color-dodge;
+		opacity: 0.5;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.card__glare {
+		transform: translateZ(1.41px);
+		overflow: hidden;
+		background-image: radial-gradient(
+			farthest-corner circle at var(--pointer-x) var(--pointer-y),
+			hsla(0, 0%, 100%, 0.8) 10%,
+			hsla(0, 0%, 100%, 0.65) 20%,
+			hsla(0, 0%, 0%, 0.5) 90%
+		);
+		opacity: 0;
+		mix-blend-mode: overlay;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.card-wrapper:hover .card__glare,
+	.card-wrapper:hover .card__shine {
+		opacity: 1;
+	}
+
+	.card[data-rarity='rare holo'] .card__shine:before {
+		content: '';
+		background-image: repeating-linear-gradient(
+				90deg,
+				var(--bar-bg) calc(var(--bars) * 2),
+				var(--bar-color) calc(var(--bars) * 3),
+				var(--bar-bg) calc(var(--bars) * 3.5),
+				var(--bar-color) calc(var(--bars) * 4),
+				var(--bar-bg) calc(var(--bars) * 5),
+				var(--bar-bg) calc(var(--bars) * 14)
+			),
+			repeating-linear-gradient(
+				90deg,
+				var(--bar-bg) calc(var(--bars) * 2),
+				var(--bar-color) calc(var(--bars) * 3),
+				var(--bar-bg) calc(var(--bars) * 3.5),
+				var(--bar-color) calc(var(--bars) * 4),
+				var(--bar-bg) calc(var(--bars) * 5),
+				var(--bar-bg) calc(var(--bars) * 10)
+			);
+		background-position:
+			calc((((50% - var(--background-x)) * 1.65) + 50%) + (var(--background-y) * 0.5))
+				var(--background-x),
+			calc((((50% - var(--background-x)) * -0.9) + 50%) - (var(--background-y) * 0.75))
+				var(--background-y);
+		background-size:
+			200% 200%,
+			200% 200%;
+		/* background-blend-mode: screen; */
+		/* filter: brightness(1.15) contrast(1.1); */
+		/* mix-blend-mode: hard-light; */
+	}
+
+	.card[data-rarity='rare ultra'] .card__shine {
+		--space: 5%;
+		--angle: 133deg;
+
+		background-image: repeating-linear-gradient(
+				0deg,
+				var(--sunpillar-clr-1) calc(var(--space) * 1),
+				var(--sunpillar-clr-2) calc(var(--space) * 2),
+				var(--sunpillar-clr-3) calc(var(--space) * 3),
+				var(--sunpillar-clr-4) calc(var(--space) * 4),
+				var(--sunpillar-clr-5) calc(var(--space) * 5),
+				var(--sunpillar-clr-6) calc(var(--space) * 6),
+				var(--sunpillar-clr-1) calc(var(--space) * 7)
+			),
+			repeating-linear-gradient(
+				var(--angle),
+				#0e152e 0%,
+				hsl(180, 10%, 60%) 3.8%,
+				hsl(180, 29%, 66%) 4.5%,
+				hsl(180, 10%, 60%) 5.2%,
+				#0e152e 10%,
+				#0e152e 12%
+			),
+			radial-gradient(
+				farthest-corner circle at var(--pointer-x) var(--pointer-y),
+				hsla(0, 0%, 0%, 0.1) 12%,
+				hsla(0, 0%, 0%, 0.15) 20%,
+				hsla(0, 0%, 0%, 0.25) 120%
+			);
+		background-position:
+			0% var(--background-y),
+			calc(var(--background-x) + (var(--background-y) * 0.2)) var(--background-y),
+			var(--background-x) var(--background-y);
+		background-blend-mode: soft-light, hue, hard-light;
+		background-size:
+			200% 700%,
+			300% 100%,
+			200% 100%;
+		filter: brightness(calc((var(--pointer-from-center) * 0.4) + 0.4)) contrast(1.4) saturate(2.25);
+	}
+
+	.card__shine::before,
+	.card__shine::after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	.card[data-rarity='rare ultra'] .card__shine:before {
+		content: '';
+		mask-image: none;
+		background-image: radial-gradient(
+			farthest-corner circle at var(--pointer-x) var(--pointer-y),
+			hsl(0, 0%, 100%) 0%,
+			hsla(0, 0%, 0%, 0) 40%
+		);
+		background-position: center;
+		background-size: cover;
+		/* mix-blend-mode: overlay; */
+		opacity: 0.75;
+		z-index: 1;
+	}
+
+	.card[data-rarity='rare ultra'] .card__shine:after {
+		content: '';
+		background-position:
+			center center,
+			0% var(--background-y),
+			calc((var(--background-x) + (var(--background-y) * 0.2)) * -1) calc(var(--background-y) * -1),
+			var(--background-x) var(--background-y);
+		background-size:
+			cover,
+			200% 400%,
+			195% 100%,
+			200% 100%;
+		/* filter: brightness(calc((var(--pointer-from-center) * 0.4) + 0.8)) contrast(1.5) saturate(1.25); */
+		/* mix-blend-mode: exclusion; */
+	}
+</style>
