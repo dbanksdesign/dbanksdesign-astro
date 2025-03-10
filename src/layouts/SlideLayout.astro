@@ -1,0 +1,56 @@
+---
+import 'reveal.js/dist/reveal.css';
+import 'reveal.js/plugin/highlight/monokai.css';
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const { title, description, socialImage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" transition:persist>
+	<head>
+		<BaseHead
+			title={title || SITE_TITLE}
+			description={description || SITE_DESCRIPTION}
+			image={socialImage}
+		/>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<slot />
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	import Reveal from 'reveal.js';
+	// import Highlight from 'reveal.js/plugin/highlight/highlight.esm.js';
+	import Zoom from 'reveal.js/plugin/zoom/zoom.esm.js';
+	import Notes from 'reveal.js/plugin/notes/notes.esm.js';
+
+	let deck = new Reveal({
+		plugins: [Zoom, Notes],
+	});
+	deck.initialize({
+		highlight: {
+			highlightOnLoad: false,
+		},
+	});
+</script>
+
+<style is:global>
+	.reveal-viewport,
+	.reveal .controls {
+		color: var(--color-font-primary);
+	}
+	.reveal .slide-background {
+		background-color: var(--color-background-primary);
+	}
+	.reveal .progress {
+		background-color: hsl(from var(--color-brand-primary) h s l/ 0.4);
+		color: var(--color-brand-primary);
+	}
+</style>

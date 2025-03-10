@@ -14,8 +14,8 @@ html[data-theme='blueprint'] {
 	--color-font-code-7: var(--color-core-pink-dark); */
 
 	--color-background-primary: var(--color-blue-900);
-	--color-background-secondary: var(--color-blue-950);
-	--color-background-tertiary: var(--color-blue-700);
+	--color-background-secondary: hsl(from var(--color-blue-950) h s l/ 0.25);
+	--color-background-tertiary: hsl(from var(--color-blue-950) h s l/ 0.5);
 	--color-background-highlight: var(--color-core-yellow-light);
 	--color-background-success: var(--color-core-green-light);
 	--color-background-error: var(--color-core-red-light);

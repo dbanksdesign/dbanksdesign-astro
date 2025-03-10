@@ -1,0 +1,110 @@
+---
+import SlideLayout from '@layouts/SlideLayout.astro';
+import { Prism } from '@astrojs/prism';
+import Amplify from '../icons/Amplify.astro';
+import { AIKitDemo } from '@components/Amplify';
+---
+
+<SlideLayout>
+	<section>
+		<h2>Amplify AI Kit</h2>
+		<p>Case study</p>
+	</section>
+
+	<section style="text-align: left">
+		<div class="columns">
+			<div class="half">
+				<Amplify />
+				<h2>AWS Amplify</h2>
+			</div>
+			<div class="half">
+				<ul>
+					<li>Fullstack TypeScript for data, auth, storage, and functions</li>
+					<li>Built on top of the AWS CDK, so it’s fully extensible</li>
+					<li>Deploy on every git push</li>
+					<li>Per developer sandboxes for development</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section style="text-align: left">
+		<Prism
+			lang="typescript"
+			code={`import { a, defineData, type ClientSchema } from '@aws-amplify/backend';
+
+const schema = a.schema({
+  Todo: a.model({
+    content: a.string(),
+    isDone: a.boolean()
+  })
+  .authorization(allow => [
+    allow.owner(),
+    allow.guest().to(['read'])
+  ])
+});
+
+// Used for code completion / highlighting when making requests from frontend
+export type Schema = ClientSchema<typeof schema>;
+
+// defines the data resource to be deployed
+export const data = defineData({
+  schema,
+  authorizationModes: {
+    defaultAuthorizationMode: 'userPool',
+  }
+});`}
+		/>
+	</section>
+
+	<section style="text-align: left">
+		<Prism
+			lang="typescript"
+			code={`import { generateClient } from 'aws-amplify/data';
+import type { Schema } from '../amplify/data/resource';
+
+const client = generateClient<Schema>();
+
+// Now you should be able to make CRUDL operations with the data client
+const fetchTodos = async () => {
+  const { data: todos, errors } = await client.models.Todo.list();
+};`}
+		/>
+	</section>
+
+	<section>
+		<AIKitDemo client:load />
+	</section>
+
+	<section>
+		<h2>Impact</h2>
+	</section>
+
+	<section>
+		<h2>Areas of improvement</h2>
+		<ul>
+			<li>Debuggability</li>
+			<li>Tool Use DX</li>
+			<li>Technical Constraints</li>
+		</ul>
+	</section>
+</SlideLayout>
+
+<style>
+	.columns {
+		display: flex;
+		flex-direction: row;
+		gap: var(--space-medium);
+		align-items: center;
+	}
+	.half {
+		flex: 1;
+	}
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+	li {
+		margin-bottom: var(--space-medium);
+	}
+</style>
