@@ -10,47 +10,197 @@ enabled: true
 ---
 
 import LinkPreview from '@components/LinkPreview.astro';
+import Video from '@components/Video.astro';
+import {Image} from 'astro:assets';
 import YouTubeFigure from '@components/YouTubeFigure.astro';
+import { AIKitDemo } from '@components/Amplify';
+import conv1 from './assets/convo1.mp4';
+import conv2 from './assets/convo2.mp4';
+import conv3 from './assets/convo3.mp4';
+import conv4 from './assets/convo4.mp4';
+import conv5 from './assets/convo5.mp4';
+import conv6 from './assets/convo6.mp4';
+import generation1 from './assets/generation1.mp4'
+import generation2 from './assets/generation2.mp4'
+import quotes1 from './assets/quotes1.png';
+import quotes2 from './assets/quotes2.png';
 
 
-## Overview
+## Quick Links
 
 * [What's new post](https://aws.amazon.com/about-aws/whats-new/2024/11/aws-amplify-full-stack-ai-kit-amazon-bedrock/)
 * [Launch blog post](https://aws.amazon.com/blogs/mobile/build-fullstack-ai-apps-in-minutes-with-the-new-amplify-ai-kit/)
 * [Product page](https://aws.amazon.com/amplify/ai/)
 * [Documentation](https://docs.amplify.aws/react/ai/set-up-ai/)
 
+---
+
+## Introduction
+
+To get a good understanding of this project, you should first have an understanding of [AWS Amplify](https://docs.amplify.aws/). I like to think of Amplify as "AWS for frontend and fullstack developers". Amplify abstracts away a lot of the glue required to combine AWS services to build a frontend or fullstack web/mobile application. Amplify is built on top of the Cloud Development Kit (CDK), which is an infrastructure-as-code (IAC) framework for provisioning resources on AWS. You define your backend resources with TypeScript files in your codebase in an **amplify** directory. 
+
+The most important part of this is the end-to-end TypeScript experience. You define your data schema in an ORM-like TypeScript file and Amplify will set up AWS AppSync (managed serverless GraphQL) and DynamoDB tables and give you a type-safe client to call operations like create, update, list, and delete.
+
+```ts
+import { a, defineData, type ClientSchema } from '@aws-amplify/backend';
+
+const schema = a.schema({
+  Todo: a.model({
+    content: a.string(),
+    isDone: a.boolean()
+  })
+  .authorization(allow => [
+    allow.owner(),
+    allow.guest().to(['read'])
+  ])
+});
+
+// Used for code completion / highlighting when making requests from frontend
+export type Schema = ClientSchema<typeof schema>;
+
+// defines the data resource to be deployed
+export const data = defineData({
+  schema,
+  authorizationModes: {
+    defaultAuthorizationMode: 'userPool',
+  }
+});
+```
+
+```ts
+import { generateClient } from 'aws-amplify/data';
+import type { Schema } from '../amplify/data/resource';
+
+const client = generateClient<Schema>();
+
+// Now you should be able to make CRUDL operations with the data client
+const fetchTodos = async () => {
+  const { data: todos, errors } = await client.models.Todo.list();
+};
+```
+
+Amplify also includes a UI library, [Amplify UI](https://ui.docs.amplify.aws/), which has components that simplify complex cloud-connected flows like authentication. 
 
 ---
 
 ## Process
 
+In mid 2023 I was asked to see how we could apply the Amplify model, AWS abstractions for frontend and fullstack developers, to the new generative AI wave. At this point genAI was still pretty nascent, Claude 2 had just come out, ChatGPT came out earlier that year, Amazon Bedrock had just been announced. I built a few prototypes and talked to developers to see the problems they were having building generative AI applications. The primary issues we uncovered were
+
+I started to see a pattern emerging in the community where developers were coalescing around a shared architecture for building AI-powered applications on AWS. They were using AWS AppSync as an API and authorization layer and AWS Amplify as a frontend client. We wanted to make it easier for developers to build AI-powered applications with this architecture, so we built Amplify AI Kit.
+
 This project started from a re:Invent chalk talk I gave in 2023 that showed attendees how to build generative AI functionality in their full-stack Amplify projects easily. It did require setting up a Lambda or an AppSync resolver to talk to Bedrock and it lacked a lot of key functionality like data retrieval and storing message history, but it was a good foundation to get started using Bedrock from a frontend/full-stack perspective. But we thought we could do more to make building generative AI functionality easier with Bedrock and Amplify.
 
-In early 2024 I got to work on building a proof-of-concept that showed what use-cases we could enable developers to build
-and how easy it would be for them to build. Our organization, Next-Gen Developer Experience or NGDE for short, adheres to the idea of "demos not memos". So I built a demo and came up with a rough developer experience to go along with the traditional PRFAQ document that gets projects funded. I presented this all to my Director and VP who said, "when can you get this done?"
+In early 2024 I got to work on building a proof-of-concept that showed what use-cases we could enable developers to build and how easy it would be for them to build. Our organization, Next-Gen Developer Experience or NGDE for short, adheres to the idea of "demos not memos". So I built a demo and came up with a rough developer experience to go along with the traditional PRFAQ document that gets projects funded. I presented this all to my Director and VP who said, "when can you get this done?"
 
 I then worked with an SDM to pick a tech lead for the project and started writing requirements. For most of 2024 I operated as a PM and designer on the project, defining requirements for the developer experience and working closely with a small cross-functional development team of 4 people. A great deal of kudos definitely goes to the lead developer on the project and all the developers for stepping up and delivering a great developer experience under a compressed timeline.
 
-To get early feedback we released a [Request for Comments (RFC)](https://github.com/aws-amplify/amplify-ui/issues/5773) and ahd early internal testers as well as testers from the AWS community.
+To get early feedback we released a [Request for Comments (RFC)](https://github.com/aws-amplify/amplify-ui/issues/5773) and had early internal testers as well as testers from the AWS community. I also engaged some groups within and outside of AWS like the AWS community builders (external) and solutions architects (internal) to both gather feedback and start to drum up interest for the Amplify AI kit. 
 
 ---
 
-## Technical achievements
+## Solution
 
-Some notable things we did with this project:
 
-* **Security without dealing with credentials:**  Building full-stack functionality on AWS is not always easy. AWS doesn't have API keys you can just generate and use. You have to work with short-lived credentials and tokens. But with the Amplify AI kit, Amplify takes care of that for you. You never have to deal with a credentials object to authorize requests while being fully secured.
-* **User-based data access:** Large-language models are inherently static so to make them do useful things you usually need to provide them access to information with "tools" or "functions". However you don't want to leak data that the end-user doesn't normally have access to. With the Amplify AI kit any data access via a tool is made on behalf of the user so the LLM only has access to what the user has access to.
-* **Generative UI:** Chat bots can get kind of boring if it is just text-to-text. So we built a way for developers to define React components in their frontend code that the AI assistant can choose to respond with. For example, if you are building a conversational search experience for retail site, you could define product card components that the search assistant could respond with
-* **Streaming over websockets:**
-* **React Native support:** While not an explicit goal of the project, I ensured we built the React library in such a way that React Native would just work via the hooks we expose.
+We built the generative AI functionality into the Amplify Data construct because we felt it naturally fit into a data schema. We came up with the idea of ai "routes" that were like endpoints you define in your schema. There are 2 types of routes that were supported at launch: conversation and generation. 
 
+A conversation route is typically what you would think of for generative AI functionality: you have a conversation (or chat) and send messages back and forth between user and assistant. The AI Kit handled storing conversations and messages in a database so users could resume conversations whenever they wanted, similar to ChatGPT or Claude.ai. 
+
+```ts
+const schema = a.schema({
+	chat: a.conversation({
+		aiModel: a.ai.model('Claude 3 Haiku'),
+		systemPrompt: 'You are a helpful assistant',
+    // inference configuration is all optional
+		inferenceConfiguration: {
+			maxTokens: 1000,
+			temperature: 1,
+			topP: 0.5,
+		},
+	})
+	.authorization((allow) => allow.owner()),
+});
+```
+
+A generation route is a single request/response for generating data. In our research we saw that data extraction or data generation was a very common use case and we wanted to provide a very simple developer experience for these use-cases. The generation route defines its inputs (arguments) and outputs (returns) which allows for end-to-end type-safety. 
+
+```ts
+generateRecipe: a
+	.generation({
+		aiModel: a.ai.model('Claude 3 Haiku'),
+		systemPrompt: 'You are a helpful assistant that generates recipes.',
+	})
+	.arguments({
+		description: a.string(),
+	})
+	.returns(
+		a.customType({
+			name: a.string(),
+			ingredients: a.string().array(),
+			instructions: a.string(),
+		})
+	)
+	.authorization((allow) => allow.authenticated()),
+```
+
+Because React is Amplify's most popular framework, we built type-safe React hooks based on the schema definition.
+
+```ts
+import { generateClient } from "aws-amplify/api";
+import { Schema } from "../amplify/data/resource";
+import { createAIHooks } from "@aws-amplify/ui-react-ai";
+
+export const client = generateClient<Schema>({ authMode: "userPool" });
+export const { useAIConversation, useAIGeneration } = createAIHooks(client);`}
+```
+
+And we built a React UI component that fit with the provided React hooks. 
+
+```tsx
+import { Amplify } from 'aws-amplify';
+import { generateClient } from "aws-amplify/api";
+import { Authenticator } from "@aws-amplify/ui-react";
+import { AIConversation, createAIHooks } from '@aws-amplify/ui-react-ai';
+import '@aws-amplify/ui-react/styles.css';
+import outputs from "../amplify_outputs.json";
+import { Schema } from "../amplify/data/resource";
+
+Amplify.configure(outputs);
+
+const client = generateClient<Schema>({ authMode: "userPool" });
+const { useAIConversation } = createAIHooks(client);
+
+export default function App() {
+  const [
+    {
+      data: { messages },
+      isLoading,
+    },
+    handleSendMessage,
+  ] = useAIConversation('chat');
+  // 'chat' is based on the key for the conversation route in your schema.
+
+  return (
+    <Authenticator>
+      <AIConversation
+        messages={messages}
+        isLoading={isLoading}
+        handleSendMessage={handleSendMessage}
+      />
+    </Authenticator>
+  );
+}
+```
+
+This pattern of exposing a hook and a component that took the output of the hook (its state and handlers) proved to be a really great architecture for a few reasons:
+
+1. It allowed customers to use any UI library they wanted if they just used the hook by itself. 
+2. Customers could easily extend functionality, like changing the `handleSendMessage` function.
+3. It made it very easy to test the functionality and document the component because the component doesn't need a backend to actually work. 
 
 ---
 
-
-## Outcome
+## Launch
 
 The team successfully launched the Amplify AI kit right before re:Invent in 2024. We had a launch week that featured a different blog post each day of the week with associated social network posts. I authored the first blog post announcing the project:
 
@@ -72,16 +222,75 @@ This launch was posted about some notable members of AWS leadership:
 
 <LinkPreview id="https://www.linkedin.com/posts/jeffbarr_aws-activity-7272682107930353664-UTHp" />
 
-
-At re:Invent there were several talks and workshops about the AI kit including this one:
+At re:Invent there were several talks and workshops about the AI kit including this one that I gave with 2 coworkers:
 
 <YouTubeFigure id="IP2-saNpYsQ" title="Full-stack AI with the AWS Amplify AI Kit" />
 
-We have seen steady growth of the project since launch and the team is working on some new feature requests from customers as we get more feedback.
-
+Here are some other YouTube videos covering the Amplify AI Kit:
 
 <YouTubeFigure id="yO3Np7t9Dik" title="AI Experiences with Amplify Gen 2" />
 
 <YouTubeFigure id="Q7WMOhRILxo" title="How to add GenAI to your frontend app" />
 
 <YouTubeFigure id="f-UeIlQ1tAI" title="Build Fullstack AI Apps in Minutes" />
+
+---
+
+## Outcome
+
+
+We have seen steady growth of the project since launch and the team is working on some new feature requests from customers as we get more feedback.
+
+> AI kit rocks from a developer experience point of view
+
+<Image src={quotes1} alt="" />
+
+<Image src={quotes2} alt="" />
+
+
+### Highlights
+
+Some notable things we did with this project:
+
+* **Security without dealing with credentials:**  Building full-stack functionality on AWS is not always easy. AWS doesn't have API keys. You have to work with short-lived credentials and tokens. You have to sign requests with an authorization token. But with the Amplify AI kit, Amplify takes care of authenticating users and authorizing requests for you. You never have to deal with credentials objects or signing requests while being still following AWS security best practices.
+* **User-based data access:** Large-language models are inherently static so to make them do useful things you usually need to provide them access to information with "tools" or "functions". However you don't want to leak data that the end-user doesn't normally have access to. With the Amplify AI kit any data access via a tool is made on behalf of the user so the LLM only has access to what the user has access to.
+* **Generative UI:** Chat bots can get kind of boring if it is just text-to-text. So we built a way for developers to define React components in their frontend code that the AI assistant can choose to respond with. For example, if you are building a conversational search experience for retail site, you could define product card components that the search assistant could respond with
+* **Streaming over websockets:**
+* **React Native support:** While not an explicit goal of the project, I ensured we built the React library in such a way that React Native would just work via the hooks we expose.
+
+
+### Lowlights
+
+After announcing the launch in November 2024, and talking to customers at AWS re:Invent about the AI Kit, I found several areas that we could improve. 
+
+* **Debuggability:** LLMs are inherently fickle, they are non-deterministic. On top of that, there are several areas for errors before even getting to the LLM: you need to specifically enable the models you want to use in the Bedrock console, you need to make sure you are in the right AWS region, you might hit a throttling limit, etc. Because the calls go from the browser -> AppSync -> Lambda -> Bedrock -> Lambda -> AppSync -> browser, there are a lot of touchpoints that could have issues and we want to surface those issues as easily as possible to developers. 
+* **Tool use and generative UI DX:** This one surprised me a bit. The way the AI kit handles tool use is the all behind the scenes, the Lambda will re-prompt the model after it gets the results from the tool call to see if further thought or tools are needed. Customers can also provide 'response components' that the LLM can choose to use in a response. Some customers didn't like that approach and would rather have a pattern like the Vercel AI SDK where the tool use is always shown to the user in a custom UI. 
+* **Customizability in inference providers:** A common piece of feedback we got was customers wanted to use this with other inference providers like SageMaker or inference providers outside of AWS. To address this we are exposing more of the internal functionality within the Lambda layer so that customers could call any inference provider and hook up the output to the rest of the AI kit infrastructure.
+* **Guest access:** One significant friction point is the AI kit requires that users be logged in. This makes getting something up and running and playing around not as easy as it could have been. We are working to enable guest access for conversation routes in H1 2025. 
+
+---
+
+## Demos
+
+### Generation
+
+<Video src={generation2} caption="Creating a generation route to summarize reviews" />
+
+### Conversation
+
+<Video src={conv1} caption="Setting up a conversation route" />
+
+<Video src={conv2} caption="Adding data access through tools" />
+
+<Video src={conv3} caption="Adding a custom query tool" />
+
+<Video src={conv4} caption="Customizing the avatars and adding markdown support" />
+
+<Video src={conv5} caption="Adding response components" />
+
+<Video src={conv6} caption="Finished product" />
+
+
+
+
+

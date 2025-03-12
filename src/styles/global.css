@@ -519,9 +519,12 @@ p {
 code {
 	font-family: var(--font-family-mono);
 	line-height: 1.5;
+	text-align: left;
+	tab-size: 2;
 }
 
-.blog-article blockquote {
+.blog-article blockquote,
+.reveal blockquote {
 	font-weight: 200;
 	font-size: var(--size-font-large);
 	padding: var(--space-base);

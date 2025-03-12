@@ -38,6 +38,7 @@ const { title, description, socialImage } = Astro.props;
 		highlight: {
 			highlightOnLoad: false,
 		},
+		hash: true,
 	});
 </script>
 
@@ -52,5 +53,8 @@ const { title, description, socialImage } = Astro.props;
 	.reveal .progress {
 		background-color: hsl(from var(--color-brand-primary) h s l/ 0.4);
 		color: var(--color-brand-primary);
+	}
+	.reveal .slides {
+		text-align: left;
 	}
 </style>

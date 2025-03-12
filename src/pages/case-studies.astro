@@ -1,14 +1,32 @@
 ---
-import SlideLayout from '@layouts/SlideLayout.astro';
-import { Prism } from '@astrojs/prism';
-import Amplify from '../icons/Amplify.astro';
-import { AIKitDemo } from '@components/Amplify';
+// import SlideLayout from '@layouts/SlideLayout.astro';
+// import { Prism } from '@astrojs/prism';
+// import Amplify from '../icons/Amplify.astro';
+// import { AIKitDemo } from '@components/Amplify';
+// import { Image } from 'astro:assets';
+// import diagram from '../img/ai-kit/diagram.png';
+// import Video from '@components/Video.astro';
+// import generationPt1 from '../img/ai-kit/raven-generation-preview.mp4';
+// import generationPt2 from '../img/ai-kit/raven-generation-demo.mp4';
+// import conv1 from '../img/ai-kit/raven-convo-pt1.mp4';
+// import conv2 from '../img/ai-kit/raven-convo-pt2.mp4';
+// import conv3 from '../img/ai-kit/raven-convo-pt3.mp4';
+// import conv4 from '../img/ai-kit/raven-convo-pt4.mp4';
+// import conv5 from '../img/ai-kit/raven-convo-pt5.mp4';
+// import conv6 from '../img/ai-kit/raven-convo-pt6.mp4';
+// import quotes2 from '../img/ai-kit/quotes2.png';
+// import quotes1 from '../img/ai-kit/quotes1.png';
+// import quote from '../img/ai-kit/quote.png';
+// import { AIKitRequests } from '@components/AIKitCharts';
 ---
 
-<SlideLayout>
+<!-- <SlideLayout>
+	<section>
+		<h2>Case Studies</h2>
+	</section>
+
 	<section>
 		<h2>Amplify AI Kit</h2>
-		<p>Case study</p>
 	</section>
 
 	<section style="text-align: left">
@@ -20,7 +38,7 @@ import { AIKitDemo } from '@components/Amplify';
 			<div class="half">
 				<ul>
 					<li>Fullstack TypeScript for data, auth, storage, and functions</li>
-					<li>Built on top of the AWS CDK, so it’s fully extensible</li>
+					<li>Built on top of the AWS CDK, so it's fully extensible</li>
 					<li>Deploy on every git push</li>
 					<li>Per developer sandboxes for development</li>
 				</ul>
@@ -73,24 +91,135 @@ const fetchTodos = async () => {
 	</section>
 
 	<section>
+		<h2>Amplify + GenAI</h2>
+	</section>
+
+	<section>
+		<Image src={diagram} alt="diagram" />
+	</section>
+
+	<section>
+		<Video src={generationPt1} caption="" />
+	</section>
+
+	<section>
+		<Video src={generationPt2} caption="" />
+	</section>
+
+	<section>
+		<Video src={conv1} caption="" />
+	</section>
+
+	<section>
+		<Video src={conv2} caption="" />
+	</section>
+
+	<section>
+		<Video src={conv3} caption="" />
+	</section>
+
+	<section>
+		<Video src={conv4} caption="" />
+	</section>
+
+	<section>
+		<Video src={conv5} caption="" />
+	</section>
+
+	<section>
+		<Video src={conv6} caption="" />
+	</section>
+
+	<!-- <section>
 		<AIKitDemo client:load />
-	</section>
+	</section> --><!-- <section>
+		<Prism
+			lang="ts"
+			code={`const schema = a.schema({
+	chat: a.conversation({
+		aiModel: a.ai.model('Claude 3 Haiku'),
+		systemPrompt: 'You are a helpful assistant',
+		inferenceConfiguration: {
+			maxTokens: 1000,
+			temperature: 1,
+			topP: 0.5,
+		},
+	})
+	.authorization((allow) => allow.owner()),`}
+		/>
+	</section> --><!-- <section>
+		<Prism
+			lang="ts"
+			code={`generateRecipe: a
+	.generation({
+		aiModel: a.ai.model('Claude 3 Haiku'),
+		systemPrompt: 'You are a helpful assistant that generates recipes.',
+	})
+	.arguments({
+		description: a.string(),
+	})
+	.returns(
+		a.customType({
+			name: a.string(),
+			ingredients: a.string().array(),
+			instructions: a.string(),
+		})
+	)
+	.authorization((allow) => allow.authenticated()),`}
+		/>
+	</section> --><!-- <section>
+		<Prism
+			lang="ts"
+			code={`import { generateClient } from "aws-amplify/api";
+import { Schema } from "../amplify/data/resource";
+import { createAIHooks } from "@aws-amplify/ui-react-ai";
 
-	<section>
-		<h2>Impact</h2>
-	</section>
+export const client = generateClient<Schema>({ authMode: "userPool" });
+export const { useAIConversation, useAIGeneration } = createAIHooks(client);`}
+		/>
+	</section> --><!-- <section>
+	<h2>Technical Achievements</h2>
+	<li><strong>Built-in authentication and authorization</strong></li>
+	<li><strong>User-based data access</strong></li>
+	<li><strong>Generative UI</strong></li>
+	<li><strong>Streaming over websockets</strong></li>
+	<li><strong>React Native support</strong></li>
+</section> --><!-- <section>
+	<h2>Impact</h2>
+	<AIKitRequests client:load />
+</section> --><!-- <section>
+	<Image src={quotes1} alt="" />
+</section>
 
-	<section>
-		<h2>Areas of improvement</h2>
-		<ul>
-			<li>Debuggability</li>
-			<li>Tool Use DX</li>
-			<li>Technical Constraints</li>
-		</ul>
-	</section>
-</SlideLayout>
+<section>
+	<Image src={quotes2} alt="" />
+</section>
 
-<style>
+<section>
+	<blockquote>"AI kit rocks from a developer experience point of view"</blockquote>
+</section>
+
+<section>
+	<h2>What we got right</h2>
+	<ul>
+		<li>Taking our time</li>
+		<li>End-to-end type-safety</li>
+		<li>Overall architecture</li>
+		<li>Fullstack DX</li>
+		<li>React hooks / Body-less component</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Areas of improvement</h2>
+	<ul>
+		<li>Guest access</li>
+		<li>Debuggability</li>
+		<li>Generative UI DX</li>
+		<li>Backend customization</li>
+		<li>Console experience</li>
+	</ul>
+</section> --><!-- <style>
 	.columns {
 		display: flex;
 		flex-direction: row;
@@ -107,4 +236,4 @@ const fetchTodos = async () => {
 	li {
 		margin-bottom: var(--space-medium);
 	}
-</style>
+</style> -->
