@@ -6,9 +6,9 @@ import { AIKitDemo, StorageBrowserDemo } from '@components/Amplify';
 import { Image } from 'astro:assets';
 import diagram from '../img/ai-kit/diagram.png';
 import architecture from '../content/work/amplify-ai-kit/assets/ai-kit.png';
-import stoBro1 from '../content/work/storage-browser/assets/sto-bro-pt-1.mp4';
 import studio from '../content/work/amplify-studio/assets/studio.mp4';
 import auiHome from '../content/work/amplify-ui/assets/homepage.png';
+import contributions from '../content/work/amplify-studio/assets/contributions.png';
 import figmaFile from '../content/work/amplify-studio/assets/figma-file.png';
 import figmaPlugin from '../content/work/amplify-studio/assets/figma-plugin.png';
 import studioTheming from '../content/work/amplify-studio/assets/plugin-theming.mp4';
@@ -20,10 +20,6 @@ import conv3 from '../content/work/amplify-ai-kit/assets/convo3.mp4';
 import conv4 from '../content/work/amplify-ai-kit/assets/convo4.mp4';
 import conv5 from '../content/work/amplify-ai-kit/assets/convo5.mp4';
 import conv6 from '../content/work/amplify-ai-kit/assets/convo6.mp4';
-// import quotes2 from '../img/ai-kit/quotes2.png';
-// import quotes1 from '../img/ai-kit/quotes1.png';
-// import quote from '../img/ai-kit/quote.png';
-// import { AIKitRequests } from '@components/AIKitCharts';
 ---
 
 <SlideLayout>
@@ -54,10 +50,12 @@ import conv6 from '../content/work/amplify-ai-kit/assets/convo6.mp4';
 	</section>
 
 	<section>
-		<h2>My Role</h2>
-		<p>Define the vision for Amplify's UI strategy</p>
-		<h2>The Team</h2>
-		<p>5 front-end engineers + me</p>
+		<div class="stack">
+			<h2>My Role</h2>
+			<h4>Define the vision for Amplify's UI strategy</h4>
+			<h2>The Team</h2>
+			<h4>5 front-end engineers + me</h4>
+		</div>
 	</section>
 
 	<!-- The Team: -->
@@ -66,23 +64,21 @@ import conv6 from '../content/work/amplify-ai-kit/assets/convo6.mp4';
 	<!-- Amplify Studio as a separate team -->
 
 	<section>
-		<h2>Primary initiatives</h2>
-		<h4>1. Supporting the re:Invent launch of Amplify Studio (Figma-to-code)</h4>
-		<h4>2. Rebuilding the flagship Authenticator component</h4>
+		<div class="stack">
+			<h2>Primary initiatives</h2>
+			<h4>1. Supporting the re:Invent launch of Amplify Studio (Figma-to-code)</h4>
+			<h4>2. Rebuilding the flagship Authenticator component</h4>
+		</div>
 	</section>
 
 	<section>
-		<h2>Key decisions</h2>
-		<ul>
-			<li>Build versus borrow</li>
-			<li>How should theming work</li>
-			<li>Component APIs to support Figma code generation</li>
-			<li>Documentation</li>
-		</ul>
-	</section>
-
-	<section>
-		<h2>Build versus borrow</h2>
+		<div class="stack">
+			<h2>Key decisions</h2>
+			<h4>1. Build versus borrow</h4>
+			<h4>2. How should theming work</h4>
+			<h4>3. Component APIs to support Figma code generation</h4>
+			<h4>4. Documentation</h4>
+		</div>
 	</section>
 
 	<section>
@@ -90,20 +86,58 @@ import conv6 from '../content/work/amplify-ai-kit/assets/convo6.mp4';
 		<ul>
 			<li>CSS-based styling</li>
 			<li>Design token theme structure</li>
-			<li>Style props to support</li>
+			<li>Style props to support Studio</li>
 		</ul>
 	</section>
 
 	<section>
-		<h2>Theming</h2>
+		<!-- <h2>Theming</h2> -->
+		<Prism
+			lang="jsx"
+			code={`const theme = createTheme({
+	name: 'my-theme',
+	primaryColor: 'blue', // easily set theme color
+	tokens: {
+		fontSizes: {
+			small: '1rem',
+			//...
+		},
+		components: {
+			badge: {
+				info: {
+					backgroundColor: '#bada55',
+					color: '{colors.primary.10}'
+				}
+			}
+		}
+	},
+	overrides: [{
+		colorMode: 'dark',
+		tokens: {
+			//...
+		}
+	}]
+});
+		`}
+		/>
 	</section>
 
 	<section>
-		<h2>Theming: Default</h2>
+		<Prism
+			lang="jsx"
+			code={`import { theme } from './theme';
+export default function App() {
+  const [colorMode, setColorMode] = React.useState('system');
+	return (
+		<ThemeProvider theme={theme} colorMode={colorMode}>
+		{/* ... */}
+		</ThemeProvider>
+	)
+}`}
+		/>
 	</section>
 
 	<section>
-		<h2>Theming: Style Props</h2>
 		<Prism
 			lang="jsx"
 			code={`// Option 1: Use the theme through component variations
@@ -147,16 +181,12 @@ const MyComponent = ({ children }) => {
 	</section>
 
 	<section>
-		<video data-autoplay src={studioDevMode}></video>
-	</section>
-
-	<section>
-		<h2>Components</h2>
-		<ul>
-			<li>Define the list of initial primitive component to ship with</li>
-			<li>Define the APIs of components</li>
-			<li>Define the mapping of Figma components</li>
-		</ul>
+		<div class="stack">
+			<h2>Components</h2>
+			<h4>Define the list of initial primitive components to ship with</h4>
+			<h4>Define the APIs of components</h4>
+			<h4>Define the mapping of Figma components</h4>
+		</div>
 	</section>
 
 	<section>
@@ -164,8 +194,7 @@ const MyComponent = ({ children }) => {
 			<h2>Components: Composability</h2>
 			<Prism
 				lang="jsx"
-				code={`
-<Breadcrumbs.Container>
+				code={`<Breadcrumbs.Container>
 	<Breadcrumbs.Item>
 		<Breadcrumbs.Link href="/">Home</Breadcrumbs.Link>
 		<Breadcrumbs.Separator />
@@ -189,28 +218,26 @@ const MyComponent = ({ children }) => {
 	</section>
 
 	<section>
-		<h2></h2>
-		<ul>
-			<li>Overrides & Data binding</li>
-			<li></li>
-		</ul>
+		<video data-autoplay src={studioDevMode}></video>
 	</section>
 
 	<section>
-		<h2>Lessons Learned</h2>
-		<ul>
-			<li>Uncanny valley</li>
-			<li>Mediocrity is worse than failure</li>
-			<li>Composability</li>
-			<li>Functions > Types</li>
-		</ul>
+		<div class="stack">
+			<h2>Lessons Learned</h2>
+			<h4>Beware the uncanny valley</h4>
+			<h4>Mediocrity is worse than failure</h4>
+			<h4>Composability is good DX, but makes code generation a nightmare</h4>
+			<h4>Functions > Types</h4>
+		</div>
 	</section>
 
 	<section>
-		<h2>Impact</h2>
-		<h4>Tens of thousands of AWS accounts use Amplify UI connected components weekly</h4>
-		<h4>Generating millions in influenced revenue for AWS</h4>
-		<h4>Raised the bar for engineering teams in Amplify</h4>
+		<div class="stack">
+			<h2>Impact</h2>
+			<h4>Tens of thousands of AWS accounts use Amplify UI connected components weekly</h4>
+			<h4>Generating millions in influenced revenue for AWS</h4>
+			<h4>Raised the bar for engineering teams in Amplify</h4>
+		</div>
 		<!-- Thousands of AWS accounts use Amplify UI weekly -->
 		<!-- Generating millions in influenced revenue -->
 		<!-- Raised the bar for other Amplify teams -->
@@ -219,7 +246,6 @@ const MyComponent = ({ children }) => {
 	</section>
 
 	<section>
-		<h2>Impact: Launches</h2>
 		<div class="columns">
 			<div class="half stack">
 				<h2>2021</h2>
@@ -260,7 +286,20 @@ const MyComponent = ({ children }) => {
 	</section>
 
 	<section>
+		<Image src={contributions} alt="" />
+	</section>
+
+	<section>
 		<h2>Amplify AI Kit</h2>
+	</section>
+
+	<section>
+		<div class="stack">
+			<h2>My Role</h2>
+			<h4>Define the vision for Amplify's AI strategy</h4>
+			<h2>The Team</h2>
+			<h4>1 SDM + 3 engineers + me</h4>
+		</div>
 	</section>
 
 	<section style="text-align: left">
@@ -480,67 +519,65 @@ export const { useAIConversation, useAIGeneration } = createAIHooks(client);`}
 	</section> -->
 
 	<section>
-		<h2>Technical Achievements</h2>
-		<li><strong>Built-in authentication and authorization</strong></li>
-		<li><strong>User-based data access</strong></li>
-		<li><strong>Generative UI</strong></li>
-		<li><strong>Streaming over websockets</strong></li>
-		<li><strong>React Native support</strong></li>
+		<div class="stack">
+			<h2>Technical Achievements</h2>
+			<h4>Built-in authentication and authorization</h4>
+			<h4>User-based data access</h4>
+			<h4>Generative UI</h4>
+			<h4>Streaming over websockets</h4>
+			<h4>React Native support</h4>
+		</div>
 	</section>
 
 	<section>
-		<h2>Impact</h2>
-		<blockquote>"AI kit rocks from a developer experience point of view"</blockquote>
-		<blockquote>"Unusually useful"</blockquote>
-		<blockquote>
-			"This is definitely the quickest way for fullstack developers to build webapps with AI
-			capabilities"
-		</blockquote>
+		<div class="stack">
+			<h2>Impact</h2>
+			<blockquote>"AI kit rocks from a developer experience point of view"</blockquote>
+			<blockquote>"Unusually useful"</blockquote>
+			<blockquote>
+				"This is definitely the quickest way for fullstack developers to build webapps with AI
+				capabilities"
+			</blockquote>
+		</div>
 	</section>
 
 	<section>
-		<h2>What we got right</h2>
-		<ul>
-			<li>Taking our time</li>
-			<li>End-to-end type-safety</li>
-			<li>Fullstack DX</li>
-			<li>React hooks + Presentational component</li>
-			<li>React Native support</li>
-		</ul>
+		<div class="stack">
+			<h2>What we got right</h2>
+			<h4>Taking our time</h4>
+			<h4>End-to-end type-safety</h4>
+			<h4>Fullstack DX</h4>
+			<h4>React hooks + Presentational component</h4>
+			<h4>React Native support</h4>
+		</div>
 	</section>
 
 	<section>
-		<h2>Areas of improvement</h2>
-		<ul>
-			<li>Guest access</li>
-			<li>Debuggability</li>
-			<li>Generative UI DX</li>
-			<li>Backend customization</li>
-			<li>Console experience</li>
-		</ul>
+		<div class="stack">
+			<h2>Areas of improvement</h2>
+			<h4>Guest access</h4>
+			<h4>Debuggability</h4>
+			<h4>Generative UI DX</h4>
+			<h4>Backend customization</h4>
+			<h4>Console experience</h4>
+		</div>
 	</section>
 
-	<section></section>
-
 	<section>
+		<h2>Fin</h2>
+	</section>
+
+	<!-- <section>
 		<h2>Storage Browser for S3</h2>
-	</section>
+	</section> -->
 
-	<section>
-		<!-- What was my role -->
-	</section>
-
-	<section>
+	<!-- <section>
 		<video data-autoplay src={stoBro1}></video>
-	</section>
+	</section> -->
 
-	<section>
+	<!-- <section>
 		<StorageBrowserDemo client:load />
-	</section>
-
-	<section>
-		<h2>Amplify UI</h2>
-	</section>
+	</section> -->
 </SlideLayout>
 
 <style>
@@ -592,6 +629,11 @@ export const { useAIConversation, useAIGeneration } = createAIHooks(client);`}
 	h2 {
 		line-height: 1;
 		margin: 0;
+	}
+
+	h4 {
+		font-size: var(--size-font-large);
+		font-weight: normal;
 	}
 
 	.badge {

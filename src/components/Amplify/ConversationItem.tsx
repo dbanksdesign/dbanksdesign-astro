@@ -66,6 +66,7 @@ export const ConversationItem = ({ conversation }: { conversation: Conversation 
 					<Button
 						variation="link"
 						textAlign="left"
+						justifyContent="flex-start"
 						onClick={() => {
 							setCurrentConversation(conversation);
 						}}

@@ -5,7 +5,7 @@ import '@aws-amplify/ui-react/styles.css';
 import { Amplify } from 'aws-amplify';
 import resourceConfig from '../../../amplify_outputs.json';
 import { theme } from './amplifyTheme';
-import { signOut, signInWithRedirect } from 'aws-amplify/auth';
+import { signOut } from 'aws-amplify/auth';
 
 Amplify.configure(resourceConfig);
 
