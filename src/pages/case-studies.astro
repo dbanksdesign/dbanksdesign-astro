@@ -77,17 +77,17 @@ import conv6 from '../content/work/amplify-ai-kit/assets/convo6.mp4';
 			<h4>1. Build versus borrow</h4>
 			<h4>2. How should theming work</h4>
 			<h4>3. Component APIs to support Figma code generation</h4>
-			<h4>4. Documentation</h4>
+			<!-- <h4>4. Documentation</h4> -->
 		</div>
 	</section>
 
 	<section>
-		<h2>Theming</h2>
-		<ul>
-			<li>CSS-based styling</li>
-			<li>Design token theme structure</li>
-			<li>Style props to support Studio</li>
-		</ul>
+		<div class="stack">
+			<h2>Theming</h2>
+			<h4>CSS-based styling</h4>
+			<h4>Design token theme structure</h4>
+			<h4>Style props to support Studio</h4>
+		</div>
 	</section>
 
 	<section>
@@ -156,12 +156,12 @@ const MyComponent = ({ children }) => {
 	</section>
 
 	<section>
-		<h2>Theming: Figma Plugin</h2>
+		<!-- <h2>Theming: Figma Plugin</h2> -->
 		<video data-autoplay src={studioTheming}></video>
 	</section>
 
 	<section>
-		<h2>Figma assets</h2>
+		<!-- <h2>Figma assets</h2> -->
 		<div class="columns">
 			<div class="half">
 				<a href="https://www.figma.com/community/file/1047600760128127424" target="_blank">
@@ -177,10 +177,6 @@ const MyComponent = ({ children }) => {
 	</section>
 
 	<section>
-		<video data-autoplay src={studio}></video>
-	</section>
-
-	<section>
 		<div class="stack">
 			<h2>Components</h2>
 			<h4>Define the list of initial primitive components to ship with</h4>
@@ -190,6 +186,10 @@ const MyComponent = ({ children }) => {
 	</section>
 
 	<section>
+		<video data-autoplay src={studio}></video>
+	</section>
+
+	<!-- <section>
 		<div class="stack">
 			<h2>Components: Composability</h2>
 			<Prism
@@ -215,7 +215,7 @@ const MyComponent = ({ children }) => {
 </Breadcrumbs.Container>`}
 			/>
 		</div>
-	</section>
+	</section> -->
 
 	<section>
 		<video data-autoplay src={studioDevMode}></video>

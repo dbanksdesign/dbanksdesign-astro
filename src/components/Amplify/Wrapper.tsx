@@ -25,7 +25,7 @@ export const AmplifyWrapper = ({ children }: PropsWithChildren) => {
 		<View height="800px" width="100%" padding="large" {...theme.containerProps()}>
 			<Card variation="outlined" height="100%">
 				<Authenticator>
-					<Flex direction="column" width="100%" height="100%">
+					<Flex direction="column" width="100%" height="100%" overflow="hidden">
 						<Button
 							onClick={() => {
 								signOut();
