@@ -14,14 +14,14 @@ pre.prism-code {
 
 code[class*='language-'],
 pre[class*='language-'] {
-	background: var(--color-background-secondary);
-	color: var(--color-font-secondary);
 	padding: 0;
 }
 
 pre[class*='language-'] {
 	border: 1px solid var(--color-border-tertiary);
 	padding: var(--space-xs);
+	background: var(--color-background-secondary);
+	color: var(--color-font-secondary);
 }
 
 /* Selection */

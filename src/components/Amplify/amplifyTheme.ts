@@ -62,6 +62,12 @@ export const theme = createTheme({
 					},
 				},
 			},
+			loader: {
+				linear: {
+					strokeEmpty: 'var(--color-border-tertiary)',
+					strokeFilled: 'var(--color-brand-primary)',
+				},
+			},
 		},
 	},
 });

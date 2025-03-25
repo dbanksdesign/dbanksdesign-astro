@@ -1,28 +1,262 @@
 ---
-// import SlideLayout from '@layouts/SlideLayout.astro';
-// import { Prism } from '@astrojs/prism';
-// import Amplify from '../icons/Amplify.astro';
-// import { AIKitDemo } from '@components/Amplify';
-// import { Image } from 'astro:assets';
-// import diagram from '../img/ai-kit/diagram.png';
-// import Video from '@components/Video.astro';
-// import generationPt1 from '../img/ai-kit/raven-generation-preview.mp4';
-// import generationPt2 from '../img/ai-kit/raven-generation-demo.mp4';
-// import conv1 from '../img/ai-kit/raven-convo-pt1.mp4';
-// import conv2 from '../img/ai-kit/raven-convo-pt2.mp4';
-// import conv3 from '../img/ai-kit/raven-convo-pt3.mp4';
-// import conv4 from '../img/ai-kit/raven-convo-pt4.mp4';
-// import conv5 from '../img/ai-kit/raven-convo-pt5.mp4';
-// import conv6 from '../img/ai-kit/raven-convo-pt6.mp4';
+import SlideLayout from '@layouts/SlideLayout.astro';
+import { Prism } from '@astrojs/prism';
+import Amplify from '../icons/Amplify.astro';
+import { AIKitDemo, StorageBrowserDemo } from '@components/Amplify';
+import { Image } from 'astro:assets';
+import diagram from '../img/ai-kit/diagram.png';
+import architecture from '../content/work/amplify-ai-kit/assets/ai-kit.png';
+import stoBro1 from '../content/work/storage-browser/assets/sto-bro-pt-1.mp4';
+import studio from '../content/work/amplify-studio/assets/studio.mp4';
+import auiHome from '../content/work/amplify-ui/assets/homepage.png';
+import figmaFile from '../content/work/amplify-studio/assets/figma-file.png';
+import figmaPlugin from '../content/work/amplify-studio/assets/figma-plugin.png';
+import studioTheming from '../content/work/amplify-studio/assets/plugin-theming.mp4';
+import studioDevMode from '../content/work/amplify-studio/assets/devmode.mp4';
+import generation1 from '../content/work/amplify-ai-kit/assets/generation2.mp4';
+import conv1 from '../content/work/amplify-ai-kit/assets/convo1.mp4';
+import conv2 from '../content/work/amplify-ai-kit/assets/convo2.mp4';
+import conv3 from '../content/work/amplify-ai-kit/assets/convo3.mp4';
+import conv4 from '../content/work/amplify-ai-kit/assets/convo4.mp4';
+import conv5 from '../content/work/amplify-ai-kit/assets/convo5.mp4';
+import conv6 from '../content/work/amplify-ai-kit/assets/convo6.mp4';
 // import quotes2 from '../img/ai-kit/quotes2.png';
 // import quotes1 from '../img/ai-kit/quotes1.png';
 // import quote from '../img/ai-kit/quote.png';
 // import { AIKitRequests } from '@components/AIKitCharts';
 ---
 
-<!-- <SlideLayout>
+<SlideLayout>
 	<section>
 		<h2>Case Studies</h2>
+	</section>
+
+	<section>
+		<div class="stack">
+			<div style="width: 6rem;">
+				<Amplify />
+			</div>
+			<h2>AWS Amplify</h2>
+			<p class="subtitle">AWS for frontend developers</p>
+		</div>
+	</section>
+
+	<section>
+		<h3>Hosting</h3>
+		<h3>Backend Provisioning</h3>
+		<h3>Client Libraries</h3>
+		<h3>UI Components</h3>
+	</section>
+
+	<section>
+		<!-- <h2>Amplify UI</h2> -->
+		<Image src={auiHome} alt="" />
+	</section>
+
+	<section>
+		<h2>My Role</h2>
+		<p>Define the vision for Amplify's UI strategy</p>
+		<h2>The Team</h2>
+		<p>5 front-end engineers + me</p>
+	</section>
+
+	<!-- The Team: -->
+	<!-- Start: 3 on CCs, 3 on Primitives including me -->
+	<!-- Height: 1 SDM, 8 FEEs -->
+	<!-- Amplify Studio as a separate team -->
+
+	<section>
+		<h2>Primary initiatives</h2>
+		<h4>1. Supporting the re:Invent launch of Amplify Studio (Figma-to-code)</h4>
+		<h4>2. Rebuilding the flagship Authenticator component</h4>
+	</section>
+
+	<section>
+		<h2>Key decisions</h2>
+		<ul>
+			<li>Build versus borrow</li>
+			<li>How should theming work</li>
+			<li>Component APIs to support Figma code generation</li>
+			<li>Documentation</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Build versus borrow</h2>
+	</section>
+
+	<section>
+		<h2>Theming</h2>
+		<ul>
+			<li>CSS-based styling</li>
+			<li>Design token theme structure</li>
+			<li>Style props to support</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Theming</h2>
+	</section>
+
+	<section>
+		<h2>Theming: Default</h2>
+	</section>
+
+	<section>
+		<h2>Theming: Style Props</h2>
+		<Prism
+			lang="jsx"
+			code={`// Option 1: Use the theme through component variations
+import { Text } from '@aws-amplify/ui-react';
+const MyComponent = ({ children }) => {
+  return <Text variation="primary">{children}</Text>;
+};
+
+// Option 2: Get the theme object through the useTheme hook and style components with it
+import { Text, useTheme } from '@aws-amplify/ui-react';
+const MyComponent = ({ children }) => {
+  const { tokens } = useTheme();
+  return <Text color={tokens.colors.font.tertiary}>{children}</Text>;
+};`}
+		/>
+	</section>
+
+	<section>
+		<h2>Theming: Figma Plugin</h2>
+		<video data-autoplay src={studioTheming}></video>
+	</section>
+
+	<section>
+		<h2>Figma assets</h2>
+		<div class="columns">
+			<div class="half">
+				<a href="https://www.figma.com/community/file/1047600760128127424" target="_blank">
+					<Image src={figmaFile} alt="" />
+				</a>
+			</div>
+			<div class="half">
+				<a href="https://www.figma.com/community/plugin/1040722185526429545/aws-amplify-ui-builder">
+					<Image src={figmaPlugin} alt="" />
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<video data-autoplay src={studio}></video>
+	</section>
+
+	<section>
+		<video data-autoplay src={studioDevMode}></video>
+	</section>
+
+	<section>
+		<h2>Components</h2>
+		<ul>
+			<li>Define the list of initial primitive component to ship with</li>
+			<li>Define the APIs of components</li>
+			<li>Define the mapping of Figma components</li>
+		</ul>
+	</section>
+
+	<section>
+		<div class="stack">
+			<h2>Components: Composability</h2>
+			<Prism
+				lang="jsx"
+				code={`
+<Breadcrumbs.Container>
+	<Breadcrumbs.Item>
+		<Breadcrumbs.Link href="/">Home</Breadcrumbs.Link>
+		<Breadcrumbs.Separator />
+	</Breadcrumbs.Item>
+	<Breadcrumbs.Item>
+		<Breadcrumbs.Link href="/react/components">Components</Breadcrumbs.Link>
+		<Breadcrumbs.Separator />
+	</Breadcrumbs.Item>
+	<Breadcrumbs.Item>
+		<SelectField
+			label="branch"
+			labelHidden
+			variation="quiet"
+			size="small"
+			options={['Breadcrumbs', 'Breadcrumbs.Item', 'Breadcrumbs.Link']}
+		/>
+	</Breadcrumbs.Item>
+</Breadcrumbs.Container>`}
+			/>
+		</div>
+	</section>
+
+	<section>
+		<h2></h2>
+		<ul>
+			<li>Overrides & Data binding</li>
+			<li></li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Lessons Learned</h2>
+		<ul>
+			<li>Uncanny valley</li>
+			<li>Mediocrity is worse than failure</li>
+			<li>Composability</li>
+			<li>Functions > Types</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Impact</h2>
+		<h4>Tens of thousands of AWS accounts use Amplify UI connected components weekly</h4>
+		<h4>Generating millions in influenced revenue for AWS</h4>
+		<h4>Raised the bar for engineering teams in Amplify</h4>
+		<!-- Thousands of AWS accounts use Amplify UI weekly -->
+		<!-- Generating millions in influenced revenue -->
+		<!-- Raised the bar for other Amplify teams -->
+		<!-- * Canary apps -->
+		<!--  -->
+	</section>
+
+	<section>
+		<h2>Impact: Launches</h2>
+		<div class="columns">
+			<div class="half stack">
+				<h2>2021</h2>
+				<ul>
+					<li>Amplify Studio (Figma to code)</li>
+					<li>New Authenticator</li>
+					<li>Amplify UI Primitives and Theming</li>
+				</ul>
+			</div>
+			<div class="half stack">
+				<h2>2022</h2>
+				<ul>
+					<li>Amplify Studio: Responsive Components</li>
+					<li>Amplify Studio: Component Slots</li>
+					<li>Amplify Studio: Form Builder</li>
+					<li>React Native Authenticator</li>
+					<li>Flutter Authenticator</li>
+				</ul>
+			</div>
+			<div class="half stack">
+				<h2>2023</h2>
+				<ul>
+					<li>Amplify Studio: Figma Dev Mode</li>
+					<li>Account Settings Components</li>
+					<li>Storage Manager Component</li>
+					<li>iOS (Swift UI) Authenticator</li>
+					<li>Android Authenticator</li>
+				</ul>
+			</div>
+			<div class="half stack">
+				<h2>2024</h2>
+				<ul>
+					<li>Amplify AI Kit</li>
+					<li>Storage Browser for S3</li>
+				</ul>
+			</div>
+		</div>
 	</section>
 
 	<section>
@@ -31,11 +265,14 @@
 
 	<section style="text-align: left">
 		<div class="columns">
-			<div class="half">
-				<Amplify />
-				<h2>AWS Amplify</h2>
+			<div class="half stack">
+				<div style="width: 6rem;">
+					<Amplify />
+				</div>
+				<h2>Amplify Gen 2</h2>
+				<p class="subtitle">CLI → IaC</p>
 			</div>
-			<div class="half">
+			<div class="half bordered">
 				<ul>
 					<li>Fullstack TypeScript for data, auth, storage, and functions</li>
 					<li>Built on top of the AWS CDK, so it's fully extensible</li>
@@ -91,7 +328,7 @@ const fetchTodos = async () => {
 	</section>
 
 	<section>
-		<h2>Amplify + GenAI</h2>
+		<h2>Amplify + GenAI = ?</h2>
 	</section>
 
 	<section>
@@ -99,40 +336,28 @@ const fetchTodos = async () => {
 	</section>
 
 	<section>
-		<Video src={generationPt1} caption="" />
+		<div class="stack">
+			<h2>Themes</h2>
+
+			<div style="font-size: 1.5rem;">
+				<ol>
+					<li><strong>User-based</strong> access and persistent message history</li>
+					<li><strong>Data access</strong> with authorization to provide context to LLMs</li>
+					<li>
+						<strong>Type-safe</strong> client library to authenticate users and authorize requests to
+						the backend resources is needed
+					</li>
+					<li>
+						<strong>Serverless</strong> architecture allow for fast iteration and so you only pay for
+						what you use
+					</li>
+				</ol>
+			</div>
+		</div>
 	</section>
 
 	<section>
-		<Video src={generationPt2} caption="" />
-	</section>
-
-	<section>
-		<Video src={conv1} caption="" />
-	</section>
-
-	<section>
-		<Video src={conv2} caption="" />
-	</section>
-
-	<section>
-		<Video src={conv3} caption="" />
-	</section>
-
-	<section>
-		<Video src={conv4} caption="" />
-	</section>
-
-	<section>
-		<Video src={conv5} caption="" />
-	</section>
-
-	<section>
-		<Video src={conv6} caption="" />
-	</section>
-
-	<!-- <section>
-		<AIKitDemo client:load />
-	</section> --><!-- <section>
+		<h2>A code-first developer experience for Amazon Bedrock</h2>
 		<Prism
 			lang="ts"
 			code={`const schema = a.schema({
@@ -147,7 +372,42 @@ const fetchTodos = async () => {
 	})
 	.authorization((allow) => allow.owner()),`}
 		/>
-	</section> --><!-- <section>
+	</section>
+
+	<section>
+		<h2>Easily provide LLMs secure access to your data</h2>
+		<Image src={architecture} alt="" />
+	</section>
+
+	<section>
+		<video data-autoplay src={generation1}></video>
+	</section>
+
+	<section>
+		<video data-autoplay src={conv1}></video>
+	</section>
+
+	<section>
+		<video data-autoplay src={conv2}></video>
+	</section>
+
+	<section>
+		<video data-autoplay src={conv3}></video>
+	</section>
+
+	<section>
+		<video data-autoplay src={conv4}></video>
+	</section>
+
+	<section>
+		<video src={conv5}></video>
+	</section>
+
+	<section>
+		<video src={conv6}></video>
+	</section>
+
+	<!-- <section>
 		<Prism
 			lang="ts"
 			code={`generateRecipe: a
@@ -167,7 +427,9 @@ const fetchTodos = async () => {
 	)
 	.authorization((allow) => allow.authenticated()),`}
 		/>
-	</section> --><!-- <section>
+	</section> -->
+
+	<!-- <section>
 		<Prism
 			lang="ts"
 			code={`import { generateClient } from "aws-amplify/api";
@@ -177,58 +439,137 @@ import { createAIHooks } from "@aws-amplify/ui-react-ai";
 export const client = generateClient<Schema>({ authMode: "userPool" });
 export const { useAIConversation, useAIGeneration } = createAIHooks(client);`}
 		/>
-	</section> --><!-- <section>
-	<h2>Technical Achievements</h2>
-	<li><strong>Built-in authentication and authorization</strong></li>
-	<li><strong>User-based data access</strong></li>
-	<li><strong>Generative UI</strong></li>
-	<li><strong>Streaming over websockets</strong></li>
-	<li><strong>React Native support</strong></li>
-</section> --><!-- <section>
-	<h2>Impact</h2>
-	<AIKitRequests client:load />
-</section> --><!-- <section>
-	<Image src={quotes1} alt="" />
-</section>
+	</section> -->
 
-<section>
-	<Image src={quotes2} alt="" />
-</section>
+	<!-- <section>
+		<Prism
+			lang="tsx"
+			code={`export const ReviewSummarization = ({ reviews }: { reviews: string[] }) => {
+  const [{ data, isLoading }, handleGeneration] =
+    useAIGeneration("reviewSummarizer");
 
-<section>
-	<blockquote>"AI kit rocks from a developer experience point of view"</blockquote>
-</section>
+  const generateSummary = async () => {
+    handleGeneration({
+      reviews,
+    });
+  };
 
-<section>
-	<h2>What we got right</h2>
-	<ul>
-		<li>Taking our time</li>
-		<li>End-to-end type-safety</li>
-		<li>Overall architecture</li>
-		<li>Fullstack DX</li>
-		<li>React hooks / Body-less component</li>
-	</ul>
-</section>
+  return (
+    <>
+      {data?.summary ? (
+        <Message
+          variation="outlined"
+          colorTheme="info"
+          heading="AI-generated summary"
+        >
+          <Markdown>{data.summary}</Markdown>
+        </Message>
+      ) : (
+        <Button
+          isLoading={isLoading}
+          loadingText="Generating..."
+          onClick={generateSummary}
+        >
+          Generate Summary
+        </Button>
+      )}
+    </>
+  );
+};`}
+		/>
+	</section> -->
 
-<section>
-	<h2>Areas of improvement</h2>
-	<ul>
-		<li>Guest access</li>
-		<li>Debuggability</li>
-		<li>Generative UI DX</li>
-		<li>Backend customization</li>
-		<li>Console experience</li>
-	</ul>
-</section> --><!-- <style>
+	<section>
+		<h2>Technical Achievements</h2>
+		<li><strong>Built-in authentication and authorization</strong></li>
+		<li><strong>User-based data access</strong></li>
+		<li><strong>Generative UI</strong></li>
+		<li><strong>Streaming over websockets</strong></li>
+		<li><strong>React Native support</strong></li>
+	</section>
+
+	<section>
+		<h2>Impact</h2>
+		<blockquote>"AI kit rocks from a developer experience point of view"</blockquote>
+		<blockquote>"Unusually useful"</blockquote>
+		<blockquote>
+			"This is definitely the quickest way for fullstack developers to build webapps with AI
+			capabilities"
+		</blockquote>
+	</section>
+
+	<section>
+		<h2>What we got right</h2>
+		<ul>
+			<li>Taking our time</li>
+			<li>End-to-end type-safety</li>
+			<li>Fullstack DX</li>
+			<li>React hooks + Presentational component</li>
+			<li>React Native support</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Areas of improvement</h2>
+		<ul>
+			<li>Guest access</li>
+			<li>Debuggability</li>
+			<li>Generative UI DX</li>
+			<li>Backend customization</li>
+			<li>Console experience</li>
+		</ul>
+	</section>
+
+	<section></section>
+
+	<section>
+		<h2>Storage Browser for S3</h2>
+	</section>
+
+	<section>
+		<!-- What was my role -->
+	</section>
+
+	<section>
+		<video data-autoplay src={stoBro1}></video>
+	</section>
+
+	<section>
+		<StorageBrowserDemo client:load />
+	</section>
+
+	<section>
+		<h2>Amplify UI</h2>
+	</section>
+</SlideLayout>
+
+<style>
 	.columns {
 		display: flex;
 		flex-direction: row;
 		gap: var(--space-medium);
-		align-items: center;
+		align-items: stretch;
 	}
 	.half {
 		flex: 1;
+		padding: var(--space-large);
+		position: relative;
 	}
+
+	.half.bordered::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 2px;
+		background-image: linear-gradient(
+			to bottom,
+			var(--color-brand-primary),
+			var(--color-brand-secondary)
+		);
+	}
+
 	ul {
 		list-style: none;
 		padding: 0;
@@ -236,4 +577,57 @@ export const { useAIConversation, useAIGeneration } = createAIHooks(client);`}
 	li {
 		margin-bottom: var(--space-medium);
 	}
-</style> -->
+
+	.subtitle {
+		font-style: italic;
+		color: var(--color-font-tertiary);
+	}
+
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-medium);
+	}
+
+	h2 {
+		line-height: 1;
+		margin: 0;
+	}
+
+	.badge {
+		border-radius: 1rem;
+		padding-inline: var(--space-small);
+		padding-block: var(--space-xs);
+		font-size: var(--size-font-small);
+		width: 1rem;
+		height: 1rem;
+		display: inline-block;
+	}
+
+	.badge.designer {
+		background-color: var(--color-lime-100);
+		color: var(--color-lime-800);
+	}
+
+	/* .badge.designer::after {
+		content: 'designer';
+	} */
+
+	.badge.fee {
+		background-color: var(--color-sky-100);
+		color: var(--color-sky-800);
+	}
+
+	/* .badge.fee::after {
+		content: 'front-end engineer';
+	} */
+
+	.badge.pm {
+		background-color: var(--color-fuchsia-100);
+		color: var(--color-fuchsia-800);
+	}
+
+	/* .badge.pm::after {
+		content: 'product manager';
+	} */
+</style>

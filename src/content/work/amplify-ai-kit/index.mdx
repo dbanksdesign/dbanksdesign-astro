@@ -25,6 +25,7 @@ import generation2 from './assets/generation2.mp4'
 import quotes1 from './assets/quotes1.png';
 import quotes2 from './assets/quotes2.png';
 
+---
 
 ## Quick Links
 
@@ -255,7 +256,6 @@ Some notable things we did with this project:
 * **Security without dealing with credentials:**  Building full-stack functionality on AWS is not always easy. AWS doesn't have API keys. You have to work with short-lived credentials and tokens. You have to sign requests with an authorization token. But with the Amplify AI kit, Amplify takes care of authenticating users and authorizing requests for you. You never have to deal with credentials objects or signing requests while being still following AWS security best practices.
 * **User-based data access:** Large-language models are inherently static so to make them do useful things you usually need to provide them access to information with "tools" or "functions". However you don't want to leak data that the end-user doesn't normally have access to. With the Amplify AI kit any data access via a tool is made on behalf of the user so the LLM only has access to what the user has access to.
 * **Generative UI:** Chat bots can get kind of boring if it is just text-to-text. So we built a way for developers to define React components in their frontend code that the AI assistant can choose to respond with. For example, if you are building a conversational search experience for retail site, you could define product card components that the search assistant could respond with
-* **Streaming over websockets:**
 * **React Native support:** While not an explicit goal of the project, I ensured we built the React library in such a way that React Native would just work via the hooks we expose.
 
 

@@ -5,14 +5,6 @@ html[data-theme='blueprint'] {
 	--color-font-quaternary: rgba(255, 255, 255, 0.4);
 	--color-font-inverse: rgba(0, 6, 38, 0.9);
 
-	/* --color-font-code-1: var(--color-core-blue-dark);
-	--color-font-code-2: var(--color-core-green-dark);
-	--color-font-code-3: var(--color-core-purple-dark);
-	--color-font-code-4: var(--color-core-red-dark);
-	--color-font-code-5: var(--color-core-orange-dark);
-	--color-font-code-6: var(--color-core-teal-dark);
-	--color-font-code-7: var(--color-core-pink-dark); */
-
 	--color-background-primary: var(--color-blue-900);
 	--color-background-secondary: hsl(from var(--color-blue-950) h s l/ 0.25);
 	--color-background-tertiary: hsl(from var(--color-blue-950) h s l/ 0.5);
@@ -37,16 +29,8 @@ html[data-theme='blueprint'] {
 	--color-font-quaternary: rgba(0, 6, 38, 0.4);
 	--color-font-inverse: rgba(255, 255, 255, 0.9);
 
-	/* --color-font-code-1: var(--color-core-blue-dark);
-	--color-font-code-2: var(--color-core-green-dark);
-	--color-font-code-3: var(--color-core-purple-dark);
-	--color-font-code-4: var(--color-core-red-dark);
-	--color-font-code-5: var(--color-core-orange-dark);
-	--color-font-code-6: var(--color-core-teal-dark);
-	--color-font-code-7: var(--color-core-pink-dark); */
-
-	--color-background-primary: var(--color-blue-100);
-	--color-background-secondary: var(--color-blue-200);
+	--color-background-primary: var(--color-blue-50);
+	--color-background-secondary: hsl(from var(--color-blue-200) h s l/ 0.25);
 	--color-background-tertiary: var(--color-blue-300);
 	--color-background-highlight: var(--color-core-yellow-light);
 	--color-background-success: var(--color-core-green-light);
@@ -58,6 +42,6 @@ html[data-theme='blueprint'] {
 	--color-brand-secondary: var(--color-fuchsia-700);
 
 	--color-border-primary: var(--color-blue-400);
-	--color-border-secondary: var(--color-blue-500);
-	--color-border-tertiary: var(--color-blue-600);
+	--color-border-secondary: var(--color-blue-300);
+	--color-border-tertiary: var(--color-blue-200);
 }

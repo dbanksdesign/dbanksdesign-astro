@@ -9,11 +9,21 @@ import { signOut, signInWithRedirect } from 'aws-amplify/auth';
 
 Amplify.configure(resourceConfig);
 
+export const AmplifyThemeWrapper = ({ children }: PropsWithChildren) => {
+	return (
+		<View height="100%" width="100%" {...theme.containerProps()}>
+			<Card variation="outlined" height="100%">
+				{children}
+			</Card>
+			<ThemeStyle theme={theme} />
+		</View>
+	);
+};
+
 export const AmplifyWrapper = ({ children }: PropsWithChildren) => {
 	return (
 		<View height="800px" width="100%" padding="large" {...theme.containerProps()}>
 			<Card variation="outlined" height="100%">
-				<Button onClick={() => signInWithRedirect({ provider: 'Google' })}>Sign in</Button>
 				<Authenticator>
 					<Flex direction="column" width="100%" height="100%">
 						<Button

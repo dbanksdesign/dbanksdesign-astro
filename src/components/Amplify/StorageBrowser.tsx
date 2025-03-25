@@ -2,7 +2,7 @@ import {
 	createStorageBrowser,
 	createAmplifyAuthAdapter,
 } from '@aws-amplify/ui-react-storage/browser';
-import { AmplifyWrapper } from './Wrapper';
+import { AmplifyThemeWrapper } from './Wrapper';
 import { Amplify } from 'aws-amplify';
 import resourceConfig from '../../../amplify_outputs.json';
 
@@ -14,8 +14,8 @@ const { StorageBrowser } = createStorageBrowser({
 
 export function StorageBrowserDemo() {
 	return (
-		<AmplifyWrapper>
+		<AmplifyThemeWrapper>
 			<StorageBrowser />
-		</AmplifyWrapper>
+		</AmplifyThemeWrapper>
 	);
 }
